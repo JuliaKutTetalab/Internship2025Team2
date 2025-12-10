@@ -30,6 +30,7 @@ import com.example.growbox.ui.theme.Gray999
 import com.example.growbox.ui.theme.Green800
 import com.example.growbox.ui.theme.GreenLight
 import com.example.growbox.ui.theme.White
+import androidx.compose.ui.res.dimensionResource
 
 
 @Composable
@@ -46,41 +47,42 @@ Column(
     modifier = Modifier
         .fillMaxSize()
         .background(Color.White)
-        .padding(horizontal = 24.dp),
+        .padding(horizontal = dimensionResource(R.dimen.padding_large)),
     horizontalAlignment = Alignment.CenterHorizontally
 ){
-    Spacer(modifier = Modifier.height(170.dp))
+    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_giant)))
 
     Icon(
         painter = painterResource(id = R.drawable.ic_plant),
         contentDescription = "Plant icon",
         tint = Color.Unspecified,
-        modifier = Modifier.size(110.dp)
+        modifier = Modifier
+            .size(dimensionResource(id = R.dimen.icon_size_huge))
     )
-    Spacer(modifier = Modifier.height(32.dp))
+    Spacer( modifier = Modifier.height(dimensionResource(R.dimen.spacing_large)))
 
     Text(
         text = "Welcome back",
-        fontSize = 36.sp,
+        fontSize = dimensionResource(R.dimen.font_size_title).value.sp,
         fontWeight = FontWeight.Bold,
         color = Black
     )
-    Spacer(modifier = Modifier.height(10.dp))
+    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_small)))
 
     Text(
         text = "Sing in to grow your plants",
-        fontSize = 20.sp,
+        fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
         color = Gray999
     )
-    Spacer(modifier = Modifier.height(60.dp))
+    Spacer( modifier = Modifier.height(dimensionResource(R.dimen.spacing_large)))
 
     Column(modifier = Modifier.fillMaxWidth()) {
 
         Text(
             text = "Email",
-            fontSize = 16.sp,
+            fontSize = dimensionResource(R.dimen.font_size_small).value.sp,
             color = Gray999,
-            modifier = Modifier.padding(bottom = 10.dp)
+            modifier = Modifier.padding(bottom = dimensionResource(R.dimen.spacing_small))
         )
 
         OutlinedTextField(
@@ -94,23 +96,21 @@ Column(
             },
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(14.dp),
+            shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_medium)),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = Green800,
                 unfocusedBorderColor = White
             ),
         )
     }
-    Spacer(Modifier.height(20.dp))
+    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium)))
 
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(
             text = "Password",
-            fontSize = 16.sp,
+            fontSize = dimensionResource(R.dimen.font_size_small).value.sp,
             color = Gray999,
-            modifier = Modifier.padding(bottom = 10.dp)
-
-
+            modifier = Modifier.padding(bottom = dimensionResource(R.dimen.spacing_small))
         )
 
         OutlinedTextField(
@@ -131,17 +131,13 @@ Column(
                         imageVector = if (isPasswordVisible)
                             Icons.Default.Visibility
                         else Icons.Default.VisibilityOff,
-                        contentDescription = if (isPasswordVisible)
-                            "Hide password"
-                        else
-                            "Show password",
-                        tint = Color(0xFF2F7302)
+                        contentDescription = "Toggle password",
+                        tint = Green800
                     )
                 }
-
             },
             modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(14.dp),
+            shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_medium)),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = Green800,
                 unfocusedBorderColor = White
@@ -150,54 +146,56 @@ Column(
         )
     }
 
-    Spacer(modifier = Modifier.height(32.dp))
+    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_large)))
 
-    Box(
+    Button(
+        onClick = {
+            onLoginClick(email, password)
+        },
         modifier = Modifier
             .fillMaxWidth()
-            .height(56.dp)
+            .height(dimensionResource(R.dimen.button_height_large))
             .background(
-                brush = Brush.verticalGradient(  // Вертикальний
+                brush = Brush.verticalGradient(
                     colors = listOf(GreenLight, Green800)
                 ),
-                shape = RoundedCornerShape(14.dp)
-            )
-            .clickable {
-                onLoginClick(email, password)
-            },
-        contentAlignment = Alignment.Center
+                shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_medium))
+            ),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.Transparent
+        ),
+        shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_medium))
     ) {
         Text(
             text = "Sign in",
-            fontSize = 16.sp,
+            fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
             fontWeight = FontWeight.SemiBold,
             color = White
         )
     }
 
-    Spacer(modifier = Modifier.weight(1f))
+    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_large)))
 
     Row(
         horizontalArrangement = Arrangement.Center,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(bottom = 32.dp)
+            .padding(bottom = dimensionResource(R.dimen.padding_extra_large))
     ) {
         Text(
             text = "Don`t have an account? ",
-            fontSize = 18.sp,
+            fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
+            fontWeight = FontWeight.SemiBold,
             color = Black
         )
         Text(
             text = "Sign up",
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
+            fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
+            fontWeight = FontWeight.SemiBold,
             color = Green800,
             modifier = Modifier.clickable{ onNavigateToSingUp() }
         )
-
     }
-
 }
 }
 
