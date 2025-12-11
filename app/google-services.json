@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "678388472166",
+    "project_id": "growbox-team2",
+    "storage_bucket": "growbox-team2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678388472166:android:d69600ceb3c1b5fe2b10a7",
+        "android_client_info": {
+          "package_name": "com.example.growbox"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlDKb9pWIyV_YK6zoSrQZGDEuFNiHdh14"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

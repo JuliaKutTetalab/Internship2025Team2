@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GrowBox</string>
+    <string name="splash_screen">Splash</string>
+    <string name="logIn_screen">LogIn</string>
+    <string name="signUp_screen">SignUp</string>
+
+</resources>
