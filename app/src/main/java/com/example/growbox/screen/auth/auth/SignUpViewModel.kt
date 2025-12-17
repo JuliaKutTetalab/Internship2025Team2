@@ -27,7 +27,6 @@ class SignUpViewModel(
         _signUpState.value = SignUpState.Loading
         viewModelScope.launch {
             try {
-
                 repository.registerAndInitialize(email, password)
                 _signUpState.value = SignUpState.Success
             } catch (e: Exception) {

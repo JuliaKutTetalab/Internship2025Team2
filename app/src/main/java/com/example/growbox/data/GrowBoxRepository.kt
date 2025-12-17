@@ -21,6 +21,11 @@ class GrowBoxRepositoryImpl(
 ) : GrowBoxRepository {
 
 
+    companion object {
+        const val USERS_COLLECTION = "users"
+        const val CROPS_COLLECTION = "crops"
+    }
+
     override suspend fun registerAndInitialize(email: String, password: String) {
         val userId = firebaseDataSource.registerUser(email, password)
         firebaseDataSource.createUserProfile(userId, email)
