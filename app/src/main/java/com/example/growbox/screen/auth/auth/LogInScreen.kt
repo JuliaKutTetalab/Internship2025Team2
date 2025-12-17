@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.ui.res.dimensionResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.viewModelFactory
 
@@ -36,6 +37,7 @@ import com.example.growbox.ui.theme.Gray999
 import com.example.growbox.ui.theme.Green800
 import com.example.growbox.ui.theme.GreenLight
 import com.example.growbox.ui.theme.White
+import androidx.compose.ui.res.stringResource
 
 
 object LogInDestination: NavigationDestination {
@@ -90,50 +92,70 @@ fun LogInScreen(
                 .padding(paddingValues)
                 .fillMaxSize()
                 .background(Color.White)
-                .padding(horizontal = 24.dp),
+                .padding(horizontal = dimensionResource(R.dimen.padding_large)),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(170.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_giant)))
 
 
             Icon(
                 painter = painterResource(id = R.drawable.ic_plant),
-                contentDescription = "Plant icon",
+                contentDescription = stringResource(R.string.content_description_plant_icon),
                 tint = Color.Unspecified,
-                modifier = Modifier.size(110.dp)
+                modifier = Modifier
+                    .size(dimensionResource(id = R.dimen.icon_size_huge))
             )
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer( modifier = Modifier.height(dimensionResource(R.dimen.spacing_large)))
 
 
-            Text(text = "Welcome back", fontSize = 36.sp, fontWeight = FontWeight.Bold, color = Black)
-            Spacer(modifier = Modifier.height(10.dp))
-            Text(text = "Sign in to grow your plants", fontSize = 20.sp, color = Gray999)
-            Spacer(modifier = Modifier.height(60.dp))
+            Text(
+                text = stringResource(R.string.login_title),
+                fontSize = dimensionResource(R.dimen.font_size_title).value.sp,
+                fontWeight = FontWeight.Bold,
+                color = Black
+            )
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_small)))
+            Text(
+                text = stringResource(R.string.login_subtitle),
+                fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
+                color = Gray999
+            )
+            Spacer( modifier = Modifier.height(dimensionResource(R.dimen.spacing_large)))
 
 
             Column(modifier = Modifier.fillMaxWidth()) {
-                Text(text = "Email", fontSize = 16.sp, color = Gray999, modifier = Modifier.padding(bottom = 10.dp))
+                Text(
+                    text = stringResource(R.string.login_email_label),
+                    fontSize = dimensionResource(R.dimen.font_size_small).value.sp,
+                    color = Gray999,
+                    modifier = Modifier.padding(bottom = dimensionResource(R.dimen.spacing_small))
+                )
                 OutlinedTextField(
                     value = email,
                     onValueChange = { email = it },
-                    placeholder = { Text(text = "nick.name@gmail.com", color = Black) },
+                    placeholder = { Text(text = stringResource(R.string.login_email_placeholder), color = Black) },
                     singleLine = true,
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(14.dp),
+                    shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_medium)),
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = Green800,
                         unfocusedBorderColor = White
                     ),
                 )
             }
-            Spacer(Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium)))
 
             Column(modifier = Modifier.fillMaxWidth()) {
-                Text(text = "Password", fontSize = 16.sp, color = Gray999, modifier = Modifier.padding(bottom = 10.dp))
+                Text(
+                    text = stringResource(R.string.login_password_label),
+                    fontSize = dimensionResource(R.dimen.font_size_small).value.sp,
+                    color = Gray999,
+                    modifier = Modifier.padding(bottom = dimensionResource(R.dimen.spacing_small))
+                )
                 OutlinedTextField(
                     value = password,
                     onValueChange = { password = it },
-                    placeholder = { Text("********", color = Black) },
+                    placeholder = { Text(stringResource(R.string.login_password_placeholder), color = Black) },
                     singleLine = true,
                     visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                     trailingIcon = {
@@ -146,12 +168,12 @@ fun LogInScreen(
                         }
                     },
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(14.dp),
+                    shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_medium)),
                     colors = OutlinedTextFieldDefaults.colors(focusedBorderColor = Green800, unfocusedBorderColor = White)
                 )
             }
 
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_large)))
 
 
             Button(
@@ -163,10 +185,10 @@ fun LogInScreen(
                     containerColor = Color.Transparent,
                     disabledContainerColor = Color.LightGray.copy(alpha = 0.5f)
                 ),
-                contentPadding = PaddingValues(0.dp),
+                contentPadding = PaddingValues(dimensionResource(R.dimen.padding_zero)),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(56.dp)
+                    .height(dimensionResource(R.dimen.button_height_large))
             ) {
                 Box(
                     modifier = Modifier
@@ -177,7 +199,7 @@ fun LogInScreen(
                             } else {
                                 Brush.verticalGradient(colors = listOf(GreenLight, Green800))
                             },
-                            shape = RoundedCornerShape(14.dp)
+                            shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_medium))
                         ),
                     contentAlignment = Alignment.Center
                 ) {
@@ -185,8 +207,8 @@ fun LogInScreen(
                         CircularProgressIndicator(color = White, modifier = Modifier.size(30.dp))
                     } else {
                         Text(
-                            text = "Sign in",
-                            fontSize = 16.sp,
+                            text = stringResource(R.string.login_button),
+                            fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = White
                         )
@@ -194,20 +216,25 @@ fun LogInScreen(
                 }
             }
 
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_large)))
 
 
             Row(
                 horizontalArrangement = Arrangement.Center,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 32.dp)
+                    .padding(bottom = dimensionResource(R.dimen.padding_extra_large))
             ) {
-                Text(text = "Don`t have an account? ", fontSize = 18.sp, color = Black)
                 Text(
-                    text = "Sign up",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
+                    text = stringResource(R.string.login_no_account),
+                    fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = Black
+                )
+                Text(
+                    text = stringResource(R.string.login_sign_up_link),
+                    fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
+                    fontWeight = FontWeight.SemiBold,
                     color = Green800,
                     modifier = Modifier.clickable { onNavigateToSingUp() }
                 )

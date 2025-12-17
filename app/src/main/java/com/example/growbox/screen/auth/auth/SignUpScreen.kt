@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -100,7 +101,7 @@ fun SignUpScreen(
             // ІКОНКА ТА ЗАГОЛОВКИ
             Icon(
                 painter = painterResource(id = R.drawable.ic_plant),
-                contentDescription = "Plant icon",
+                contentDescription = stringResource(R.string.content_description_plant_icon),
                 tint = Color.Unspecified,
                 modifier = Modifier.size(dimensionResource(id = R.dimen.icon_size_huge))
             )
@@ -108,7 +109,7 @@ fun SignUpScreen(
             Spacer( modifier = Modifier.height(dimensionResource(R.dimen.spacing_large)))
 
             Text(
-                text = "Create an account",
+                text = stringResource(R.string.signup_title),
                 fontSize = dimensionResource(R.dimen.font_size_title).value.sp,
                 fontWeight = FontWeight.Bold,
                 color = Black
@@ -117,7 +118,7 @@ fun SignUpScreen(
             Spacer( modifier = Modifier.height(dimensionResource(R.dimen.spacing_small)))
 
             Text(
-                text = "Create an account to start growing plants",
+                text = stringResource(R.string.signup_subtitle),
                 fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
                 color = Gray999
             )
@@ -127,7 +128,7 @@ fun SignUpScreen(
             // ПОЛЕ EMAIL
             Column(modifier = Modifier.fillMaxWidth()){
                 Text(
-                    text = "Email",
+                    text = stringResource(R.string.signup_email_label),
                     fontSize = dimensionResource(R.dimen.font_size_small).value.sp,
                     color = Gray999,
                     modifier = Modifier.padding(bottom = dimensionResource(R.dimen.spacing_small))
@@ -136,12 +137,12 @@ fun SignUpScreen(
                 OutlinedTextField(
                     value = email,
                     onValueChange = { email = it; passwordError = null },
-                    placeholder = { Text("nick.name@mail.com", color = Black) },
+                    placeholder = { Text(stringResource(R.string.signup_email_placeholder), color = Black) },
                     singleLine = true,
                     trailingIcon = {
                         // Дуже проста валідація наявності символів @ та .
                         if (email.contains("@") && email.contains(".")){
-                            Icon(Icons.Default.Check, contentDescription = "Valid email", tint = Green800)
+                            Icon(Icons.Default.Check, contentDescription = stringResource(R.string.content_description_valid_email), tint = Green800)
                         }
                     },
                     modifier = Modifier.fillMaxWidth(),
@@ -155,7 +156,7 @@ fun SignUpScreen(
             // ПОЛЕ PASSWORD
             Column(modifier = Modifier.fillMaxWidth()){
                 Text(
-                    text = "Password",
+                    text = stringResource(R.string.signup_password_label),
                     fontSize = dimensionResource(R.dimen.font_size_small).value.sp,
                     color = Gray999,
                     modifier = Modifier.padding(bottom = dimensionResource(R.dimen.spacing_small))
@@ -164,7 +165,7 @@ fun SignUpScreen(
                 OutlinedTextField(
                     value = password,
                     onValueChange = { password = it; passwordError = null },
-                    placeholder = { Text ("********", color = Black ) },
+                    placeholder = { Text (stringResource(R.string.signup_password_placeholder), color = Black ) },
                     singleLine = true,
                     visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                     trailingIcon = {
@@ -172,7 +173,7 @@ fun SignUpScreen(
                             if (password.length >= 8){
                                 Icon(
                                     Icons.Default.Check,
-                                    contentDescription = "Valid password",
+                                    contentDescription = stringResource(R.string.content_description_valid_password),
                                     tint = Green800,
                                     modifier = Modifier.padding(end = dimensionResource(R.dimen.spacing_small))
                                 )
@@ -180,7 +181,7 @@ fun SignUpScreen(
                             IconButton(onClick = { isPasswordVisible = !isPasswordVisible }) {
                                 Icon(
                                     imageVector = if (isPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
-                                    contentDescription = "Toggle password",
+                                    contentDescription = stringResource(R.string.content_description_toggle_password),
                                     tint = Green800
                                 )
                             }
@@ -197,7 +198,7 @@ fun SignUpScreen(
             // ПОЛЕ CONFIRM PASSWORD
             Column(modifier = Modifier.fillMaxWidth()){
                 Text(
-                    text = "Confirm Password",
+                    text = stringResource(R.string.signup_confirm_password_label),
                     fontSize = dimensionResource(R.dimen.font_size_small).value.sp,
                     color = Gray999,
                     modifier = Modifier.padding(bottom = dimensionResource(R.dimen.spacing_small))
@@ -206,7 +207,7 @@ fun SignUpScreen(
                 OutlinedTextField(
                     value = confirmPassword,
                     onValueChange = { confirmPassword = it; passwordError = null },
-                    placeholder = { Text ("********", color = Black ) },
+                    placeholder = { Text (stringResource(R.string.signup_confirm_password_placeholder), color = Black ) },
                     singleLine = true,
                     visualTransformation = if (isConfirmPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                     isError = passwordError != null, // Відображення помилки
@@ -215,15 +216,17 @@ fun SignUpScreen(
                             if (isPasswordValid(password)){
                                 Icon(
                                     Icons.Default.Check,
-                                    contentDescription = "Valid password",
+                                    contentDescription = stringResource(R.string.content_description_valid_password),
                                     tint = Green800,
-                                    modifier = Modifier.padding(end =dimensionResource( R.dimen.spacing_small))
+                                    modifier = Modifier.padding(end = dimensionResource( R.dimen.spacing_small))
                                 )
                             }
                             IconButton(onClick = { isConfirmPasswordVisible = !isConfirmPasswordVisible }) {
                                 Icon(
-                                    imageVector = if (isConfirmPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
-                                    contentDescription = "Toggle password",
+                                    imageVector = if (isConfirmPasswordVisible)
+                                        Icons.Default.Visibility
+                                        else Icons.Default.VisibilityOff,
+                                    contentDescription = stringResource(R.string.content_description_toggle_password),
                                     tint = Green800
                                 )
                             }
@@ -245,14 +248,14 @@ fun SignUpScreen(
                 onClick = {
                     if (!isLoading) {
                         if (password != confirmPassword) {
-                            passwordError = "Паролі не співпадають"
+                            passwordError = R.string.signup_password_error.toString()
                             return@Button
                         }
                         passwordError = null
                         viewModel.register(email, password)
                     }
                     if (!isPasswordValid(password)) {
-                        passwordError = "Пароль має містити 8+ символів, літери, цифри та спецсимволи."
+                        passwordError = R.string.signup_password_valid_error.toString()
                         return@Button
                     }
                     passwordError = null
@@ -263,7 +266,7 @@ fun SignUpScreen(
                     containerColor = Color.Transparent,
                     disabledContainerColor = Color.LightGray.copy(alpha = 0.5f)
                 ),
-                contentPadding = PaddingValues(0.dp),
+                contentPadding = PaddingValues(dimensionResource(R.dimen.padding_zero)),
                 shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_medium)),
                 modifier = Modifier
                     .fillMaxWidth()
@@ -286,7 +289,7 @@ fun SignUpScreen(
                         CircularProgressIndicator(color = White, modifier = Modifier.size(30.dp))
                     } else {
                         Text(
-                            text = "Sign up",
+                            text = stringResource(R.string.signup_button),
                             fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
                             fontWeight = FontWeight.SemiBold,
                             color = White
@@ -305,13 +308,13 @@ fun SignUpScreen(
                     .padding(bottom = dimensionResource(R.dimen.padding_extra_large))
             ){
                 Text(
-                    text = "Already have an account? ",
+                    text = stringResource(R.string.signup_have_account),
                     fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
                     color = Black,
                     fontWeight = FontWeight.SemiBold
                 )
                 Text(
-                    text = "Log in",
+                    text = stringResource(R.string.signup_login_link),
                     fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
                     fontWeight = FontWeight.Bold,
                     color = Green800,
