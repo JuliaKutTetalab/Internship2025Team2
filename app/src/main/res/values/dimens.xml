@@ -4,8 +4,22 @@
 
 
     <resources>
+        <!-- Content max Width -->
+        <dimen name="content_max_width">400dp</dimen>
+        <dimen name="content_max_width_small">300dp</dimen>
+        <dimen name="content_max_width_large">600dp</dimen>
 
+        <!-- Button widths -->
+        <dimen name="button_width_small">80dp</dimen>
+        <dimen name="button_width_medium">1200dp</dimen>
+        <dimen name="button_width_large">200dp</dimen>
 
+        <!-- Page indicator -->
+        <dimen name="page_indicator_size_selected">10dp</dimen>
+        <dimen name="page_indicator_size_unselected">10dp</dimen>
+        <dimen name="page_block_width">200dp</dimen>
+        <dimen name="icon_size__extra_huge">120dp</dimen>
+        <dimen name="page_indicator_width">52dp</dimen>
 
 
         <!-- Spacing (проміжки між елементами) -->
@@ -35,11 +49,15 @@
         <dimen name="icon_size_extra_large">60dp</dimen>
         <dimen name="icon_size_huge">100dp</dimen>
         <dimen name="icon_size_extra_huge">160dp</dimen>
+        <dimen name="onboarding_icon_size_small">180dp</dimen>
+        <dimen name="onboarding_icon_size">220dp</dimen>
+
 
         <!-- Button heights -->
         <dimen name="button_height_small">40dp</dimen>
         <dimen name="button_height_medium">48dp</dimen>
         <dimen name="button_height_large">56dp</dimen>
+        <dimen name="button_onboarding_large">140dp</dimen>
 
         <!-- Corner radius  -->
         <dimen name="corner_radius_small">8dp</dimen>
