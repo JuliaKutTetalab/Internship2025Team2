@@ -59,6 +59,8 @@ dependencies {
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.foundation.layout)
     implementation(libs.androidx.compose.ui.unit)
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.compose.remote.creation.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -91,6 +93,12 @@ dependencies {
 
     // Необхідна залежність для Navigation Compose
     implementation("androidx.navigation:navigation-compose:2.7.5")
+
+    //Vico chart - для побудови графіків функцій
+    implementation("com.patrykandpatrick.vico:compose:1.13.1")
+    implementation("com.patrykandpatrick.vico:compose-m3:1.13.1")
+    implementation("com.patrykandpatrick.vico:core:1.13.1")
+
 
 // Додайте ці залежності в блок dependencies { ... }
 //    implementation("com.google.firebase:firebase-auth-ktx")

@@ -31,14 +31,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             GrowBoxTheme {
                 GrowBoxApp()
-                Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)){
-                    val viewModel: OnBoardingViewModel = hiltViewModel()
-                    OnBoardingScreen(
-                        onNavigateToHome = {
-                            //TODO: Навігація на Home екран
-                        }
-                    )
-                }
             }
         }
     }

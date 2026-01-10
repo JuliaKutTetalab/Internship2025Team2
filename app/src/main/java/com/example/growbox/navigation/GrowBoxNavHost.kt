@@ -18,7 +18,8 @@ import com.example.growbox.screen.auth.auth.SignUpDestination
 import com.example.growbox.screen.auth.auth.SignUpScreen
 import com.example.growbox.screen.auth.auth.SplashDestination
 import com.example.growbox.screen.auth.auth.SplashScreen
-
+import com.example.growbox.screen.home.light_chart.LightChartDestination
+import com.example.growbox.screen.home.light_chart.LightChartScreen
 
 
 @Composable
@@ -28,7 +29,7 @@ fun GrowBoxNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = SplashDestination.route,
+        startDestination = LightChartDestination.route,
         modifier = modifier
     ) {
 
@@ -40,7 +41,7 @@ fun GrowBoxNavHost(
                 },
                 onAuthFailure = {
 
-                    navController.navigate(LogInDestination.route) {
+                    navController.navigate(SignUpDestination.route) {
                         popUpTo(SplashDestination.route) { inclusive = true }
                     }
                 }
@@ -74,6 +75,15 @@ fun GrowBoxNavHost(
                     navController.navigate(LogInDestination.route) {
                         popUpTo(LogInDestination.route) { inclusive = true }
                     }
+                }
+            )
+        }
+
+        //LIGHT CHART SCREEN
+        composable(route = LightChartDestination.route){
+            LightChartScreen (
+                onNavigateBack = {
+                    navController.popBackStack()
                 }
             )
         }

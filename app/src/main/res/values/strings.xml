@@ -35,6 +35,7 @@
     <string name="signup_password_valid_error">Password must contain at least 8 characters, including letters, numbers, and special characters.</string>>
 
     <!-- Onboarding Screens -->
+    <string name="onboarding_name">OnBoarding</string>
     <string name="onboarding_skip">Skip</string>
     <string name="onboarding_next">Next</string>
     <string name="onboarding_plant_description">Plant illustration</string>>
@@ -48,11 +49,29 @@
     <string name="onboarding_screen3_title">Observe and Grow</string>
     <string name="onboarding_screen3_description">See your plants flourish with helpful graphs. You\'re set to grow and succeed!</string>
 
+    <!--    Home Screens-->
+    <!-- Light Chart  -->
+    <string name="light_title">Light</string>
+    <string name="light_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
+    <string name="light_chart_no_data">Data not found</string>
+    Data not found
+
     <!-- Common -->
     <string name="content_description_plant_icon">Plant icon</string>
     <string name="content_description_toggle_password">"Toggle password "</string>
     <string name="content_description_valid_email">Valid email</string>
     <string name="content_description_valid_password">Valid password</string>
     <string name="content_description_passwords_match">Passwords match</string>
+    <string name="content_description_home_screen">Back</string>
+
+    <!-- Stat Card Labels   -->
+    <string name="current_information">Current</string>
+    <string name="recommended_information">Recommended</string>
+    <string name="week_information">Week</string>
+    <string name="total_information">Total</string>
+
+    <!-- Value formats    -->
+    <string name="value_percentage">%d%%</string>
+    <string name="value_kilowatts">%s kw</string>
 
 </resources>
