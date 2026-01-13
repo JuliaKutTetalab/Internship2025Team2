@@ -1,7 +1,59 @@
 <resources>
+    <!-- App name -->
     <string name="app_name">GrowBox</string>
+
+    <!-- Splash Screen -->
     <string name="splash_screen">Splash</string>
-    <string name="logIn_screen">LogIn</string>
-    <string name="signUp_screen">SignUp</string>
+    <string name="splash_welcome">Welcome to App</string>
+
+    <!-- Login Screen -->
+    <string name="logIn_screen">LogIn</string>>
+    <string name="login_title">Welcome back</string>
+    <string name="login_subtitle">Sign in to grow your plants</string>
+    <string name="login_email_label">Email</string>
+    <string name="login_email_placeholder">nick.name@mail.com</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_password_placeholder">••••••••••</string>
+    <string name="login_button">Sign in</string>
+    <string name="login_no_account">"Don't have an account? "</string>
+    <string name="login_sign_up_link">Sign up</string>
+
+    <!-- Sign Up Screen -->
+    <string name="signUp_screen">SignUp</string>>
+    <string name="signup_title">Create an account</string>
+    <string name="signup_subtitle">Create an account to start growing plants</string>
+    <string name="signup_email_label">Email</string>
+    <string name="signup_email_placeholder">nick.name@mail.com</string>
+    <string name="signup_password_label">Password</string>
+    <string name="signup_password_placeholder">••••••••••</string>
+    <string name="signup_confirm_password_label">Confirm Password</string>
+    <string name="signup_confirm_password_placeholder">••••••••••</string>
+    <string name="signup_button">Sign up</string>
+    <string name="signup_have_account">Already have an account?</string>
+    <string name="signup_login_link">Log in</string>
+    <string name="signup_password_error">Passwords don\’t match</string>
+    <string name="signup_password_valid_error">Must be 8+ symbols, include digits and special characters</string>>
+    <string name="signup_email_valid_error">Enter a valid email address (e.g. name@mail.com)</string>
+
+    <!-- Onboarding Screens -->
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_plant_description">Plant illustration</string>>
+
+    <string name="onboarding_screen1_title">Choose Your Plants</string>
+    <string name="onboarding_screen1_description">Welcome to GrowBox! Select your favorite plants and begin cultivating your personal garden.</string>
+
+    <string name="onboarding_screen2_title">Connect and Control</string>
+    <string name="onboarding_screen2_description">Connect your GrowBox and control watering, lighting, and temperature right from your smartphone.</string>
+
+    <string name="onboarding_screen3_title">Observe and Grow</string>
+    <string name="onboarding_screen3_description">See your plants flourish with helpful graphs. You\'re set to grow and succeed!</string>
+
+    <!-- Common -->
+    <string name="content_description_plant_icon">Plant icon</string>
+    <string name="content_description_toggle_password">"Toggle password "</string>
+    <string name="content_description_valid_email">Valid email</string>
+    <string name="content_description_valid_password">Valid password</string>
+    <string name="content_description_passwords_match">Passwords match</string>
 
 </resources>

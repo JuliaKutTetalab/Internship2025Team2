@@ -17,6 +17,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,6 +28,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.growbox.R
 import com.example.growbox.di.AppViewModelProvider
 import com.example.growbox.navigation.NavigationDestination
+import com.example.growbox.ui.theme.Black
+import androidx.compose.ui.res.stringResource
 
 object SplashDestination : NavigationDestination {
     override val route = "splash_route"
@@ -40,7 +44,7 @@ fun SplashScreen(
 
     val isLoggedIn by viewModel.isLoggedIn.collectAsState(initial = null)
 
-    // ЗМІНА: Спостерігаємо за uiState
+    //ЗМІНА: Спостерігаємо за uiState
     val uiState by viewModel.uiState.collectAsState()
 
 
@@ -56,7 +60,7 @@ fun SplashScreen(
                 }
             }
             is SplashState.Loading -> {
-                // Нічого не робимо, чекаємо
+                //Нічого не робимо, чекаємо
             }
         }
     }
@@ -69,14 +73,18 @@ fun SplashScreen(
     ) {
         Icon(
             painter = painterResource(id = R.drawable.ic_plant),
-            contentDescription = "Plant icon",
-            modifier = Modifier.size(110.dp)
+            contentDescription = stringResource(R.string.content_description_plant_icon),
+            tint = Color.Unspecified,
+            modifier = Modifier
+                .size(dimensionResource(id = R.dimen.icon_size_huge))
         )
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_large)))
+
         Text(
-            text = "Welcome to App",
-            fontSize = 36.sp,
-            fontWeight = FontWeight.Bold
+            text = stringResource(R.string.splash_welcome),
+            fontSize = dimensionResource(R.dimen.font_size_title_large).value.sp,
+            fontWeight = FontWeight.Bold,
+            color = Black
         )
     }
 }
