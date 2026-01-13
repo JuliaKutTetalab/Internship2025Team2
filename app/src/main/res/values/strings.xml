@@ -55,7 +55,11 @@
     <string name="light_title">Light</string>
     <string name="light_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
     <string name="light_chart_no_data">Data not found</string>
-    Data not found
+    <!-- Humidity Chart  -->
+    <string name="humidity_title">Humidity</string>
+    <string name="humidity_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
+    <string name="humidity_chart_no_data">Data not found</string>
+
 
     <!-- Common -->
     <string name="content_description_plant_icon">Plant icon</string>
@@ -74,5 +78,6 @@
     <!-- Value formats    -->
     <string name="value_percentage">%d%%</string>
     <string name="value_kilowatts">%s kw</string>
+    <string name="value_milligrams">%s ml</string>
 
 </resources>

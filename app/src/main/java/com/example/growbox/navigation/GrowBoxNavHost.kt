@@ -11,6 +11,8 @@ import com.example.growbox.screen.auth.auth.SignUpDestination
 import com.example.growbox.screen.auth.auth.SignUpScreen
 import com.example.growbox.screen.auth.auth.SplashDestination
 import com.example.growbox.screen.auth.auth.SplashScreen
+import com.example.growbox.screen.home.humidity_chart.HumidityChartDestination
+import com.example.growbox.screen.home.humidity_chart.HumidityChartScreen
 import com.example.growbox.screen.home.light_chart.LightChartDestination
 import com.example.growbox.screen.home.light_chart.LightChartScreen
 
@@ -22,7 +24,7 @@ fun GrowBoxNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = SplashDestination.route,
+        startDestination = HumidityChartDestination.route,
         modifier = modifier
     ) {
 
@@ -75,6 +77,15 @@ fun GrowBoxNavHost(
         //LIGHT CHART SCREEN
         composable(route = LightChartDestination.route){
             LightChartScreen (
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        //Humidity CHART SCREEN
+        composable(route = HumidityChartDestination.route){
+            HumidityChartScreen (
                 onNavigateBack = {
                     navController.popBackStack()
                 }
