@@ -29,7 +29,7 @@ fun GrowBoxNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = LightChartDestination.route,
+        startDestination = SplashDestination.route,
         modifier = modifier
     ) {
 
