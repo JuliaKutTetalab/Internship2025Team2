@@ -32,7 +32,8 @@
     <string name="signup_have_account">Already have an account?</string>
     <string name="signup_login_link">Log in</string>
     <string name="signup_password_error">Passwords don\’t match</string>
-    <string name="signup_password_valid_error">Password must contain at least 8 characters, including letters, numbers, and special characters.</string>>
+    <string name="signup_password_valid_error">Must be 8+ symbols, include digits and special characters</string>>
+    <string name="signup_email_valid_error">Enter a valid email address (e.g. name@mail.com)</string>
 
     <!-- Onboarding Screens -->
     <string name="onboarding_name">OnBoarding</string>

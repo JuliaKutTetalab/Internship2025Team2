@@ -76,22 +76,20 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 
 
-    // Імпортуємо BoM, щоб версіями керував він, а не ми
     implementation(platform(libs.firebase.bom))
 
 
-// Необхідна залежність для функції viewModel() у Compose
+
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
 
-    // Додайте ці залежності, використовуючи аліаси,
-    // визначені у файлі libs.versions.toml (або подібному)
+
 
     implementation(libs.firebase.auth.ktx)
     implementation(libs.firebase.firestore.ktx)
 
     implementation("androidx.compose.material:material-icons-extended:1.7.5")
 
-    // Необхідна залежність для Navigation Compose
+
     implementation("androidx.navigation:navigation-compose:2.7.5")
 
     //Vico chart - для побудови графіків функцій
@@ -103,4 +101,5 @@ dependencies {
 // Додайте ці залежності в блок dependencies { ... }
 //    implementation("com.google.firebase:firebase-auth-ktx")
 //    implementation("com.google.firebase:firebase-firestore-ktx") // Додамо одразу, бо вона потрібна для профілю
+
 }

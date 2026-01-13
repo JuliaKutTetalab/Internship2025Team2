@@ -1,5 +1,7 @@
 package com.example.growbox.data
 
+import com.example.growbox.data.GrowBoxRepositoryImpl.Companion.CROPS_COLLECTION
+import com.example.growbox.data.GrowBoxRepositoryImpl.Companion.USERS_COLLECTION
 import com.example.growbox.data.model.Crop
 import com.example.growbox.data.model.User
 import com.google.firebase.auth.FirebaseAuth
@@ -45,12 +47,12 @@ class FirebaseDataSourceImpl(
         val initialUser =
             User(userId = userId, email = email, farmName = "GrowBox-${userId.take(5)}")
 
-        firestore.collection("users").document(userId).set(initialUser).await()
+        firestore.collection(USERS_COLLECTION).document(userId).set(initialUser).await()
     }
 
     override suspend fun saveNewCrop(userId: String, crop: Crop) {
 
-        firestore.collection("users").document(userId).collection("crops").add(crop).await()
+        firestore.collection(USERS_COLLECTION).document(userId).collection(CROPS_COLLECTION).add(crop).await()
     }
 
     override suspend fun isLoggedIn(): Boolean = withContext(Dispatchers.IO) {
