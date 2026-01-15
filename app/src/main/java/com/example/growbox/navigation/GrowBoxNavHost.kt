@@ -15,6 +15,8 @@ import com.example.growbox.screen.home.humidity_chart.HumidityChartDestination
 import com.example.growbox.screen.home.humidity_chart.HumidityChartScreen
 import com.example.growbox.screen.home.light_chart.LightChartDestination
 import com.example.growbox.screen.home.light_chart.LightChartScreen
+import com.example.growbox.screen.home.nutrition_chart.NutritionChartDestination
+import com.example.growbox.screen.home.nutrition_chart.NutritionChartScreen
 import com.example.growbox.screen.home.temperature_chart.TemperatureChartDestination
 import com.example.growbox.screen.home.temperature_chart.TemperatureChartScreen
 
@@ -26,7 +28,7 @@ fun GrowBoxNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = SplashDestination.route,
+        startDestination = SplashDestination.route ,
         modifier = modifier
     ) {
 
@@ -97,6 +99,15 @@ fun GrowBoxNavHost(
         //Temperature CHART SCREEN
         composable(route = TemperatureChartDestination.route){
             TemperatureChartScreen (
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        //Nutrition CHART SCREEN
+        composable(route = NutritionChartDestination.route){
+            NutritionChartScreen (
                 onNavigateBack = {
                     navController.popBackStack()
                 }
