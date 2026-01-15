@@ -101,14 +101,14 @@ fun HumidityStatCards(
             horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.spacing_medium))
         ) {
             StatCard(
-                value = stringResource(R.string.value_milligrams, weekConsumption),
+                value = stringResource(R.string.value_milliliter, weekConsumption),
                 label = stringResource(R.string.week_information),
                 valueColor = GreenLight,
                 modifier = Modifier.weight(1f)
             )
 
             StatCard(
-                value = stringResource(R.string.value_milligrams, totalConsumption),
+                value = stringResource(R.string.value_milliliter, totalConsumption),
                 label = stringResource(R.string.total_information),
                 valueColor = GreenLight,
                 modifier = Modifier.weight(1f)
