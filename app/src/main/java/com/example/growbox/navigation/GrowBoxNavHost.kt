@@ -17,6 +17,8 @@ import com.example.growbox.screen.home.light_chart.LightChartDestination
 import com.example.growbox.screen.home.light_chart.LightChartScreen
 import com.example.growbox.screen.home.temperature_chart.TemperatureChartDestination
 import com.example.growbox.screen.home.temperature_chart.TemperatureChartScreen
+import com.example.growbox.screen.settings.SettingsDestination
+import com.example.growbox.screen.settings.SettingsScreen
 
 
 @Composable
@@ -101,7 +103,11 @@ fun GrowBoxNavHost(
                     navController.popBackStack()
                 }
             )
-        }
+}
+            //SETTING SCREEN
+            composable(route = SettingsDestination.route){
+                SettingsScreen ()
+            }
     }
 }
 
