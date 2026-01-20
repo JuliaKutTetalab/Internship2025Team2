@@ -59,6 +59,10 @@
     <string name="humidity_title">Humidity</string>
     <string name="humidity_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
     <string name="humidity_chart_no_data">Data not found</string>
+    <!-- Temperature Chart  -->
+    <string name="temperature_title">Temperature</string>
+    <string name="temperature_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
+    <string name="temperature_chart_no_data">Data not found</string>
 
 
     <!-- Common -->
@@ -79,5 +83,6 @@
     <string name="value_percentage">%d%%</string>
     <string name="value_kilowatts">%s kw</string>
     <string name="value_milligrams">%s ml</string>
+    <string name="value_temperature">%1$d `C</string>
 
 </resources>
