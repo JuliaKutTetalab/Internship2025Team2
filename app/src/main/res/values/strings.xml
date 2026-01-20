@@ -63,6 +63,10 @@
     <string name="temperature_title">Temperature</string>
     <string name="temperature_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
     <string name="temperature_chart_no_data">Data not found</string>
+    <!-- Nutrition Chart  -->
+    <string name="nutrition_title">Nutrition</string>
+    <string name="nutrition_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
+    <string name="nutrition_chart_no_data">Data not found</string>
 
     <!--    Settings Screen-->
     <string name="settings_title">Settings</string>
@@ -98,7 +102,8 @@
     <!-- Value formats    -->
     <string name="value_percentage">%d%%</string>
     <string name="value_kilowatts">%s kw</string>
-    <string name="value_milligrams">%s ml</string>
+    <string name="value_milliliter">%s ml</string>
     <string name="value_temperature">%1$d `C</string>
+    <string name="value_milligrams">%s mg</string>
 
 </resources>

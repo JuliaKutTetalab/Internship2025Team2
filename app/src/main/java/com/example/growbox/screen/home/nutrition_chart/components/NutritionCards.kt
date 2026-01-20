@@ -1,4 +1,4 @@
-package com.example.growbox.screen.home.humidity_chart.components
+package com.example.growbox.screen.home.nutrition_chart.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -67,7 +67,7 @@ fun StatCard(
 }
 
 @Composable
-fun HumidityStatCards(
+fun NutritionStatCards(
     currentValue: Int,
     recommendedValue: Int,
     weekConsumption: String,
@@ -101,14 +101,14 @@ fun HumidityStatCards(
             horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.spacing_medium))
         ) {
             StatCard(
-                value = stringResource(R.string.value_milliliter, weekConsumption),
+                value = stringResource(R.string.value_milligrams, weekConsumption),
                 label = stringResource(R.string.week_information),
                 valueColor = GreenLight,
                 modifier = Modifier.weight(1f)
             )
 
             StatCard(
-                value = stringResource(R.string.value_milliliter, totalConsumption),
+                value = stringResource(R.string.value_milligrams, totalConsumption),
                 label = stringResource(R.string.total_information),
                 valueColor = GreenLight,
                 modifier = Modifier.weight(1f)
