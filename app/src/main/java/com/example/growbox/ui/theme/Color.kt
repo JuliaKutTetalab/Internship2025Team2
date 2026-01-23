@@ -11,7 +11,8 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 
-val GreenLight = Color(0xFF53C904)  // #53C904
+val GreenLight = Color(0xFF53C904)
+
 val Green800 = Color(0xFF2F7302)   // #2F7302
 val Gray999 = Color(0x99999999) // 99 - альфа ~60% прозорості
 val Black = Color(0xFF020202)

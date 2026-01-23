@@ -1,5 +1,7 @@
 package com.example.growbox.screen.home.light_chart.model
 
+import java.util.Collections.emptyList
+
 data class LightUiState(
     val currentValue: Int = 0,
     val recommendedValue: Int = 0,

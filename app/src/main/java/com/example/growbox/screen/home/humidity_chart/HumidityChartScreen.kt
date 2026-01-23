@@ -42,6 +42,7 @@ import com.example.growbox.ui.theme.GrowBoxTheme
 object HumidityChartDestination : NavigationDestination {
     override val route = "humidity_chart"
     override val titleRes = null
+    override val showBottomBar: Boolean = true
 }
 @OptIn (ExperimentalMaterial3Api::class)
 @Composable

@@ -24,8 +24,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.growbox.ui.theme.Black
-
-
 @Composable
 fun StatCard(
     value: String,
@@ -65,6 +63,8 @@ fun StatCard(
         }
     }
 }
+
+
 
 @Composable
 fun HumidityStatCards(
