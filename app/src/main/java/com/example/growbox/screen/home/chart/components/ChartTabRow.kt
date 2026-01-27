@@ -1,4 +1,4 @@
-package com.example.growbox.screen.home.light_chart.components
+package com.example.growbox.screen.home.chart.components
 
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
@@ -11,12 +11,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
 import com.example.growbox.R
-import com.example.growbox.screen.home.light_chart.model.ChartPeriod
+import com.example.growbox.screen.home.chart.model.ChartPeriod
 import com.example.growbox.ui.theme.Gray999
 import com.example.growbox.ui.theme.GreenLight
 
 @Composable
-fun LightTabRow(
+fun ChartTabRow(
     selectedPeriod: ChartPeriod,
     onPeriodSelected: (ChartPeriod) -> Unit,
     modifier: Modifier = Modifier

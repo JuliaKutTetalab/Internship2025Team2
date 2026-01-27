@@ -1,4 +1,4 @@
-package com.example.growbox.screen.home.light_chart.components
+package com.example.growbox.screen.home.chart.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,7 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.example.growbox.R
-import com.example.growbox.screen.home.light_chart.model.ChartDataPoint
+import com.example.growbox.screen.home.chart.model.ChartDataPoint
 import com.example.growbox.ui.theme.Gray999
 import com.example.growbox.ui.theme.Green800
 import com.example.growbox.ui.theme.GreenLight
@@ -32,17 +32,18 @@ import com.patrykandpatrick.vico.compose.chart.scroll.rememberChartScrollState
 import com.patrykandpatrick.vico.compose.component.shape.shader.fromBrush
 import com.patrykandpatrick.vico.core.axis.AxisPosition
 import com.patrykandpatrick.vico.core.axis.formatter.AxisValueFormatter
-import com.patrykandpatrick.vico.core.entry.ChartEntryModelProducer
-import com.patrykandpatrick.vico.core.entry.FloatEntry
 import com.patrykandpatrick.vico.core.chart.line.LineChart
 import com.patrykandpatrick.vico.core.component.shape.ShapeComponent
 import com.patrykandpatrick.vico.core.component.shape.Shapes
 import com.patrykandpatrick.vico.core.component.shape.shader.DynamicShaders
-
+import com.patrykandpatrick.vico.core.entry.ChartEntryModelProducer
+import com.patrykandpatrick.vico.core.entry.FloatEntry
+import kotlin.collections.forEach
 
 @Composable
-fun LightChart(
+fun ChartGraph(
     modifier: Modifier = Modifier,
+    unit: String,
     data: List<ChartDataPoint>
 ) {
     //Дані відсутні - показує Placeholder
@@ -66,7 +67,7 @@ fun LightChart(
         ){
             data.forEach { point ->
                 Text (
-                    text = "${point.value.toInt()}%",
+                    text = "${point.value.toInt()}$unit",
                     fontSize = dimensionResource(R.dimen.font_size_small).value.sp,
                     color = Green800,
                     modifier = Modifier.weight(1f),
