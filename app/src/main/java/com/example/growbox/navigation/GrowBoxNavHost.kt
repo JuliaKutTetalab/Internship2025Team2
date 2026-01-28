@@ -123,5 +123,4 @@ fun GrowBoxNavHost(
 
         }
     }
-}
 
