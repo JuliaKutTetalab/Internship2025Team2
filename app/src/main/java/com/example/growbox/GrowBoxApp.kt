@@ -1,5 +1,6 @@
 package com.example.growbox
 
+import android.util.Log
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -8,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.growbox.navigation.GrowBoxNavHost
+import com.example.growbox.navigation.NavigationDestination
 import com.example.growbox.navigation.NutritionChartDestination
 import com.example.growbox.navigation.TemperatureChartDestination
 import com.example.growbox.screen.auth.auth.LogInDestination
@@ -17,13 +19,11 @@ import com.example.growbox.screen.home.HomeDestination
 import com.example.growbox.screen.home.components.GrowBoxBottomBar
 import com.example.growbox.screen.home.humidity_chart.HumidityChartDestination
 import com.example.growbox.screen.home.light_chart.LightChartDestination
-import com.example.growbox.screen.onboarding.Onboarding1Destination
-import com.example.growbox.screen.onboarding.Onboarding2Destination
-import com.example.growbox.screen.onboarding.Onboarding3Destination
 import com.example.growbox.screen.onboarding.components.OnBoardingScreenDestination
 
 
-val allDestinations = listOf(HomeDestination,
+val allDestinations: List<NavigationDestination> = listOf(
+    HomeDestination,
     LightChartDestination,
     HumidityChartDestination,
     LogInDestination,
@@ -44,7 +44,7 @@ fun GrowBoxApp() {
     val currentRoute = navBackStackEntry?.destination?.route
 
 
-    val currentDestination = allDestinations.find { it.route == currentRoute }
+    val currentDestination: NavigationDestination? = allDestinations.find { it.route == currentRoute }
 
 
 
@@ -54,12 +54,16 @@ fun GrowBoxApp() {
             // Показуємо панель ТІЛЬКИ якщо showBottomBar == true в об'єкті Destination
             if (currentDestination?.showBottomBar == true) {
                 GrowBoxBottomBar(
+
                     currentRoute = currentRoute,
                     onNavigate = { route ->
-
+                        Log.d("GrowBoxBottomBar", currentRoute.toString()+" bottom")
                         navController.navigate(route) {
 
+                            Log.d("GrowBoxBottomBar", route.toString()+" bottom")
                             popUpTo(navController.graph.startDestinationId) {
+
+                                Log.d("GrowBoxBottomBar", " popUpTo")
                                 saveState = true
                             }
 

@@ -1,6 +1,7 @@
 package com.example.growbox.screen.home.components
 
 
+import android.util.Log
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -38,12 +39,13 @@ fun GrowBoxBottomBar(
         tonalElevation = 8.dp
     ) {
         items.forEach { (route, iconRes, label) ->
-            val isSelected = currentRoute == route
+            val isSelected: Boolean = currentRoute == route
+            Log.d("GrowBoxBottomBar", currentRoute.toString())
+            Log.d("GrowBoxBottomBar", label.toString())
 
             NavigationBarItem(
                 selected = isSelected,
                 onClick = {
-
                     if (!isSelected) onNavigate(route)
                 },
                 icon = {
