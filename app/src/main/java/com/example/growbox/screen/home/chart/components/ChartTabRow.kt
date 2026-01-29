@@ -29,16 +29,19 @@ fun ChartTabRow(
 
     TabRow(
         selectedTabIndex = tabs.indexOfFirst { it.first == selectedPeriod },
-        containerColor = Color.White,
         contentColor = GreenLight,
         indicator = { tabPositions ->
-            TabRowDefaults.Indicator(
-                color = GreenLight,
-                height = dimensionResource(R.dimen.height_tab_row_small),
-                modifier = Modifier.tabIndicatorOffset(
-                    tabPositions[tabs.indexOfFirst { it.first == selectedPeriod }]
-                )
-            )
+            val selectedIndex = tabs.indexOfFirst { it.first == selectedPeriod }
+            if(tabs.isNotEmpty()){
+                if (selectedIndex >= 0){
+                    TabRowDefaults.SecondaryIndicator(
+                        modifier = Modifier.tabIndicatorOffset(tabPositions[selectedIndex]),
+                        color = GreenLight,
+                        height = dimensionResource(R.dimen.height_tab_row_small),
+
+                    )
+                }
+            }
         },
         modifier = modifier
     ){

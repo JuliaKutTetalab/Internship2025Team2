@@ -78,41 +78,6 @@ fun GrowBoxNavHost(
             )
         }
 
-        //LIGHT CHART SCREEN
-        composable(route = LightChartDestination.route){
-            LightChartScreen (
-                onNavigateBack = {
-                    navController.popBackStack()
-                }
-            )
-        }
-
-        //Humidity CHART SCREEN
-        composable(route = HumidityChartDestination.route){
-            HumidityChartScreen (
-                onNavigateBack = {
-                    navController.popBackStack()
-                }
-            )
-        }
-
-        //Temperature CHART SCREEN
-        composable(route = TemperatureChartDestination.route){
-            TemperatureChartScreen (
-                onNavigateBack = {
-                    navController.popBackStack()
-                }
-            )
-        }
-
-        //Nutrition CHART SCREEN
-        composable(route = NutritionChartDestination.route){
-            NutritionChartScreen (
-                onNavigateBack = {
-                    navController.popBackStack()
-                }
-            )
-        }
     }
 }
 

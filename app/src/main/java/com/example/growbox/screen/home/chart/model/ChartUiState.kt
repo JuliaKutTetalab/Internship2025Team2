@@ -13,7 +13,9 @@ data class ChartUiState(
     val selectedPeriod: ChartPeriod = ChartPeriod.WEEK,
 
     val unit: String = "%",
+    val currentUnit: String = "%",
+    val consumptionUnit: String = "%",
     val iconRes: Int = 0,
-    val title: String = "",
+    val titleRes: Int = 0,
     val isLoading: Boolean = false
 )

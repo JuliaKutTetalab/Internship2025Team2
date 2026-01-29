@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.growbox.screen.onboarding.OnBoardingViewModel
 import com.example.growbox.screen.onboarding.components.OnBoardingScreen
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.growbox.screen.home.chart.ChartScreen
 
 import com.example.growbox.ui.theme.GrowBoxTheme
 import dagger.hilt.android.AndroidEntryPoint

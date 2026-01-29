@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -27,14 +28,22 @@ import com.example.growbox.screen.home.chart.components.ChartGraph
 import com.example.growbox.screen.home.chart.components.ChartHeader
 import com.example.growbox.screen.home.chart.components.ChartStatCards
 import com.example.growbox.screen.home.chart.components.ChartTabRow
+import com.example.growbox.screen.home.chart.model.ChartPeriod
+import com.example.growbox.screen.home.chart.model.ChartType
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChartScreen(
     chartType: String,
     onNavigateBack: () -> Unit,
-    viewModel: ChartViewModel = viewModel()
+//    viewModel: ChartViewModel = viewModel()
 ){
+    val chartTypeEnum = remember(chartType){
+        ChartType.valueOf(chartType)
+    }
+    val viewModel = remember (chartTypeEnum) {
+        ChartViewModel(chartTypeEnum)
+    }
     val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
@@ -45,7 +54,7 @@ fun ChartScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(uiState.title)},
+                    Text(stringResource(uiState.titleRes))},
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(R.string.content_description_home_screen))
@@ -79,10 +88,10 @@ fun ChartScreen(
             )
 
             ChartStatCards(
-                currentValue = "${uiState.currentValue}${uiState.unit}",
-                recommendedValue = "${uiState.recommendedValue}${uiState.unit}",
-                weekConsumption = "${uiState.weekConsumption}${uiState.unit}",
-                totalConsumption = "${uiState.totalConsumption}${uiState.unit}"
+                currentValue = "${uiState.currentValue}${uiState.currentUnit}",
+                recommendedValue = "${uiState.recommendedValue}${uiState.currentUnit}",
+                weekConsumption = "${uiState.weekConsumption}${uiState.consumptionUnit}",
+                totalConsumption = "${uiState.totalConsumption}${uiState.consumptionUnit}"
             )
         }
     }
