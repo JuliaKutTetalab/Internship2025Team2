@@ -77,6 +77,9 @@
     <string name="nutrition_card_title">Nutrition</string>
     <string name="water_card_title">Watering</string>
     <string name="dropdown_description">Dropdown</string>
+    <string name="dropdown_every_day">Every day</string>
+    <string name="dropdown_every_week">Every week</string>
+    <string name="dropdown_every_month">Every month</string>
 
 
     <!-- Common -->

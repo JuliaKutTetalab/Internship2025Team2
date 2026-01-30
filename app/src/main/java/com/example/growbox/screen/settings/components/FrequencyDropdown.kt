@@ -22,19 +22,23 @@ import com.example.growbox.R
 
 @Composable
 fun FrequencyDropdown(
-    selectedFrequency: String,
-    onFrequencySelected: (String) -> Unit,
+    selectedIndex: Int,
+    onIndexSelected: (Int) -> Unit,
     modifier: Modifier = Modifier
 ){
     var expanded by remember {mutableStateOf(false)}
-    val frequencies = listOf("Every day", "Every week", "Every month")
+    val frequencies = listOf(
+        stringResource(R.string.dropdown_every_day),
+        stringResource(R.string.dropdown_every_week),
+        stringResource(R.string.dropdown_every_month)
+        )
 
     Box(modifier = modifier){
         TextButton(
             onClick = {expanded = true}
         ) {
             Text(
-                text = selectedFrequency,
+                text = frequencies.getOrNull(selectedIndex) ?: frequencies[0],
                 color = GreenLight,
                 fontSize = dimensionResource(R.dimen.font_size_medium).value.sp
             )
@@ -49,11 +53,11 @@ fun FrequencyDropdown(
             expanded = expanded,
             onDismissRequest = {expanded = false}
         ) {
-            frequencies.forEach { frequency ->
+            frequencies.forEachIndexed { index, frequency ->
                 DropdownMenuItem(
                     text = {Text(frequency)},
                     onClick = {
-                        onFrequencySelected(frequency)
+                        onIndexSelected(index)
                         expanded = false
                     }
                 )

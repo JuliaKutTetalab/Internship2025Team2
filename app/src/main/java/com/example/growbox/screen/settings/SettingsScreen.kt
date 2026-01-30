@@ -92,8 +92,6 @@ fun SettingsScreen(){
             SettingsCards(
                 iconRes = R.drawable.ic_temperature_icon,
                 title = stringResource(R.string.temperature_card_title),
-                isEnabled = uiState.temperature.isEnabled,
-                onToggle = viewModel::toggleTemperature,
                 sliderValue = uiState.temperature.degrees,
                 onSliderChange = viewModel::updateTemperatureDegrees,
                 sliderRange = 10f..36f,
@@ -106,8 +104,6 @@ fun SettingsScreen(){
             SettingsCards(
                 iconRes = R.drawable.ic_humidity_icon,
                 title = stringResource(R.string.humidity_card_title),
-                isEnabled = uiState.humidity.isEnabled,
-                onToggle = viewModel::toggleHumidity,
                 sliderValue = uiState.humidity.percentage,
                 onSliderChange = viewModel::updateHumidityPercentage,
                 sliderRange = 0f..100f,
@@ -124,8 +120,8 @@ fun SettingsScreen(){
             SettingsCards(
                 iconRes = R.drawable.ic_nutrition_icon,
                 title = stringResource(R.string.nutrition_card_title),
-                isEnabled = uiState.nutrition.isEnabled,
-                onToggle = viewModel::toggleNutrition,
+                frequency = uiState.nutrition.frequency,
+                onFrequencyChange = viewModel::updateNutritionFrequency,
                 sliderValue = uiState.nutrition.milligrams,
                 onSliderChange = viewModel::updateNutritionMilligrams,
                 sliderRange = 0f..500f,
@@ -135,17 +131,15 @@ fun SettingsScreen(){
                 }else{
                     stringResource(R.string.unit_milligrams_label, nutritionValue)
                 },
-                maxLabel = stringResource(R.string.unit_milligrams_label, 500),
-                frequency = uiState.watering.frequency,
-                onFrequencyChange = viewModel::updateWateringFrequency
+                maxLabel = stringResource(R.string.unit_milligrams_label, 500)
             )
 
             val wateringValue = uiState.watering.milligrams.toInt()
             SettingsCards(
                 iconRes = R.drawable.ic_watering_icon,
                 title = stringResource(R.string.water_card_title),
-                isEnabled = uiState.watering.isEnabled,
-                onToggle = viewModel::toggleNutrition,
+                frequency = uiState.watering.frequency,
+                onFrequencyChange = viewModel::updateWateringFrequency,
                 sliderValue = uiState.watering.milligrams,
                 onSliderChange = viewModel::updateWateringMilligrams,
                 sliderRange = 0f..500f,
@@ -155,9 +149,7 @@ fun SettingsScreen(){
                 }else{
                     stringResource(R.string.unit_milligrams_label, wateringValue)
                 },
-                maxLabel = stringResource(R.string.unit_milligrams_label, 500),
-                frequency = uiState.watering.frequency,
-                onFrequencyChange = viewModel::updateWateringFrequency
+                maxLabel = stringResource(R.string.unit_milligrams_label, 500)
             )
         }
     }

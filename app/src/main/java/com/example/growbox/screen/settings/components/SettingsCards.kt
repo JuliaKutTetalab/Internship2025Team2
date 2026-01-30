@@ -37,16 +37,16 @@ import com.example.growbox.ui.theme.White
 fun SettingsCards(
     @DrawableRes iconRes: Int,
     title: String,
-    isEnabled: Boolean,
-    onToggle: (Boolean) -> Unit,
+    isEnabled: Boolean? = null,
+    onToggle: ((Boolean) -> Unit)? = null,
     sliderValue: Float,
     onSliderChange: (Float) -> Unit,
     sliderRange: ClosedFloatingPointRange<Float>,
     minLabel: String,
     maxLabel: String,
     currentLabel: String,
-    frequency: String? = null,
-    onFrequencyChange: ((String) -> Unit)? = null,
+    frequency: Int? = null,
+    onFrequencyChange: ((Int) -> Unit)? = null,
     modifier: Modifier = Modifier
     ){
 
@@ -70,8 +70,8 @@ fun SettingsCards(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
-            ){
-                Row(verticalAlignment = Alignment.CenterVertically){
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         painter = painterResource(id = iconRes),
                         contentDescription = title,
@@ -86,14 +86,26 @@ fun SettingsCards(
                         fontWeight = FontWeight.SemiBold
                     )
                 }
-                Switch(
-                    checked = isEnabled,
-                    onCheckedChange = onToggle,
-                    colors = SwitchDefaults.colors(
-                        checkedThumbColor = White,
-                        checkedTrackColor = GreenLight
+                if (isEnabled != null && onToggle != null) {
+                    Switch(
+                        checked = isEnabled,
+                        onCheckedChange = onToggle,
+                        colors = SwitchDefaults.colors(
+                            checkedThumbColor = White,
+                            checkedTrackColor = GreenLight
+                        )
                     )
-                )
+                }
+
+                // Frequency dropdown (якщо він є)
+
+                if (frequency != null && onFrequencyChange != null) {
+                    Spacer(modifier = Modifier.height(dimensionResource(R.dimen.height_frequency_dropdown)))
+                    FrequencyDropdown(
+                        selectedIndex = frequency,
+                        onIndexSelected = onFrequencyChange
+                    )
+                }
             }
 
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium)))
@@ -106,17 +118,6 @@ fun SettingsCards(
                 minLabel = minLabel,
                 maxLabel = maxLabel
             )
-
-            // Frequency dropdown (якщо він є)
-
-            if (frequency != null && onFrequencyChange != null) {
-                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.height_frequency_dropdown)))
-                FrequencyDropdown(
-                    selectedFrequency = frequency,
-                    onFrequencySelected = onFrequencyChange,
-                    modifier = Modifier.align(Alignment.End)
-                )
-            }
         }
     }
 }

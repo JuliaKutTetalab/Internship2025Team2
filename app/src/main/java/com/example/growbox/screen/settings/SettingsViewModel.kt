@@ -65,7 +65,7 @@ class SettingsViewModel: ViewModel() {
             nutrition = _uiState.value.nutrition.copy(milligrams = milligrams)
         )
     }
-    fun updateNutritionFrequency(frequency: String) {
+    fun updateNutritionFrequency(frequency: Int) {
         _uiState.value = _uiState.value.copy(
             nutrition = _uiState.value.nutrition.copy(frequency = frequency)
         )
@@ -81,7 +81,7 @@ class SettingsViewModel: ViewModel() {
             watering = _uiState.value.watering.copy(milligrams = milligrams)
         )
     }
-    fun updateWateringFrequency(frequency: String) {
+    fun updateWateringFrequency(frequency: Int) {
         _uiState.value = _uiState.value.copy(
             watering = _uiState.value.watering.copy(frequency = frequency)
         )

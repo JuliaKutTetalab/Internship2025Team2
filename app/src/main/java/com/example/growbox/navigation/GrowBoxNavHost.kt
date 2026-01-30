@@ -38,10 +38,11 @@ fun GrowBoxNavHost(
         composable(route = SplashDestination.route) {
             SplashScreen(
                 onAuthSuccess = {
-                    //  НІЧОГО НЕ РОБИМО.
+                    navController.navigate(SettingsDestination.route) {
+                        popUpTo(SplashDestination.route) { inclusive = true }
+                    }
                 },
                 onAuthFailure = {
-
                     navController.navigate(SignUpDestination.route) {
                         popUpTo(SplashDestination.route) { inclusive = true }
                     }
@@ -55,8 +56,9 @@ fun GrowBoxNavHost(
                 // НІЧОГО ПОКИ НЕ РОБИМО
 
                 onLoginSuccess = {
-
-                    navController.popBackStack()
+                    navController.navigate(SettingsDestination.route) {
+                        popUpTo( LogInDestination.route) { inclusive = true }
+                    }
                 },
                 onNavigateToSingUp = {
                     navController.navigate(SignUpDestination.route)
@@ -69,8 +71,9 @@ fun GrowBoxNavHost(
             SignUpScreen(
 
                 onRegistrationSuccess = {
-
-                    navController.popBackStack()
+                    navController.navigate(SettingsDestination.route) {
+                        popUpTo( SignUpDestination.route) { inclusive = true }
+                    }
                 },
                 onNavigateToLogin = {
                     navController.navigate(LogInDestination.route) {
