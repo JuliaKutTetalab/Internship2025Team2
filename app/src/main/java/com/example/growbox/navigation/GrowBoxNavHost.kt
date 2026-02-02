@@ -19,6 +19,8 @@ import com.example.growbox.screen.home.nutrition_chart.NutritionChartDestination
 import com.example.growbox.screen.home.nutrition_chart.NutritionChartScreen
 import com.example.growbox.screen.home.temperature_chart.TemperatureChartDestination
 import com.example.growbox.screen.home.temperature_chart.TemperatureChartScreen
+import com.example.growbox.screen.settings.SettingsDestination
+import com.example.growbox.screen.settings.SettingsScreen
 
 
 @Composable
@@ -36,10 +38,11 @@ fun GrowBoxNavHost(
         composable(route = SplashDestination.route) {
             SplashScreen(
                 onAuthSuccess = {
-                    //  НІЧОГО НЕ РОБИМО.
+                    navController.navigate(SettingsDestination.route) {
+                        popUpTo(SplashDestination.route) { inclusive = true }
+                    }
                 },
                 onAuthFailure = {
-
                     navController.navigate(SignUpDestination.route) {
                         popUpTo(SplashDestination.route) { inclusive = true }
                     }
@@ -53,8 +56,9 @@ fun GrowBoxNavHost(
                 // НІЧОГО ПОКИ НЕ РОБИМО
 
                 onLoginSuccess = {
-
-                    navController.popBackStack()
+                    navController.navigate(SettingsDestination.route) {
+                        popUpTo( LogInDestination.route) { inclusive = true }
+                    }
                 },
                 onNavigateToSingUp = {
                     navController.navigate(SignUpDestination.route)
@@ -67,8 +71,9 @@ fun GrowBoxNavHost(
             SignUpScreen(
 
                 onRegistrationSuccess = {
-
-                    navController.popBackStack()
+                    navController.navigate(SettingsDestination.route) {
+                        popUpTo( SignUpDestination.route) { inclusive = true }
+                    }
                 },
                 onNavigateToLogin = {
                     navController.navigate(LogInDestination.route) {
@@ -103,8 +108,8 @@ fun GrowBoxNavHost(
                     navController.popBackStack()
                 }
             )
-        }
-
+}
+        
         //Nutrition CHART SCREEN
         composable(route = NutritionChartDestination.route){
             NutritionChartScreen (
@@ -113,6 +118,12 @@ fun GrowBoxNavHost(
                 }
             )
         }
+
+            //SETTING SCREEN
+            composable(route = SettingsDestination.route){
+                SettingsScreen ()
+            }
+
+        }
     }
-}
 
