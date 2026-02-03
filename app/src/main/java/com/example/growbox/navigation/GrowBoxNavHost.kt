@@ -23,6 +23,12 @@ import com.example.growbox.screen.home.light_chart.LightChartDestination
 import com.example.growbox.screen.home.light_chart.LightChartScreen
 import com.example.growbox.screen.onboarding.components.OnBoardingScreen
 import com.example.growbox.screen.onboarding.components.OnBoardingScreenDestination
+import com.example.growbox.screen.home.nutrition_chart.NutritionChartDestination
+import com.example.growbox.screen.home.nutrition_chart.NutritionChartScreen
+import com.example.growbox.screen.home.temperature_chart.TemperatureChartDestination
+import com.example.growbox.screen.home.temperature_chart.TemperatureChartScreen
+import com.example.growbox.screen.settings.SettingsDestination
+import com.example.growbox.screen.settings.SettingsScreen
 
 object TemperatureChartDestination : NavigationDestination {
     override val route = "temp_chart"
@@ -42,7 +48,7 @@ fun GrowBoxNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = SplashDestination.route,
+        startDestination = SplashDestination.route ,
         modifier = modifier
     ) {
 
@@ -150,6 +156,30 @@ fun GrowBoxNavHost(
                 }
             )
         }
-    }
+
+        //Temperature CHART SCREEN
+        composable(route = TemperatureChartDestination.route){
+            TemperatureChartScreen (
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
 }
+        
+        //Nutrition CHART SCREEN
+        composable(route = NutritionChartDestination.route){
+            NutritionChartScreen (
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+            //SETTING SCREEN
+            composable(route = SettingsDestination.route){
+                SettingsScreen ()
+            }
+
+        }
+    }
 

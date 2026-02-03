@@ -1,4 +1,4 @@
-package com.example.growbox.screen.home.humidity_chart.components
+package com.example.growbox.screen.home.temperature_chart.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -24,6 +24,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.growbox.ui.theme.Black
+
+
 @Composable
 fun StatCard(
     value: String,
@@ -64,10 +66,8 @@ fun StatCard(
     }
 }
 
-
-
 @Composable
-fun HumidityStatCards(
+fun TemperatureStatCards(
     currentValue: Int,
     recommendedValue: Int,
     weekConsumption: String,
@@ -81,13 +81,13 @@ fun HumidityStatCards(
 
         ) {
             StatCard(
-                value = stringResource(R.string.value_percentage, currentValue),
+                value = stringResource(R.string.value_temperature, currentValue),
                 label = stringResource(R.string.current_information),
                 valueColor = GreenLight,
                 modifier = Modifier.weight(1f)
             )
             StatCard(
-                value = stringResource(R.string.value_percentage, recommendedValue),
+                value = stringResource(R.string.value_temperature, recommendedValue),
                 label = stringResource(R.string.recommended_information),
                 valueColor = GreenLight,
                 modifier = Modifier.weight(1f)
@@ -101,14 +101,14 @@ fun HumidityStatCards(
             horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.spacing_medium))
         ) {
             StatCard(
-                value = stringResource(R.string.value_milliliter, weekConsumption),
+                value = stringResource(R.string.value_kilowatts, weekConsumption),
                 label = stringResource(R.string.week_information),
                 valueColor = GreenLight,
                 modifier = Modifier.weight(1f)
             )
 
             StatCard(
-                value = stringResource(R.string.value_milliliter, totalConsumption),
+                value = stringResource(R.string.value_kilowatts, totalConsumption),
                 label = stringResource(R.string.total_information),
                 valueColor = GreenLight,
                 modifier = Modifier.weight(1f)
