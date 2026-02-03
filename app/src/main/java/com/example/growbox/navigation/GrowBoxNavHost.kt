@@ -1,6 +1,10 @@
 package com.example.growbox.navigation
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -11,10 +15,14 @@ import com.example.growbox.screen.auth.auth.SignUpDestination
 import com.example.growbox.screen.auth.auth.SignUpScreen
 import com.example.growbox.screen.auth.auth.SplashDestination
 import com.example.growbox.screen.auth.auth.SplashScreen
+import com.example.growbox.screen.home.HomeDestination
+import com.example.growbox.screen.home.HomeScreen
 import com.example.growbox.screen.home.humidity_chart.HumidityChartDestination
 import com.example.growbox.screen.home.humidity_chart.HumidityChartScreen
 import com.example.growbox.screen.home.light_chart.LightChartDestination
 import com.example.growbox.screen.home.light_chart.LightChartScreen
+import com.example.growbox.screen.onboarding.components.OnBoardingScreen
+import com.example.growbox.screen.onboarding.components.OnBoardingScreenDestination
 import com.example.growbox.screen.home.nutrition_chart.NutritionChartDestination
 import com.example.growbox.screen.home.nutrition_chart.NutritionChartScreen
 import com.example.growbox.screen.home.temperature_chart.TemperatureChartDestination
@@ -22,7 +30,17 @@ import com.example.growbox.screen.home.temperature_chart.TemperatureChartScreen
 import com.example.growbox.screen.settings.SettingsDestination
 import com.example.growbox.screen.settings.SettingsScreen
 
+object TemperatureChartDestination : NavigationDestination {
+    override val route = "temp_chart"
+    override val titleRes =null
+    override val showBottomBar = true
+}
 
+object NutritionChartDestination : NavigationDestination {
+    override val route = "nutrition_chart"
+    override val titleRes = null
+    override val showBottomBar = true
+}
 @Composable
 fun GrowBoxNavHost(
     navController: NavHostController,
@@ -38,8 +56,8 @@ fun GrowBoxNavHost(
         composable(route = SplashDestination.route) {
             SplashScreen(
                 onAuthSuccess = {
-                    navController.navigate(SettingsDestination.route) {
-                        popUpTo(SplashDestination.route) { inclusive = true }
+                    navController.navigate(HomeDestination.route) {
+                        popUpTo(OnBoardingScreenDestination.route) { inclusive = true }
                     }
                 },
                 onAuthFailure = {
@@ -53,11 +71,11 @@ fun GrowBoxNavHost(
         // 2. LOGIN SCREEN
         composable(route = LogInDestination.route) {
             LogInScreen(
-                // НІЧОГО ПОКИ НЕ РОБИМО
 
                 onLoginSuccess = {
-                    navController.navigate(SettingsDestination.route) {
-                        popUpTo( LogInDestination.route) { inclusive = true }
+
+                    navController.navigate(HomeDestination.route) {
+                        popUpTo(OnBoardingScreenDestination.route) { inclusive = true }
                     }
                 },
                 onNavigateToSingUp = {
@@ -65,14 +83,12 @@ fun GrowBoxNavHost(
                 }
             )
         }
-
-
+        //3 SIGN UP SCREEN
         composable(route = SignUpDestination.route) {
             SignUpScreen(
-
                 onRegistrationSuccess = {
-                    navController.navigate(SettingsDestination.route) {
-                        popUpTo( SignUpDestination.route) { inclusive = true }
+                    navController.navigate(OnBoardingScreenDestination.route){
+                        popUpTo(SignUpDestination.route) { inclusive = true }
                     }
                 },
                 onNavigateToLogin = {
@@ -83,9 +99,49 @@ fun GrowBoxNavHost(
             )
         }
 
+        //4 ONBOARDING SCREEN
+        composable(route = OnBoardingScreenDestination.route) {
+            OnBoardingScreen(
+                onNavigateToHome = {
+                    navController.navigate(HomeDestination.route) {
+                        popUpTo(OnBoardingScreenDestination.route) { inclusive = true }
+                    }
+                }
+            )
+        }
+        //HOME SCREEN
+        composable(route = HomeDestination.route) {
+            HomeScreen(
+                modifier = modifier,
+                onNavigateToLight = { navController.navigate(LightChartDestination.route) },
+                onNavigateToTemperature = { navController.navigate(TemperatureChartDestination.route) },
+                onNavigateToHumidity = { navController.navigate(HumidityChartDestination.route) },
+                onNavigateToNutrition = { navController.navigate(NutritionChartDestination.route) }
+            )
+        }
+
+
+        composable(route = TemperatureChartDestination.route) {
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text("Екран Температури (в розробці)")
+            }
+        }
+
+        composable(route = NutritionChartDestination.route) {
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+                Text("Екран Живлення (в розробці)")
+            }
+        }
+
+
+
+
+
+
+
         //LIGHT CHART SCREEN
-        composable(route = LightChartDestination.route){
-            LightChartScreen (
+        composable(route = LightChartDestination.route) {
+            LightChartScreen(
                 onNavigateBack = {
                     navController.popBackStack()
                 }
@@ -93,8 +149,8 @@ fun GrowBoxNavHost(
         }
 
         //Humidity CHART SCREEN
-        composable(route = HumidityChartDestination.route){
-            HumidityChartScreen (
+        composable(route = HumidityChartDestination.route) {
+            HumidityChartScreen(
                 onNavigateBack = {
                     navController.popBackStack()
                 }

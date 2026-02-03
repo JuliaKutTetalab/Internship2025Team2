@@ -22,6 +22,7 @@ import com.example.growbox.R
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.growbox.navigation.NavigationDestination
 import com.example.growbox.screen.onboarding.OnBoardingEffect
 import com.example.growbox.screen.onboarding.OnBoardingEvent
@@ -29,14 +30,15 @@ import com.example.growbox.screen.onboarding.OnBoardingViewModel
 import com.example.growbox.screen.onboarding.pages
 import kotlinx.coroutines.launch
 
-object OnBoardingScreen: NavigationDestination{
+object OnBoardingScreenDestination: NavigationDestination{
     override val route = "onboarding_route"
     override val titleRes = R.string.onboarding_name
+    override val showBottomBar  = false
 }
 @Composable
 fun OnBoardingScreen(
     onNavigateToHome: () -> Unit,
-    viewModel: OnBoardingViewModel = hiltViewModel()
+    viewModel: OnBoardingViewModel = viewModel()
 ){
 
     LaunchedEffect(Unit) {
@@ -94,7 +96,7 @@ fun OnBoardingScreen(
         ) {
             val scope = rememberCoroutineScope()
 
-            // Skip кнопка
+
 
             if (buttonState.value[0].isNotEmpty()) {
                 FinishOnBoardingTextButton(

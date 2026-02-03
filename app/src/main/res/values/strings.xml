@@ -6,6 +6,11 @@
     <string name="splash_screen">Splash</string>
     <string name="splash_welcome">Welcome to App</string>
 
+
+
+    <!-- Home Screen -->
+    <string name="home_title">Home</string>
+
     <!-- Login Screen -->
     <string name="logIn_screen">LogIn</string>>
     <string name="login_title">Welcome back</string>
@@ -51,6 +56,7 @@
     <string name="onboarding_screen3_description">See your plants flourish with helpful graphs. You\'re set to grow and succeed!</string>
 
     <!--    Home Screens-->
+
     <!-- Light Chart  -->
     <string name="light_title">Light</string>
     <string name="light_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>

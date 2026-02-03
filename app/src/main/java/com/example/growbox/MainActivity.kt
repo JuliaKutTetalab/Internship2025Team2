@@ -15,14 +15,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.growbox.screen.onboarding.OnBoardingViewModel
-import com.example.growbox.screen.onboarding.components.OnBoardingScreen
+
 import androidx.hilt.navigation.compose.hiltViewModel
 
 import com.example.growbox.ui.theme.GrowBoxTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
