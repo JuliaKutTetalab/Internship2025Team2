@@ -11,6 +11,8 @@ import com.example.growbox.screen.auth.auth.SignUpDestination
 import com.example.growbox.screen.auth.auth.SignUpScreen
 import com.example.growbox.screen.auth.auth.SplashDestination
 import com.example.growbox.screen.auth.auth.SplashScreen
+import com.example.growbox.screen.home.chart.ChartDestination
+import com.example.growbox.screen.home.chart.ChartScreen
 import com.example.growbox.screen.home.humidity_chart.HumidityChartDestination
 import com.example.growbox.screen.home.humidity_chart.HumidityChartScreen
 import com.example.growbox.screen.home.light_chart.LightChartDestination
@@ -36,7 +38,9 @@ fun GrowBoxNavHost(
         composable(route = SplashDestination.route) {
             SplashScreen(
                 onAuthSuccess = {
-                    //  НІЧОГО НЕ РОБИМО.
+                    navController.navigate("chart/LIGHT"){
+                        popUpTo(SplashDestination.route) { inclusive = true}
+                    }
                 },
                 onAuthFailure = {
 
@@ -75,6 +79,17 @@ fun GrowBoxNavHost(
                         popUpTo(LogInDestination.route) { inclusive = true }
                     }
                 }
+            )
+        }
+
+        //TODO: коли буде доступ до home screen, переробити навігацію
+        //CHART SCREENS
+        composable(route = ChartDestination.routeWithArgs) { backStackEntry ->
+            val chartType = backStackEntry.arguments?.getString(ChartDestination.chartTypeArg) ?: "LIGHT"
+
+            ChartScreen(
+                chartType = chartType,
+                onNavigateBack = { navController.popBackStack() }
             )
         }
 
