@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,9 +30,9 @@ fun GrowBoxBottomBar(
 ) {
 
     val items = listOf(
-        Triple(HomeDestination.route, R.drawable.ic_home_icon, "Home"),
-        Triple(HomeDestination.route, R.drawable.ic_setting_icon, "Settings"),
-        Triple(HomeDestination.route, R.drawable.ic_profile, "Profile"),
+        Triple(HomeDestination.route, R.drawable.ic_home_icon, R.string.home_title),
+        Triple(HomeDestination.route, R.drawable.ic_setting_icon, R.string.settings_title),
+        Triple(HomeDestination.route, R.drawable.ic_profile, R.string.profile_title),
     )
 
     NavigationBar(
@@ -51,13 +52,13 @@ fun GrowBoxBottomBar(
                 icon = {
                     Icon(
                         painter = painterResource(id = iconRes),
-                        contentDescription = label,
+                        contentDescription = stringResource(id = label),
                         modifier = Modifier.size(26.dp)
                     )
                 },
                 label = {
                     Text(
-                        text = label,
+                        text = stringResource(id = label),
                         fontSize = 12.sp,
                         fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium
                     )
