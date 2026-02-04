@@ -68,6 +68,9 @@
     <string name="nutrition_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
     <string name="nutrition_chart_no_data">Data not found</string>
 
+    <!--    Historic Data Screens-->
+    <string name="historic_title">Historic Data</string>
+
 
     <!-- Common -->
     <string name="content_description_plant_icon">Plant icon</string>
@@ -76,6 +79,7 @@
     <string name="content_description_valid_password">Valid password</string>
     <string name="content_description_passwords_match">Passwords match</string>
     <string name="content_description_home_screen">Back</string>
+    <string name="content_description_data_screen">Back</string>
 
     <!-- Stat Card Labels   -->
     <string name="current_information">Current</string>
