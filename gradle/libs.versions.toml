@@ -4,7 +4,12 @@
 firebaseBom = "32.7.0"
 
 agp = "8.13.1"
+
 kotlin = "2.0.21"
+ksp = "2.0.21-1.0.25" # Спеціальна версія KSP під твій Kotlin
+room = "2.6.1"
+
+
 coreKtx = "1.10.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
@@ -19,7 +24,16 @@ uiUnit = "1.10.0"
 material3 = "1.4.0"
 remoteCreationCore = "1.0.0-alpha01"
 
+
+
+
+
 [libraries]
+
+# Room
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 
 # BoM (Bill of Materials) для управління версіями всіх Firebase SDK
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
@@ -56,4 +70,5 @@ googleServices = { id = "com.google.gms.google-services", version = "4.4.0" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 

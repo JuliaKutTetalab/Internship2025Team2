@@ -10,9 +10,9 @@
         <dimen name="content_max_width_large">600dp</dimen>
 
 
-        <!-- Weights    -->
-        <dimen name="weight_equal">1f</dimen>
-        <dimen name="weight_half">0.5f</dimen>
+<!--        &lt;!&ndash; Weights    &ndash;&gt;-->
+<!--        <dimen name="weight_equal">1f</dimen>-->
+<!--        <dimen name="weight_half">0.5f</dimen>-->
 
         <!-- Button widths -->
         <dimen name="button_width_small">80dp</dimen>
@@ -59,6 +59,9 @@
 
         <!-- Height elements   -->
         <dimen name="height_tab_row_small">3dp</dimen>
+        <dimen name="height_frequency_dropdown">8dp</dimen>
+        <dimen name="height_slider_small">8dp</dimen>
+        <dimen name="height_slider_large">32dp</dimen>
         <dimen name="height_large">150dp</dimen>
         <dimen name="height_huge">200dp</dimen>
 
@@ -70,6 +73,7 @@
         <dimen name="button_onboarding_large">140dp</dimen>
 
         <!-- Corner radius  -->
+        <dimen name="corner_radius_slider">2dp</dimen>
         <dimen name="corner_radius_small">8dp</dimen>
         <dimen name="corner_radius_medium">12dp</dimen>
         <dimen name="corner_radius_large">16dp</dimen>

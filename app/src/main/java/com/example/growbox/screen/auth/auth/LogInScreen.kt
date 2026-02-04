@@ -46,6 +46,7 @@ import androidx.compose.ui.text.TextStyle
 object LogInDestination: NavigationDestination {
     override val route = "login_route"
     override val titleRes = R.string.logIn_screen
+    override val showBottomBar: Boolean = false
 }
 @Composable
 fun LogInScreen(

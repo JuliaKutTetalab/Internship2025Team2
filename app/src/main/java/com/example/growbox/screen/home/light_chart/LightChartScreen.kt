@@ -45,6 +45,7 @@ import com.example.growbox.ui.theme.GreenLight
 object LightChartDestination : NavigationDestination {
     override val route = "light_chart"
     override val titleRes = null
+    override val showBottomBar = true
 }
 @OptIn (ExperimentalMaterial3Api::class)
 @Composable

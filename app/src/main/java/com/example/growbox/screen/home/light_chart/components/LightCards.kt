@@ -46,7 +46,7 @@ fun StatCard(
             ),
         contentAlignment = Alignment.CenterStart
     ) {
-        Column (modifier = modifier.padding(dimensionResource(R.dimen.padding_medium))
+        Column (modifier = Modifier.padding(dimensionResource(R.dimen.padding_medium))
             ) {
                 Text(
                     text = value,

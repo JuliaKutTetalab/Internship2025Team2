@@ -62,7 +62,7 @@ fun TemperatureHeader(
         }
 
         Text(
-            text = "$currentValue%",
+            text = "$currentValue`C",
             fontSize = dimensionResource(R.dimen.font_size_huge).value.sp,
             fontWeight = FontWeight.Bold,
             color = GreenLight

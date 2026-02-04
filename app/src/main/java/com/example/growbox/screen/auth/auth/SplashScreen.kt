@@ -34,6 +34,7 @@ import androidx.compose.ui.res.stringResource
 object SplashDestination : NavigationDestination {
     override val route = "splash_route"
     override val titleRes = R.string.splash_screen
+    override val showBottomBar: Boolean = false
 }
 @Composable
 fun SplashScreen(

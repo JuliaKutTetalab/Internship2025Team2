@@ -8,12 +8,21 @@ import com.example.growbox.GrowBoxApplication
 import com.example.growbox.screen.auth.auth.LoginViewModel
 import com.example.growbox.screen.auth.auth.SignUpViewModel
 import com.example.growbox.screen.auth.auth.SplashScreenViewModel
+import com.example.growbox.screen.home.HomeScreenViewModel
 
 
 object AppViewModelProvider {
 
     val Factory = viewModelFactory {
 
+
+        // Factory для HomeViewModel
+        initializer {
+            HomeScreenViewModel(
+                growBoxApplication().container.growBoxRepository,
+                growBoxApplication().container.offlineRepository // Наш новий репо
+            )
+        }
         initializer {
             SplashScreenViewModel(
                 growBoxApplication().container.growBoxRepository
