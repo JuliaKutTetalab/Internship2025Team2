@@ -10,7 +10,6 @@
 
     <!-- Home Screen -->
     <string name="home_title">Home</string>
-    <string name="settings_title">Settings</string>
     <string name="profile_title">Profile</string>
 
     <!-- Login Screen -->
@@ -58,7 +57,6 @@
     <string name="onboarding_screen3_description">See your plants flourish with helpful graphs. You\'re set to grow and succeed!</string>
 
     <!--    Home Screens-->
-
     <!-- Light Chart  -->
     <string name="light_title">Light</string>
     <string name="light_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
@@ -89,6 +87,22 @@
     <string name="dropdown_every_week">Every week</string>
     <string name="dropdown_every_month">Every month</string>
 
+    <!--   Change Crop Type Screen-->
+    <string name="change_crop_type_title">Change Crop Type</string>
+    <string name="current_crop_type_title">Current Crop Type</string>
+    <string name="no_active_crop_type">No active crop</string>
+    <string name="crop_type_warning_text">You cannot change crop type until you harvest the current crop. </string>
+
+    <!--   Select Crop Type Screen-->
+    <string name="select_crop_type_title">Select crop type</string>
+    <string name="start_planting_button">Start planting</string>
+    <string name="crop_type_vegetables">Vegetables</string>
+    <string name="crop_type_flowering_plants">Flowering Plants</string>
+    <string name="crop_type_herbs">Herbs</string>
+    <string name="crop_type_microgreens">Microgreens</string>
+    <string name="crop_type_mushrooms">Mushroom`s</string>
+
+
 
     <!-- Common -->
     <string name="content_description_plant_icon">Plant icon</string>
@@ -97,6 +111,8 @@
     <string name="content_description_valid_password">Valid password</string>
     <string name="content_description_passwords_match">Passwords match</string>
     <string name="content_description_home_screen">Back</string>
+
+    <string name="content_description_crop_screen">Back</string>
 
     <!-- Stat Card Labels   -->
     <string name="current_information">Current</string>

@@ -1,6 +1,7 @@
-package com.example.growbox.screen.home.temperature_chart
+package com.example.growbox.screen.profile.change_crop_type
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,48 +22,58 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.example.growbox.R
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.growbox.R
+import com.example.growbox.data.model.Crop
+import com.example.growbox.di.AppViewModelProvider
 import com.example.growbox.navigation.NavigationDestination
-import com.example.growbox.screen.home.temperature_chart.TemperatureViewModel
-import com.example.growbox.screen.home.temperature_chart.components.TemperatureChart
-import com.example.growbox.screen.home.temperature_chart.components.TemperatureHeader
-import com.example.growbox.screen.home.temperature_chart.components.TemperatureStatCards
-import com.example.growbox.screen.home.temperature_chart.components.TemperatureTabRow
-import com.example.growbox.ui.theme.GrowBoxTheme
+import com.example.growbox.screen.profile.change_crop_type.components.ChangeCropGradientButton
+import com.example.growbox.screen.profile.change_crop_type.components.CropWarningText
+import com.example.growbox.screen.profile.change_crop_type.components.CurrentCropInfo
 
+object ChangeCropTypeDestination: NavigationDestination{
+    override val route = "change_crop_type"
+    override val titleRes = null
+    override val showBottomBar = true
+}
 
-//object TemperatureChartDestination : NavigationDestination {
-//    override val route = "temperature_chart"
-//    override val titleRes = null
-//}
-@OptIn (ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TemperatureChartScreen (
-    onNavigateBack: () -> Unit
-){
-    val viewModel: TemperatureViewModel = viewModel()
+fun ChangeCropTypeScreen (
+    onNavigateBack: () -> Unit,
+    onNavigateToSelectCropType: () -> Unit
+) {
+    val viewModel: ChangeCropViewModel = viewModel(factory = AppViewModelProvider.Factory)
     val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
         viewModel.loadData()
     }
 
+    val cropFromUiState = if (uiState.cropType.isNotEmpty()) {
+        Crop(
+            cropType = uiState.cropType,
+            currentDay = uiState.currentDay,
+            totalDays = uiState.totalDays
+        )
+    } else {
+        null
+    }
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(R.string.temperature_title),
-                        fontSize = dimensionResource(R.dimen.font_size_title).value.sp,
+                        text = stringResource(R.string.change_crop_type_title),
+                        fontSize = dimensionResource(R.dimen.font_size_huge).value.sp,
                         fontWeight = FontWeight.Bold
                     )
                 },
@@ -70,7 +81,7 @@ fun TemperatureChartScreen (
                     IconButton(onClick = onNavigateBack) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.content_description_home_screen),
+                            contentDescription = stringResource(R.string.content_description_crop_screen),
                             modifier = Modifier.size(dimensionResource(R.dimen.icon_size_medium))
                         )
                     }
@@ -82,58 +93,37 @@ fun TemperatureChartScreen (
                 )
             )
         }
-    ) {
-            padding ->
-
+    ) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color.White)
                 .padding(padding)
         ){
-
-            TemperatureHeader(
-                iconRes = R.drawable.ic_temperature_icon,
-                description = stringResource(R.string.temperature_description),
-                currentValue = uiState.currentValue
+            CropWarningText(
+                description = stringResource(R.string.crop_type_warning_text),
+//                isEnabled = uiState.isButtonEnabled
             )
-
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium)))
-            TemperatureTabRow(
-                selectedPeriod = uiState.selectedPeriod,
-                onPeriodSelected = { period ->
-                    viewModel.onPeriodSelected(period)
-                }
-            )
 
-            Spacer( modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium)))
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ){
+                CurrentCropInfo(
+                    cropType = cropFromUiState?.cropType ?: stringResource(R.string.no_active_crop_type),
+                    currentDay = cropFromUiState?.currentDay ?: 0,
+                    totalDays = cropFromUiState?.totalDays ?: 21
+                    )
+            }
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_large)))
 
-            TemperatureChart(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .size(dimensionResource(R.dimen.content_max_width_small))
-                    .padding(horizontal = dimensionResource(R.dimen.padding_medium)),
-                data = uiState.chartData
-            )
-
-            Spacer( modifier = Modifier.height(dimensionResource(R.dimen.spacing_small)))
-
-            TemperatureStatCards(
-                currentValue = uiState.currentValue,
-                recommendedValue = uiState.recommendedValue,
-                weekConsumption = uiState.weekConsumption,
-                totalConsumption = uiState.totalConsumption
+            ChangeCropGradientButton(
+                isEnabled = uiState.isButtonEnabled,
+                onClick = {onNavigateToSelectCropType()},
+                modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.padding_medium))
             )
         }
-    }
-}
 
-@Preview(showBackground = true)
-@Composable
-fun TemperatureChartScreenPreview (){
-    GrowBoxTheme {
-        TemperatureChartScreen (
-            onNavigateBack = {}
-        )
     }
 }
