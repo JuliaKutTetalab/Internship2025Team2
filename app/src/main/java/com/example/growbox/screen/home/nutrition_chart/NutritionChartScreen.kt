@@ -39,10 +39,10 @@ import com.example.growbox.screen.home.nutrition_chart.components.NutritionTabRo
 import com.example.growbox.ui.theme.GrowBoxTheme
 
 
-object NutritionChartDestination : NavigationDestination {
-    override val route = "nutrition_chart"
-    override val titleRes = null
-}
+//object NutritionChartDestination : NavigationDestination {
+//    override val route = "nutrition_chart"
+//    override val titleRes = null
+//}
 @OptIn (ExperimentalMaterial3Api::class)
 @Composable
 fun NutritionChartScreen (

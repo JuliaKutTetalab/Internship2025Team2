@@ -9,6 +9,8 @@ import com.example.growbox.screen.auth.auth.LoginViewModel
 import com.example.growbox.screen.auth.auth.SignUpViewModel
 import com.example.growbox.screen.auth.auth.SplashScreenViewModel
 import com.example.growbox.screen.home.HomeScreenViewModel
+import com.example.growbox.screen.profile.change_crop_type.ChangeCropViewModel
+import com.example.growbox.screen.profile.change_crop_type.select_crop_type.SelectCropViewModel
 
 
 object AppViewModelProvider {
@@ -23,6 +25,20 @@ object AppViewModelProvider {
                 growBoxApplication().container.offlineRepository // Наш новий репо
             )
         }
+
+        initializer {
+            ChangeCropViewModel(
+                growBoxApplication().container.growBoxRepository,
+                growBoxApplication().container.offlineRepository
+            )
+        }
+
+        initializer {
+            SelectCropViewModel(
+                growBoxApplication().container.growBoxRepository,
+            )
+        }
+
         initializer {
             SplashScreenViewModel(
                 growBoxApplication().container.growBoxRepository
