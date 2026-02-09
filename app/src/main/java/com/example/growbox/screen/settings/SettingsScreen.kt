@@ -30,6 +30,7 @@ import com.example.growbox.screen.settings.components.SettingsCards
 object SettingsDestination : NavigationDestination {
     override val route = "settings"
     override val titleRes = null
+    override val showBottomBar = true
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

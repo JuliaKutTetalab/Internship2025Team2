@@ -25,10 +25,12 @@ import com.example.growbox.screen.home.light_chart.LightChartDestination
 import com.example.growbox.screen.home.light_chart.LightChartScreen
 import com.example.growbox.screen.onboarding.components.OnBoardingScreen
 import com.example.growbox.screen.onboarding.components.OnBoardingScreenDestination
-import com.example.growbox.screen.home.nutrition_chart.NutritionChartDestination
 import com.example.growbox.screen.home.nutrition_chart.NutritionChartScreen
-import com.example.growbox.screen.home.temperature_chart.TemperatureChartDestination
 import com.example.growbox.screen.home.temperature_chart.TemperatureChartScreen
+import com.example.growbox.screen.profile.change_crop_type.ChangeCropTypeDestination
+import com.example.growbox.screen.profile.change_crop_type.ChangeCropTypeScreen
+import com.example.growbox.screen.profile.change_crop_type.select_crop_type.SelectCropTypeDestination
+import com.example.growbox.screen.profile.change_crop_type.select_crop_type.SelectCropTypeScreen
 import com.example.growbox.screen.settings.SettingsDestination
 import com.example.growbox.screen.settings.SettingsScreen
 
@@ -132,12 +134,67 @@ fun GrowBoxNavHost(
             )
         }
 
+        //LIGHT CHART SCREEN
+        composable(route = LightChartDestination.route) {
+            LightChartScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        //Humidity CHART SCREEN
+        composable(route = HumidityChartDestination.route) {
+            HumidityChartScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        //Temperature CHART SCREEN
+        composable(route = TemperatureChartDestination.route){
+            TemperatureChartScreen (
+                onNavigateBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+        
+        //Nutrition CHART SCREEN
+            composable(route = NutritionChartDestination.route){
+            NutritionChartScreen (
+                onNavigateBack = {
+                    navController.popBackStack()
+                    }
+                )
+            }
 
             //SETTING SCREEN
             composable(route = SettingsDestination.route){
                 SettingsScreen ()
             }
 
+            //CHANGE CROP TYPE SCREEN
+            composable(route = ChangeCropTypeDestination.route){
+                ChangeCropTypeScreen (
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    },
+                    onNavigateToSelectCropType = {
+                        navController.navigate(SelectCropTypeDestination.route)
+                    }
+                )
+            }
+
+            //SELECT CROP TYPE SCREEN
+            composable(route = SelectCropTypeDestination.route){
+                SelectCropTypeScreen (
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    }
+                )
+            }
         }
     }
 

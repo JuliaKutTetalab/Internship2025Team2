@@ -27,7 +27,7 @@ import com.example.growbox.ui.theme.GreenLight
 fun PlantHeader(crop: Crop?) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
-            painter = painterResource(id = R.drawable.ic_nutrion_icon),//поки така іконка
+            painter = painterResource(id = R.drawable.ic_nutrition_icon),//поки така іконка
             contentDescription = null,
             modifier = Modifier
                 .size(140.dp)
