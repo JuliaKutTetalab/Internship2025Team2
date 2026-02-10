@@ -17,6 +17,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.growbox.screen.home.chart.ChartScreen
 
 import com.example.growbox.ui.theme.GrowBoxTheme
 import dagger.hilt.android.AndroidEntryPoint

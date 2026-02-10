@@ -16,6 +16,8 @@ import com.example.growbox.screen.auth.auth.SignUpDestination
 import com.example.growbox.screen.auth.auth.SignUpScreen
 import com.example.growbox.screen.auth.auth.SplashDestination
 import com.example.growbox.screen.auth.auth.SplashScreen
+import com.example.growbox.screen.home.chart.ChartDestination
+import com.example.growbox.screen.home.chart.ChartScreen
 import com.example.growbox.screen.home.HomeDestination
 import com.example.growbox.screen.home.HomeScreen
 import com.example.growbox.screen.home.humidity_chart.HumidityChartDestination
@@ -24,12 +26,15 @@ import com.example.growbox.screen.home.light_chart.LightChartDestination
 import com.example.growbox.screen.home.light_chart.LightChartScreen
 import com.example.growbox.screen.onboarding.components.OnBoardingScreen
 import com.example.growbox.screen.onboarding.components.OnBoardingScreenDestination
-import com.example.growbox.screen.home.nutrition_chart.NutritionChartDestination
 import com.example.growbox.screen.home.nutrition_chart.NutritionChartScreen
 import com.example.growbox.screen.home.profile.ProfileDestination
 import com.example.growbox.screen.home.profile.ProfileScreen
 import com.example.growbox.screen.home.temperature_chart.TemperatureChartDestination
 import com.example.growbox.screen.home.temperature_chart.TemperatureChartScreen
+import com.example.growbox.screen.profile.change_crop_type.ChangeCropTypeDestination
+import com.example.growbox.screen.profile.change_crop_type.ChangeCropTypeScreen
+import com.example.growbox.screen.profile.change_crop_type.select_crop_type.SelectCropTypeDestination
+import com.example.growbox.screen.profile.change_crop_type.select_crop_type.SelectCropTypeScreen
 import com.example.growbox.screen.settings.SettingsDestination
 import com.example.growbox.screen.settings.SettingsScreen
 
@@ -42,7 +47,7 @@ fun GrowBoxNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = SplashDestination.route ,
+        startDestination = SplashDestination.route,
         modifier = modifier
     ) {
 
@@ -81,7 +86,7 @@ fun GrowBoxNavHost(
         composable(route = SignUpDestination.route) {
             SignUpScreen(
                 onRegistrationSuccess = {
-                    navController.navigate(OnBoardingScreenDestination.route){
+                    navController.navigate(OnBoardingScreenDestination.route) {
                         popUpTo(SignUpDestination.route) { inclusive = true }
                     }
                 },
@@ -107,10 +112,10 @@ fun GrowBoxNavHost(
         composable(route = HomeDestination.route) {
             HomeScreen(
                 modifier = modifier,
-                onNavigateToLight = { navController.navigate(LightChartDestination.route) },
-                onNavigateToTemperature = { navController.navigate(TemperatureChartDestination.route) },
-                onNavigateToHumidity = { navController.navigate(HumidityChartDestination.route) },
-                onNavigateToNutrition = { navController.navigate(NutritionChartDestination.route) }
+                onNavigateToLight = { navController.navigate("chart/LIGHT") },
+                onNavigateToTemperature = { navController.navigate("chart/TEMPERATURE") },
+                onNavigateToHumidity = { navController.navigate("chart/HUMIDITY") },
+                onNavigateToNutrition = { navController.navigate("chart/NUTRITION") }
             )
         }
 
@@ -132,11 +137,15 @@ fun GrowBoxNavHost(
 //        }
 
 
-
-
-
-
-
+        //CHART SCREENS
+        composable(route = ChartDestination.routeWithArgs) { backStackEntry ->
+            val chartType =
+                backStackEntry.arguments?.getString(ChartDestination.chartTypeArg) ?: "LIGHT"
+            ChartScreen(
+                chartType = chartType,
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
 
         //LIGHT CHART SCREEN
         composable(route = LightChartDestination.route) {
@@ -157,7 +166,7 @@ fun GrowBoxNavHost(
         }
 
         //Temperature CHART SCREEN
-        composable(route = TemperatureChartDestination.route){
+        composable(route = TemperatureChartDestination.route) {
             TemperatureChartScreen (
                 onNavigateBack = {
                     navController.popBackStack()
@@ -174,11 +183,41 @@ fun GrowBoxNavHost(
             )
         }
 
-            //SETTING SCREEN
-            composable(route = SettingsDestination.route){
-                SettingsScreen ()
+            //Nutrition CHART SCREEN
+            composable(route = NutritionChartDestination.route) {
+                NutritionChartScreen(
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    }
+                )
             }
 
+            //SETTING SCREEN
+            composable(route = SettingsDestination.route) {
+                SettingsScreen()
+            }
+
+            //CHANGE CROP TYPE SCREEN
+            composable(route = ChangeCropTypeDestination.route) {
+                ChangeCropTypeScreen(
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    },
+                    onNavigateToSelectCropType = {
+                        navController.navigate(SelectCropTypeDestination.route)
+                    }
+                )
+            }
+
+            //SELECT CROP TYPE SCREEN
+            composable(route = SelectCropTypeDestination.route) {
+                SelectCropTypeScreen(
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    }
+                )
+            }
         }
     }
+
 

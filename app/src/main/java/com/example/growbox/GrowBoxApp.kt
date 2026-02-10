@@ -26,6 +26,7 @@ import com.example.growbox.screen.home.profile.ProfileDestination
 import com.example.growbox.screen.home.temperature_chart.TemperatureChartDestination
 import com.example.growbox.screen.onboarding.components.OnBoardingScreenDestination
 import com.example.growbox.screen.settings.SettingsDestination
+import com.example.growbox.screen.profile.change_crop_type.ChangeCropTypeDestination
 
 
 val allDestinations: List<NavigationDestination> = listOf(
@@ -40,6 +41,7 @@ val allDestinations: List<NavigationDestination> = listOf(
     NutritionChartDestination,
     SettingsDestination,
     ProfileDestination
+    ChangeCropTypeDestination,
 )
 
 @Composable

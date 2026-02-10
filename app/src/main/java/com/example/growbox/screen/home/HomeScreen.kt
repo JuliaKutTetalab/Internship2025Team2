@@ -121,6 +121,7 @@ fun HomeScreenContent(
             SensorCard(
                 iconRes = R.drawable.ic_watering,
              //   iconRes = R.drawable.ic_nutrion_icon,
+                iconRes = R.drawable.ic_nutrition_icon,
                 value = "${cropState?.nutrition ?: 0}%",
                 label = "Nutrition",
                 onClick = onNavigateToNutrition,

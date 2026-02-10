@@ -31,6 +31,8 @@ object SettingsDestination : NavigationDestination {
     override val route = "settings"
     override val titleRes = R.string.settings_title
     override val showBottomBar= true
+    override val titleRes = null
+    override val showBottomBar = true
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
