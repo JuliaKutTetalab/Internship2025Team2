@@ -7,4 +7,5 @@ object ChartDestination: NavigationDestination {
     const val chartTypeArg = "chartType"
     val routeWithArgs = "$route/{$chartTypeArg}"
     override val titleRes = null
+    override val showBottomBar = true
 }

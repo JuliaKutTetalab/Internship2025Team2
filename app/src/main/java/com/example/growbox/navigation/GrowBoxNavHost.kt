@@ -52,7 +52,7 @@ fun GrowBoxNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = SplashDestination.route ,
+        startDestination = SplashDestination.route,
         modifier = modifier
     ) {
 
@@ -91,7 +91,7 @@ fun GrowBoxNavHost(
         composable(route = SignUpDestination.route) {
             SignUpScreen(
                 onRegistrationSuccess = {
-                    navController.navigate(OnBoardingScreenDestination.route){
+                    navController.navigate(OnBoardingScreenDestination.route) {
                         popUpTo(SignUpDestination.route) { inclusive = true }
                     }
                 },
@@ -101,7 +101,7 @@ fun GrowBoxNavHost(
                     }
                 }
             )
-        }       
+        }
 
         //4 ONBOARDING SCREEN
         composable(route = OnBoardingScreenDestination.route) {
@@ -123,11 +123,12 @@ fun GrowBoxNavHost(
                 onNavigateToNutrition = { navController.navigate("chart/NUTRITION") }
             )
         }
-        
+
 
         //CHART SCREENS
         composable(route = ChartDestination.routeWithArgs) { backStackEntry ->
-            val chartType = backStackEntry.arguments?.getString(ChartDestination.chartTypeArg) ?: "LIGHT"
+            val chartType =
+                backStackEntry.arguments?.getString(ChartDestination.chartTypeArg) ?: "LIGHT"
             ChartScreen(
                 chartType = chartType,
                 onNavigateBack = { navController.popBackStack() }
@@ -153,31 +154,31 @@ fun GrowBoxNavHost(
         }
 
         //Temperature CHART SCREEN
-        composable(route = TemperatureChartDestination.route){
+        composable(route = TemperatureChartDestination.route) {
             TemperatureChartScreen (
                 onNavigateBack = {
                     navController.popBackStack()
                 }
             )
         }
-        
-        //Nutrition CHART SCREEN
-            composable(route = NutritionChartDestination.route){
-            NutritionChartScreen (
-                onNavigateBack = {
-                    navController.popBackStack()
+
+            //Nutrition CHART SCREEN
+            composable(route = NutritionChartDestination.route) {
+                NutritionChartScreen(
+                    onNavigateBack = {
+                        navController.popBackStack()
                     }
                 )
             }
 
             //SETTING SCREEN
-            composable(route = SettingsDestination.route){
-                SettingsScreen ()
+            composable(route = SettingsDestination.route) {
+                SettingsScreen()
             }
 
             //CHANGE CROP TYPE SCREEN
-            composable(route = ChangeCropTypeDestination.route){
-                ChangeCropTypeScreen (
+            composable(route = ChangeCropTypeDestination.route) {
+                ChangeCropTypeScreen(
                     onNavigateBack = {
                         navController.popBackStack()
                     },
@@ -188,8 +189,8 @@ fun GrowBoxNavHost(
             }
 
             //SELECT CROP TYPE SCREEN
-            composable(route = SelectCropTypeDestination.route){
-                SelectCropTypeScreen (
+            composable(route = SelectCropTypeDestination.route) {
+                SelectCropTypeScreen(
                     onNavigateBack = {
                         navController.popBackStack()
                     }
@@ -197,4 +198,5 @@ fun GrowBoxNavHost(
             }
         }
     }
+
 
