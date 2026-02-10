@@ -119,7 +119,7 @@ fun HomeScreenContent(
             )
             Spacer(modifier = Modifier.width(16.dp))
             SensorCard(
-                iconRes = R.drawable.ic_watering,
+              //  iconRes = R.drawable.ic_watering,
              //   iconRes = R.drawable.ic_nutrion_icon,
                 iconRes = R.drawable.ic_nutrition_icon,
                 value = "${cropState?.nutrition ?: 0}%",

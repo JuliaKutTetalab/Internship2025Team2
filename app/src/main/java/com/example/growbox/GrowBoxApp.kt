@@ -40,7 +40,7 @@ val allDestinations: List<NavigationDestination> = listOf(
     TemperatureChartDestination,
     NutritionChartDestination,
     SettingsDestination,
-    ProfileDestination
+    ProfileDestination ,
     ChangeCropTypeDestination,
 )
 
