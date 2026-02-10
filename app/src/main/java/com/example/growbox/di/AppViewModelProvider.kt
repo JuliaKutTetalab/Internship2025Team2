@@ -32,6 +32,8 @@ object AppViewModelProvider {
             ProfileViewModel(
                 growBoxRepository = growBoxApplication().container.growBoxRepository,
                 offlineRepository = growBoxApplication().container.offlineRepository
+            )
+        }
         initializer {
             ChangeCropViewModel(
                 growBoxApplication().container.growBoxRepository,

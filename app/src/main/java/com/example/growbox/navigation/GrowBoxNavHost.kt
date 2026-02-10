@@ -24,6 +24,7 @@ import com.example.growbox.screen.home.humidity_chart.HumidityChartDestination
 import com.example.growbox.screen.home.humidity_chart.HumidityChartScreen
 import com.example.growbox.screen.home.light_chart.LightChartDestination
 import com.example.growbox.screen.home.light_chart.LightChartScreen
+import com.example.growbox.screen.home.nutrition_chart.NutritionChartDestination
 import com.example.growbox.screen.onboarding.components.OnBoardingScreen
 import com.example.growbox.screen.onboarding.components.OnBoardingScreenDestination
 import com.example.growbox.screen.home.nutrition_chart.NutritionChartScreen
