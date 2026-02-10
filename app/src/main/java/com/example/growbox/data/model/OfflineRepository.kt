@@ -9,11 +9,17 @@ interface OfflineRepository {
     fun getCropStream(userId: String): Flow<Crop?>
     suspend fun insertCrop(crop: Crop, ownerId: String)
     suspend fun insertUser(user: User)
+
+    fun getUserStream(userId: String): Flow<User?>
 }
 
 class OfflineCropRepository(
     private val growBoxDao: GrowBoxDao
 ) : OfflineRepository {
+
+    override fun getUserStream(userId: String): Flow<User?> {
+        return growBoxDao.getUserFlow(userId).map { it?.toDomain() }
+    }
 
     override fun getCropStream(userId: String): Flow<Crop?> {
         return growBoxDao.getCropForUser(userId).map { it?.toDomain() }

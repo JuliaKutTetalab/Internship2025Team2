@@ -9,6 +9,7 @@ import com.example.growbox.screen.auth.auth.LoginViewModel
 import com.example.growbox.screen.auth.auth.SignUpViewModel
 import com.example.growbox.screen.auth.auth.SplashScreenViewModel
 import com.example.growbox.screen.home.HomeScreenViewModel
+import com.example.growbox.screen.home.profile.ProfileViewModel
 import com.example.growbox.screen.profile.change_crop_type.ChangeCropViewModel
 import com.example.growbox.screen.profile.change_crop_type.select_crop_type.SelectCropViewModel
 
@@ -26,6 +27,11 @@ object AppViewModelProvider {
             )
         }
 
+        // Factory для ProfileViewModel
+        initializer {
+            ProfileViewModel(
+                growBoxRepository = growBoxApplication().container.growBoxRepository,
+                offlineRepository = growBoxApplication().container.offlineRepository
         initializer {
             ChangeCropViewModel(
                 growBoxApplication().container.growBoxRepository,

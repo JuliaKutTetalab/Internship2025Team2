@@ -30,7 +30,9 @@
         <!-- Spacing (проміжки між елементами) -->
         <dimen name="spacing_extra_small">4dp</dimen>
         <dimen name="spacing_small">8dp</dimen>
+        <dimen name="spacing_small_12">12dp</dimen>
         <dimen name="spacing_medium">16dp</dimen>
+        <dimen name="spacing_medium_24">24dp</dimen>
         <dimen name="spacing_large">40dp</dimen>
         <dimen name="spacing_extra_large">62dp</dimen>
         <dimen name="spacing_huge">80dp</dimen>
@@ -99,6 +101,7 @@
         <dimen name="font_size_icon">60sp</dimen>
 
         <!-- Card elevation -->
+        <dimen name="card_elevation_small">2dp</dimen>
         <dimen name="card_elevation">5dp</dimen>
         <dimen name="top_bar_elevation">0dp</dimen>
     </resources>

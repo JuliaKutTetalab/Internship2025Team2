@@ -39,10 +39,11 @@ import com.example.growbox.screen.home.temperature_chart.components.TemperatureT
 import com.example.growbox.ui.theme.GrowBoxTheme
 
 
-//object TemperatureChartDestination : NavigationDestination {
-//    override val route = "temperature_chart"
-//    override val titleRes = null
-//}
+object TemperatureChartDestination : NavigationDestination {
+    override val route = "temperature_chart"
+    override val titleRes = R.string.temperature_title
+    override val showBottomBar= true
+}
 @OptIn (ExperimentalMaterial3Api::class)
 @Composable
 fun TemperatureChartScreen (

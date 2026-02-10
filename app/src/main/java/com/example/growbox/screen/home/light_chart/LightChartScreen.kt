@@ -44,7 +44,7 @@ import com.example.growbox.ui.theme.GreenLight
 
 object LightChartDestination : NavigationDestination {
     override val route = "light_chart"
-    override val titleRes = null
+    override val titleRes = R.string.light_title
     override val showBottomBar = true
 }
 @OptIn (ExperimentalMaterial3Api::class)
@@ -111,7 +111,8 @@ fun LightChartScreen (
                 }
             )
 
-            Spacer( modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium)))
+         //   Spacer( modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium)))
+            Spacer( modifier = Modifier.height(dimensionResource(R.dimen.spacing_small)))
 
             LightChart(
                 modifier = Modifier
