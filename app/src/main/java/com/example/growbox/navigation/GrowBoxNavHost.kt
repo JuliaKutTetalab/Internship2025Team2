@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.growbox.R
 import com.example.growbox.screen.auth.auth.LogInDestination
 import com.example.growbox.screen.auth.auth.LogInScreen
 import com.example.growbox.screen.auth.auth.SignUpDestination
@@ -25,22 +26,15 @@ import com.example.growbox.screen.onboarding.components.OnBoardingScreen
 import com.example.growbox.screen.onboarding.components.OnBoardingScreenDestination
 import com.example.growbox.screen.home.nutrition_chart.NutritionChartDestination
 import com.example.growbox.screen.home.nutrition_chart.NutritionChartScreen
+import com.example.growbox.screen.home.profile.ProfileDestination
+import com.example.growbox.screen.home.profile.ProfileScreen
 import com.example.growbox.screen.home.temperature_chart.TemperatureChartDestination
 import com.example.growbox.screen.home.temperature_chart.TemperatureChartScreen
 import com.example.growbox.screen.settings.SettingsDestination
 import com.example.growbox.screen.settings.SettingsScreen
 
-object TemperatureChartDestination : NavigationDestination {
-    override val route = "temp_chart"
-    override val titleRes =null
-    override val showBottomBar = true
-}
 
-object NutritionChartDestination : NavigationDestination {
-    override val route = "nutrition_chart"
-    override val titleRes = null
-    override val showBottomBar = true
-}
+
 @Composable
 fun GrowBoxNavHost(
     navController: NavHostController,
@@ -120,18 +114,23 @@ fun GrowBoxNavHost(
             )
         }
 
-
-        composable(route = TemperatureChartDestination.route) {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text("Екран Температури (в розробці)")
-            }
+        composable(route = ProfileDestination.route) {
+            ProfileScreen (
+                onNavigateToLogin = {
+                    navController.navigate(LogInDestination.route) {
+                        popUpTo(0) { inclusive = true }
+                    }
+                }
+            )
         }
 
-        composable(route = NutritionChartDestination.route) {
-            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text("Екран Живлення (в розробці)")
-            }
-        }
+
+//        composable(route = ProfileDestination.route) {
+//            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+//                Text("Екран Profrile (в розробці)")
+//            }
+//        }
+
 
 
 
@@ -171,7 +170,7 @@ fun GrowBoxNavHost(
             NutritionChartScreen (
                 onNavigateBack = {
                     navController.popBackStack()
-                }
+                } ,
             )
         }
 

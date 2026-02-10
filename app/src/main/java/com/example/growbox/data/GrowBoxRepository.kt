@@ -22,6 +22,12 @@ interface GrowBoxRepository {
     suspend fun updateVentStatus(userId: String, cropId: String, isActive: Boolean)
 
     suspend fun updateWateringStatus(userId: String, cropId: String, isActive: Boolean)
+
+    /** Отримати Email поточного користувача */
+    fun getCurrentUserEmail(): String?
+
+    /** Вийти з облікового запису */
+    suspend fun signOut()
 }
 
 
@@ -29,6 +35,12 @@ class GrowBoxRepositoryImpl(
     private val firebaseDataSource: FirebaseDataSource,
     private val offlineRepository: OfflineRepository // Додано в конструктор
 ) : GrowBoxRepository {
+
+    override fun getCurrentUserEmail(): String? = firebaseDataSource.getCurrentUserEmail()
+
+    override suspend fun signOut() {
+        firebaseDataSource.signOut()
+    }
 
     override suspend fun registerAndInitialize(email: String, password: String) {
         val userId = firebaseDataSource.registerUser(email, password)

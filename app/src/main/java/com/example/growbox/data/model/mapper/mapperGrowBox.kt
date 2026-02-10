@@ -54,3 +54,13 @@ fun User.toEntity(): UserEntity {
         totalDaysGrown = this.totalDaysGrown
     )
 }
+
+fun UserEntity.toDomain(): User {
+    return User(
+        userId = this.userId,
+        email = this.email,
+        farmName = this.farmName,
+        totalHarvestCount = this.totalHarvestCount,
+        totalDaysGrown = this.totalDaysGrown
+    )
+}

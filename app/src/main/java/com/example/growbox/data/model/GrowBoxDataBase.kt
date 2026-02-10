@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
-    entities = [UserEntity::class, CropEntity::class], // Твої таблиці
+    entities = [UserEntity::class, CropEntity::class],
     version = 1,
     exportSchema = false
 )

@@ -94,7 +94,7 @@ fun NutritionStatCards(
             )
         }
 
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium)))
+        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
 
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -106,6 +106,7 @@ fun NutritionStatCards(
                 valueColor = GreenLight,
                 modifier = Modifier.weight(1f)
             )
+
 
             StatCard(
                 value = stringResource(R.string.value_milligrams, totalConsumption),
