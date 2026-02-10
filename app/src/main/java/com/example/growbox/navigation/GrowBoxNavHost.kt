@@ -1,15 +1,10 @@
 package com.example.growbox.navigation
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.growbox.R
 import com.example.growbox.screen.auth.auth.LogInDestination
 import com.example.growbox.screen.auth.auth.LogInScreen
 import com.example.growbox.screen.auth.auth.SignUpDestination
@@ -28,8 +23,8 @@ import com.example.growbox.screen.home.nutrition_chart.NutritionChartDestination
 import com.example.growbox.screen.onboarding.components.OnBoardingScreen
 import com.example.growbox.screen.onboarding.components.OnBoardingScreenDestination
 import com.example.growbox.screen.home.nutrition_chart.NutritionChartScreen
-import com.example.growbox.screen.home.profile.ProfileDestination
-import com.example.growbox.screen.home.profile.ProfileScreen
+import com.example.growbox.screen.profile.ProfileDestination
+import com.example.growbox.screen.profile.ProfileScreen
 import com.example.growbox.screen.home.temperature_chart.TemperatureChartDestination
 import com.example.growbox.screen.home.temperature_chart.TemperatureChartScreen
 import com.example.growbox.screen.profile.change_crop_type.ChangeCropTypeDestination

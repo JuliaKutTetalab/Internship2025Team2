@@ -1,0 +1,5 @@
+0000000000000000000000000000000000000000 f6ecd16233a17eac3f26bb9d5c57b437ff6b1ed6 Mac Pro <macpro@MacBook-Pro-Mac.local> 1764758952 +0200	commit (initial): Initial Android Project Setup and .gitignore
+f6ecd16233a17eac3f26bb9d5c57b437ff6b1ed6 7ea4ad6ac746b1be20b2017d716d050df8051c56 Mac Pro <macpro@MacBook-Pro-Mac.local> 1764761533 +0200	commit: Initialize main branch
+7ea4ad6ac746b1be20b2017d716d050df8051c56 e3fb84a6400adc807b84381defa7dfa7854740aa Mac Pro <macpro@MacBook-Pro-Mac.local> 1770284301 +0200	commit: Add home, settings, charts and resources
+e3fb84a6400adc807b84381defa7dfa7854740aa 518864d09d63e74c19d3872fa697e3a1ccf80f4c Mac Pro <macpro@MacBook-Pro-Mac.local> 1770573266 +0200	reset: moving to origin/main
+518864d09d63e74c19d3872fa697e3a1ccf80f4c 9a26741aa26fe5ad315014892b3b840367f13dc8 Mac Pro <macpro@MacBook-Pro-Mac.local> 1770645578 +0200	pull origin main: Fast-forward

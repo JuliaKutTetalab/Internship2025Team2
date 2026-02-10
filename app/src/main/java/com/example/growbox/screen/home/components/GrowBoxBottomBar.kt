@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.growbox.R
 import com.example.growbox.screen.home.HomeDestination
-import com.example.growbox.screen.home.profile.ProfileDestination
+import com.example.growbox.screen.profile.ProfileDestination
 import com.example.growbox.screen.settings.SettingsDestination
 import com.example.growbox.ui.theme.GreenLight
 
