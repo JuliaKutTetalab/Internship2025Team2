@@ -45,7 +45,7 @@ object HistoricDataDestination : NavigationDestination {
 fun HistoricDataScreen (
     onNavigateBack: () -> Unit
 ){
-    val viewModel: LightViewModel = viewModel()
+    val viewModel: ChartViewModel = viewModel()
     val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
@@ -86,7 +86,26 @@ fun HistoricDataScreen (
             .background(Color.White)
             .padding(padding)
         ){
-                HistoricDataCard()
+                HistoricDataCard(
+                    iconRes = R.drawable.ic_light_icon,
+                    title = stringResource(R.string.light_title),
+                    onClick = onNavigateToLight
+                )
+                HistoricDataCard(
+                    iconRes = R.drawable.ic_temperature_icon,
+                    title = stringResource(R.string.temperature_title),
+                    onClick = onNavigateToTemperature
+                )
+                HistoricDataCard(
+                    iconRes = R.drawable.ic_humidity_icon,
+                    title = stringResource(R.string.humidity_title),
+                    onClick = onNavigateToHumidity
+                )
+                HistoricDataCard(
+                    iconRes = R.drawable.ic_nutrition_icon,
+                    title = stringResource(R.string.nutrition_title),
+                    onClick = onNavigateToNutrition
+                )
             }
     }
 }
