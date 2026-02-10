@@ -87,6 +87,8 @@
 
 
         <!-- Font sizes -->
+        <dimen name="font_size_graph">8sp</dimen>
+        <dimen name="font_size_graph_point">10sp</dimen>
         <dimen name="font_size_description">10sp</dimen>
         <dimen name="font_size_small">12sp</dimen>
         <dimen name="font_size_medium">14sp</dimen>

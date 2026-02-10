@@ -39,7 +39,7 @@ import com.example.growbox.screen.home.light_chart.components.LightStatCards
 import com.example.growbox.screen.home.light_chart.components.LightTabRow
 import com.example.growbox.ui.theme.Gray999
 import com.example.growbox.ui.theme.GreenLight
-import com.example.growbox.ui.theme.GrowBoxTheme
+//import com.example.growbox.ui.theme.GrowBoxTheme
 
 
 object LightChartDestination : NavigationDestination {
@@ -99,7 +99,8 @@ fun LightChartScreen (
             LightHeader(
                 iconRes = R.drawable.ic_light_icon,
                 description = stringResource(R.string.light_description),
-                currentValue = uiState.currentValue
+                currentValue = uiState.currentValue,
+                unit = "%"
             )
 
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium)))
@@ -132,12 +133,12 @@ fun LightChartScreen (
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun LightChartScreenPreview (){
-        GrowBoxTheme {
-            LightChartScreen (
-            onNavigateBack = {}
-            )
-        }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun LightChartScreenPreview (){
+//        GrowBoxTheme {
+//            LightChartScreen (
+//            onNavigateBack = {}
+//            )
+//        }
+//}
