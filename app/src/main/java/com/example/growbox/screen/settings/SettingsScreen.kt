@@ -20,7 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
+
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.growbox.R
@@ -29,7 +29,8 @@ import com.example.growbox.screen.settings.components.SettingsCards
 
 object SettingsDestination : NavigationDestination {
     override val route = "settings"
-    override val titleRes = null
+    override val titleRes = R.string.settings_title
+    override val showBottomBar= true
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

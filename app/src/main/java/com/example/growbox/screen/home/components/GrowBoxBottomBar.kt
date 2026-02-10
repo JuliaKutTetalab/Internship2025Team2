@@ -20,6 +20,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.growbox.R
 import com.example.growbox.screen.home.HomeDestination
+import com.example.growbox.screen.home.profile.ProfileDestination
+import com.example.growbox.screen.settings.SettingsDestination
 import com.example.growbox.ui.theme.GreenLight
 
 
@@ -31,8 +33,8 @@ fun GrowBoxBottomBar(
 
     val items = listOf(
         Triple(HomeDestination.route, R.drawable.ic_home_icon, R.string.home_title),
-        Triple(HomeDestination.route, R.drawable.ic_setting_icon, R.string.settings_title),
-        Triple(HomeDestination.route, R.drawable.ic_profile, R.string.profile_title),
+        Triple(SettingsDestination.route, R.drawable.ic_setting_icon, R.string.settings_title),
+        Triple(ProfileDestination.route, R.drawable.ic_profile, R.string.profile_title),
     )
 
     NavigationBar(
@@ -47,7 +49,9 @@ fun GrowBoxBottomBar(
             NavigationBarItem(
                 selected = isSelected,
                 onClick = {
-                    if (!isSelected) onNavigate(route)
+                    if (currentRoute != route) {
+                        onNavigate(route)
+                    }
                 },
                 icon = {
                     Icon(
@@ -60,6 +64,7 @@ fun GrowBoxBottomBar(
                     Text(
                         text = stringResource(id = label),
                         fontSize = 12.sp,
+
                         fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium
                     )
                 },

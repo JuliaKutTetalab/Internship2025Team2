@@ -27,6 +27,8 @@ interface FirebaseDataSource {
     suspend fun fetchCurrentCrop(userId: String): Crop?
     // Метод для оновлення окремих полів (вентиляція, полив)
     suspend fun updateCropField(userId: String, cropId: String, field: String, value: Any)
+    fun getCurrentUserEmail(): String?
+    suspend fun signOut()
 }
 
 class FirebaseDataSourceImpl(
@@ -38,6 +40,12 @@ class FirebaseDataSourceImpl(
     companion object {
         const val USERS_COLLECTION = "users"
         const val CROPS_COLLECTION = "crops"
+    }
+
+    override fun getCurrentUserEmail(): String? = auth.currentUser?.email
+
+    override suspend fun signOut() {
+        auth.signOut()
     }
 
     override suspend fun registerUser(email: String, password: String): String {

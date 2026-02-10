@@ -41,7 +41,8 @@ import com.example.growbox.ui.theme.GrowBoxTheme
 
 object TemperatureChartDestination : NavigationDestination {
     override val route = "temperature_chart"
-    override val titleRes = null
+    override val titleRes = R.string.temperature_title
+    override val showBottomBar= true
 }
 @OptIn (ExperimentalMaterial3Api::class)
 @Composable
