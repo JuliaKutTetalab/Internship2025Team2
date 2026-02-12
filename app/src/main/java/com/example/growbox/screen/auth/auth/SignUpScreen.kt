@@ -45,6 +45,7 @@ import com.example.growbox.di.AppViewModelProvider
 object SignUpDestination: NavigationDestination {
     override val route = "signup_route"
     override val titleRes = R.string.signUp_screen
+    override val showBottomBar: Boolean = false
 }
 
 
@@ -157,7 +158,9 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.weight(1f))
 
             Button(
-                onClick = { viewModel.register(email, password) },
+                onClick = {
+                    viewModel.register(email, password)
+                          },
                 enabled = !isLoading && isEmailFormatValid && isPasswordStrong && doPasswordsMatch,
                 modifier = Modifier.fillMaxWidth().height(56.dp),
                 shape = RoundedCornerShape(12.dp),

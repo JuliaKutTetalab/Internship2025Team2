@@ -27,9 +27,15 @@ import com.example.growbox.ui.theme.Green800
 import com.example.growbox.ui.theme.GreenLight
 import com.example.growbox.ui.theme.White
 import androidx.compose.ui.res.stringResource
+import com.example.growbox.navigation.NavigationDestination
 
 
 // SCREEN 1: Choose your plants
+object Onboarding1Destination : NavigationDestination {
+    override val route = "onboarding1"
+    override val titleRes =R.string.onboarding_screen1_title
+    override val showBottomBar = false
+}
 @Composable
 fun OnboardingScreen1(
     onSkip: () -> Unit = {},
@@ -46,6 +52,11 @@ fun OnboardingScreen1(
 }
 
 // SCREEN 2: Connect and control
+object Onboarding2Destination : NavigationDestination {
+    override val route = "onboarding2"
+    override val titleRes =R.string.onboarding_screen2_title
+    override val showBottomBar = false
+}
 @Composable
 fun OnboardingScreen2(
     onSkip: () -> Unit = {},
@@ -62,6 +73,12 @@ fun OnboardingScreen2(
 }
 
 // SCREEN 3: Observe and grow
+
+object Onboarding3Destination : NavigationDestination {
+    override val route = "onboarding3"
+    override val titleRes =R.string.onboarding_screen3_title
+    override val showBottomBar = false
+}
 @Composable
 fun OnboardingScreen3(
     onSkip: () -> Unit = {},

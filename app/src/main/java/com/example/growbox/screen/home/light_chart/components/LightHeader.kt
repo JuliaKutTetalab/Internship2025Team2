@@ -1,6 +1,5 @@
 package com.example.growbox.screen.home.light_chart.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,22 +8,20 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.example.growbox.R
-import com.example.growbox.ui.theme.Green800
 import androidx.compose.material3.Icon
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import com.example.growbox.ui.theme.GreenLight
 import androidx.compose.material3.Text
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.growbox.ui.theme.Gray999
+import com.example.growbox.ui.theme.Green800
 
 
 @Composable
@@ -32,6 +29,7 @@ fun LightHeader(
     iconRes: Int,
     description: String,
     currentValue: Int,
+    unit: String,
     modifier: Modifier = Modifier
     ) {
         Row(
@@ -47,7 +45,7 @@ fun LightHeader(
             ){
                 Icon(
                     painter = painterResource(iconRes),
-                    contentDescription = stringResource(R.string.light_title),
+                    contentDescription = null,
                     tint = Green800,
                     modifier = Modifier.size(dimensionResource(R.dimen.icon_size_large))
                 )

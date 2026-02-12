@@ -4,9 +4,10 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 
     alias(libs.plugins.googleServices)
+    alias(libs.plugins.ksp)
 
-    id("com.google.dagger.hilt.android")
-    kotlin("kapt")
+   // id("com.google.dagger.hilt.android") apply false
+   // kotlin("kapt") apply false
 }
 
 android {
@@ -47,6 +48,12 @@ android {
 }
 
 dependencies {
+
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -69,8 +76,8 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-    implementation("com.google.dagger:hilt-android:2.48")
-    kapt("com.google.dagger:hilt-android-compiler:2.48")
+  //  implementation("com.google.dagger:hilt-android:2.48")
+  //  kapt("com.google.dagger:hilt-android-compiler:2.48")
 
     // Hilt Navigation Compose
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")

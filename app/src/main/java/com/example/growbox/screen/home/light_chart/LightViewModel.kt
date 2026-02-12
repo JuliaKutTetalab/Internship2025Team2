@@ -8,7 +8,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import com.example.growbox.screen.home.light_chart.model.ChartPeriod
 
-class LightViewModel: ViewModel() {
+class LightViewModel: ViewModel(
+
+) {
     private val _uiState = MutableStateFlow(LightUiState())
     val uiState: StateFlow<LightUiState> = _uiState.asStateFlow()
 

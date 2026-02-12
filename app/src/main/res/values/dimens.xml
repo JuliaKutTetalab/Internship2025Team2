@@ -10,9 +10,9 @@
         <dimen name="content_max_width_large">600dp</dimen>
 
 
-        <!-- Weights    -->
-        <dimen name="weight_equal">1f</dimen>
-        <dimen name="weight_half">0.5f</dimen>
+<!--        &lt;!&ndash; Weights    &ndash;&gt;-->
+<!--        <dimen name="weight_equal">1f</dimen>-->
+<!--        <dimen name="weight_half">0.5f</dimen>-->
 
         <!-- Button widths -->
         <dimen name="button_width_small">80dp</dimen>
@@ -30,7 +30,9 @@
         <!-- Spacing (проміжки між елементами) -->
         <dimen name="spacing_extra_small">4dp</dimen>
         <dimen name="spacing_small">8dp</dimen>
+        <dimen name="spacing_small_12">12dp</dimen>
         <dimen name="spacing_medium">16dp</dimen>
+        <dimen name="spacing_medium_24">24dp</dimen>
         <dimen name="spacing_large">40dp</dimen>
         <dimen name="spacing_extra_large">62dp</dimen>
         <dimen name="spacing_huge">80dp</dimen>
@@ -46,6 +48,9 @@
         <dimen name="padding_large">24dp</dimen>
         <dimen name="padding_extra_large">32dp</dimen>
         <dimen name="padding_huge">40dp</dimen>
+        <dimen name="padding_extra_huge">100dp</dimen>
+
+
 
         <!-- Icon sizes -->
         <dimen name="icon_size_small">24dp</dimen>
@@ -59,8 +64,13 @@
 
         <!-- Height elements   -->
         <dimen name="height_tab_row_small">3dp</dimen>
+        <dimen name="height_frequency_dropdown">8dp</dimen>
+        <dimen name="height_slider_small">8dp</dimen>
+        <dimen name="height_slider_large">32dp</dimen>
         <dimen name="height_large">150dp</dimen>
         <dimen name="height_huge">200dp</dimen>
+        <dimen name="crop_type_height_huge">300dp</dimen>
+
 
 
         <!-- Button heights -->
@@ -70,11 +80,17 @@
         <dimen name="button_onboarding_large">140dp</dimen>
 
         <!-- Corner radius  -->
+        <dimen name="corner_radius_slider">2dp</dimen>
         <dimen name="corner_radius_small">8dp</dimen>
         <dimen name="corner_radius_medium">12dp</dimen>
         <dimen name="corner_radius_large">16dp</dimen>
+        <dimen name="corner_radius_huge">24dp</dimen>
+
+
 
         <!-- Font sizes -->
+        <dimen name="font_size_graph">8sp</dimen>
+        <dimen name="font_size_graph_point">10sp</dimen>
         <dimen name="font_size_description">10sp</dimen>
         <dimen name="font_size_small">12sp</dimen>
         <dimen name="font_size_medium">14sp</dimen>
@@ -85,6 +101,7 @@
         <dimen name="font_size_icon">60sp</dimen>
 
         <!-- Card elevation -->
+        <dimen name="card_elevation_small">2dp</dimen>
         <dimen name="card_elevation">5dp</dimen>
         <dimen name="top_bar_elevation">0dp</dimen>
     </resources>

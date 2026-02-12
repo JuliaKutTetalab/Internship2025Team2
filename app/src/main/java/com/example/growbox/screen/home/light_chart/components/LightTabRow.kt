@@ -14,7 +14,6 @@ import com.example.growbox.R
 import com.example.growbox.screen.home.light_chart.model.ChartPeriod
 import com.example.growbox.ui.theme.Gray999
 import com.example.growbox.ui.theme.GreenLight
-import com.example.growbox.ui.theme.White
 
 @Composable
 fun LightTabRow(
