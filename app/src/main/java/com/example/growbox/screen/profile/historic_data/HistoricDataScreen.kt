@@ -45,12 +45,13 @@ object HistoricDataDestination : NavigationDestination {
 fun HistoricDataScreen (
     onNavigateBack: () -> Unit
 ){
-    val viewModel: ChartViewModel = viewModel()
-    val uiState by viewModel.uiState.collectAsState()
-
-    LaunchedEffect(Unit) {
-        viewModel.loadData()
-    }
+    //Поки нема View Model
+//    val viewModel: ChartViewModel = viewModel()
+//    val uiState by viewModel.uiState.collectAsState()
+//
+//    LaunchedEffect(Unit) {
+//        viewModel.loadData()
+//    }
 
 
     Scaffold(
@@ -86,26 +87,27 @@ fun HistoricDataScreen (
             .background(Color.White)
             .padding(padding)
         ){
-                HistoricDataCard(
-                    iconRes = R.drawable.ic_light_icon,
-                    title = stringResource(R.string.light_title),
-                    onClick = onNavigateToLight
-                )
-                HistoricDataCard(
-                    iconRes = R.drawable.ic_temperature_icon,
-                    title = stringResource(R.string.temperature_title),
-                    onClick = onNavigateToTemperature
-                )
-                HistoricDataCard(
-                    iconRes = R.drawable.ic_humidity_icon,
-                    title = stringResource(R.string.humidity_title),
-                    onClick = onNavigateToHumidity
-                )
-                HistoricDataCard(
-                    iconRes = R.drawable.ic_nutrition_icon,
-                    title = stringResource(R.string.nutrition_title),
-                    onClick = onNavigateToNutrition
-                )
+            //Щоб не вибивало помилок поки закоментила
+//                HistoricDataCard(
+//                    iconRes = R.drawable.ic_light_icon,
+//                    title = stringResource(R.string.light_title),
+//                    onClick = onNavigateToLight
+//                )
+//                HistoricDataCard(
+//                    iconRes = R.drawable.ic_temperature_icon,
+//                    title = stringResource(R.string.temperature_title),
+//                    onClick = onNavigateToTemperature
+//                )
+//                HistoricDataCard(
+//                    iconRes = R.drawable.ic_humidity_icon,
+//                    title = stringResource(R.string.humidity_title),
+//                    onClick = onNavigateToHumidity
+//                )
+//                HistoricDataCard(
+//                    iconRes = R.drawable.ic_nutrition_icon,
+//                    title = stringResource(R.string.nutrition_title),
+//                    onClick = onNavigateToBack
+//                )
             }
     }
 }
