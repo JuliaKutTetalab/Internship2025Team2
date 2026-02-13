@@ -75,6 +75,10 @@
     <string name="nutrition_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
     <string name="nutrition_chart_no_data">Data not found</string>
 
+
+    <!--    Historic Data Screens-->
+    <string name="historic_title">Historic Data</string>
+
     <!--    Settings Screen-->
     <string name="settings_title">Settings</string>
     <string name="vent_card_title">Vent</string>
@@ -128,6 +132,9 @@
     <string name="content_description_valid_password">Valid password</string>
     <string name="content_description_passwords_match">Passwords match</string>
     <string name="content_description_home_screen">Back</string>
+
+    <string name="content_description_data_screen">Back</string>
+
     <string name="content_description_crop_screen">Back</string>
     <string name="description_bluetooth_screen">Back</string>
 
