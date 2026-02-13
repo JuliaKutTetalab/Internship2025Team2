@@ -1,4 +1,4 @@
-package com.example.growbox.screen.bluetooth.connected
+package com.example.growbox.screen.bluetooth.select_device
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -22,11 +22,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.growbox.R
 import com.example.growbox.data.model.BluetoothDeviceInfo
+import com.example.growbox.navigation.NavigationDestination
 import com.example.growbox.screen.bluetooth.components.DeviceListItem
+
+object ConnectDeviceDestination: NavigationDestination {
+    override val route = "connect_device"
+    override val showBottomBar = false
+    override val titleRes = null
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ConnectedDeviceScreen(
+fun ConnectDeviceScreen(
     onNavigateBack: () -> Unit,
     onDeviseSelected: (BluetoothDeviceInfo) -> Unit
 ){
@@ -38,7 +45,7 @@ fun ConnectedDeviceScreen(
                 R.string.app_name,
                 R.string.connect_device_name,
                 R.string.connect_device_version
-            ),
+                ),
             BluetoothDeviceInfo(
                 R.string.app_name,
                 R.string.connect_device_name,
@@ -52,15 +59,15 @@ fun ConnectedDeviceScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(R.string.connected_title),
+                        text = stringResource(R.string.connect_device_title),
                         fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
                         fontWeight = FontWeight.Bold
                     )
-                },
+                        },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack,
-                            stringResource(R.string.description_bluetooth_screen))
+                        stringResource(R.string.description_bluetooth_screen))
                     }
                 }
             )
