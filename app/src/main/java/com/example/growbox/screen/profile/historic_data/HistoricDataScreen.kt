@@ -39,6 +39,8 @@ import com.example.growbox.screen.profile.historic_data.components.HistoricDataC
 object HistoricDataDestination : NavigationDestination {
     override val route = "historic_data"
     override val titleRes = null
+    override val showBottomBar: Boolean = false
+
 }
 @OptIn (ExperimentalMaterial3Api::class)
 @Composable
