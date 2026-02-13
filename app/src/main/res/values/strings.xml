@@ -104,8 +104,8 @@
     <string name="crop_type_mushrooms">Mushroom`s</string>
 
     <!--   Bluetooth Screen-->
-    <string name="initial_device_title">Connect your mobile device to GrowBox</string>
-    <string name="initial_warning_text">Make sure that Bluetooth on your mobile device is turned on</string>
+    <string name="initial_device_title">Connect your mobile\ndevice to GrowBox</string>
+    <string name="initial_warning_text">Make sure that Bluetooth on your mobile\ndevice is turned on</string>
     <string name="initial_device_button">Connect your device </string>
     <string name="search_device_title">Searching for devices...</string>
     <string name="search_warning_text">It can take a couple of minutes</string>

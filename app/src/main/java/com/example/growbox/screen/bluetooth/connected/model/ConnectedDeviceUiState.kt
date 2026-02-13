@@ -1,9 +1,0 @@
-package com.example.growbox.screen.bluetooth.connected.model
-
-import com.example.growbox.data.model.BluetoothDeviceInfo
-
-data class ConnectedDeviseUiState (
-    val devices: List<BluetoothDeviceInfo> = emptyList(),
-    val selectedDevice: BluetoothDeviceInfo? = null,
-    val isLoading: Boolean = false
-)

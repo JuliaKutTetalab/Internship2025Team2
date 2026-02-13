@@ -35,21 +35,21 @@ object ConnectDeviceDestination: NavigationDestination {
 @Composable
 fun ConnectDeviceScreen(
     onNavigateBack: () -> Unit,
-    onDeviseSelected: (BluetoothDeviceInfo) -> Unit
+    onDeviceSelected: (BluetoothDeviceInfo) -> Unit
 ){
     // Поки Mock доки не зробимо ViewModel
 
     val mockDevices = remember{
         listOf(
             BluetoothDeviceInfo(
-                R.string.app_name,
-                R.string.connect_device_name,
-                R.string.connect_device_version
+                name = "GrowBox",
+                address = "Femtolab Gro-06",
+                version = "Version 1.1.5"
                 ),
             BluetoothDeviceInfo(
-                R.string.app_name,
-                R.string.connect_device_name,
-                R.string.connect_device_version
+                name = "GrowBox",
+                address = "Femtolab Gro-10",
+                version = "Version 1.1.6"
             )
         )
     }
@@ -60,7 +60,7 @@ fun ConnectDeviceScreen(
                 title = {
                     Text(
                         text = stringResource(R.string.connect_device_title),
-                        fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
+                        fontSize = dimensionResource(R.dimen.font_size_title).value.sp,
                         fontWeight = FontWeight.Bold
                     )
                         },
@@ -82,7 +82,7 @@ fun ConnectDeviceScreen(
             items(mockDevices) { device ->
                 DeviceListItem(
                     device = device,
-                    onClick = {onDeviseSelected(device)}
+                    onClick = {onDeviceSelected(device)},
                 )
 
                 HorizontalDivider()

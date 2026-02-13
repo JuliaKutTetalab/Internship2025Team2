@@ -17,6 +17,9 @@ import com.example.growbox.navigation.NavigationDestination
 import com.example.growbox.screen.auth.auth.LogInDestination
 import com.example.growbox.screen.auth.auth.SignUpDestination
 import com.example.growbox.screen.auth.auth.SplashDestination
+import com.example.growbox.screen.bluetooth.connected.ConnectedDeviceDestination
+import com.example.growbox.screen.bluetooth.initial.InitialDeviceDestination
+import com.example.growbox.screen.bluetooth.select_device.ConnectDeviceDestination
 import com.example.growbox.screen.home.HomeDestination
 import com.example.growbox.screen.home.components.GrowBoxBottomBar
 import com.example.growbox.screen.home.humidity_chart.HumidityChartDestination
@@ -42,6 +45,9 @@ val allDestinations: List<NavigationDestination> = listOf(
     SettingsDestination,
     ProfileDestination ,
     ChangeCropTypeDestination,
+    InitialDeviceDestination,
+    ConnectDeviceDestination,
+    ConnectedDeviceDestination
 )
 
 @Composable

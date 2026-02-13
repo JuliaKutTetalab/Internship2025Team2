@@ -19,11 +19,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
 import com.example.growbox.R
+import com.example.growbox.navigation.NavigationDestination
 import com.example.growbox.screen.bluetooth.components.GradientButton
 import com.example.growbox.ui.theme.Gray999
 
+object InitialDeviceDestination: NavigationDestination {
+    override val route = "initial_device"
+    override val showBottomBar = false
+    override val titleRes = null
+}
+
 @Composable
-fun InitialBluetoothScreen(
+fun InitialDeviceScreen(
     onConnectClick: () -> Unit
 ){
     Column(
@@ -33,7 +40,7 @@ fun InitialBluetoothScreen(
     ){
         Text(
             text = stringResource(R.string.initial_device_title),
-            fontSize = dimensionResource(R.dimen.font_size_huge).value.sp,
+            fontSize = dimensionResource(R.dimen.font_size_title).value.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center
         )
@@ -42,20 +49,20 @@ fun InitialBluetoothScreen(
 
         Text(
             text = stringResource(R.string.initial_warning_text),
-            fontSize = dimensionResource(R.dimen.font_size_small).value.sp,
+            fontSize = dimensionResource(R.dimen.font_size_medium).value.sp,
             color = Gray999,
             textAlign = TextAlign.Center
         )
 
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_large)))
+        Spacer(modifier = Modifier.padding(dimensionResource(R.dimen.spacing_large)))
 
         Image(
             painter = painterResource(R.drawable.ic_bluetooth_icon),
             contentDescription = null,
-            modifier = Modifier.size(dimensionResource(R.dimen.icon_size_huge))
+            modifier = Modifier.size(dimensionResource(R.dimen.onboarding_icon_size_small))
         )
 
-        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_extra_large)))
+        Spacer(modifier = Modifier.padding(dimensionResource(R.dimen.spacing_huge)))
 
         GradientButton(
             text = stringResource(R.string.initial_device_button),

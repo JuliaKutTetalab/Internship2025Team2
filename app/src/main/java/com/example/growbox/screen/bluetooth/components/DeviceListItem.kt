@@ -29,7 +29,6 @@ fun DeviceListItem(
     device: BluetoothDeviceInfo,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    showIcon: Boolean = true
 ){
     Row(
         modifier = Modifier
@@ -41,29 +40,27 @@ fun DeviceListItem(
             ),
         verticalAlignment = Alignment.CenterVertically
     ){
-        if (showIcon) {
             Image(
                 painter = painterResource(R.drawable.ic_bluetooth_icon),
                 contentDescription = null,
-                modifier = Modifier.size(dimensionResource(R.dimen.icon_size_medium))
+                modifier = Modifier.size(dimensionResource(R.dimen.icon_size_extra_large))
             )
             Spacer(modifier = Modifier.width(dimensionResource(R.dimen.spacing_medium)))
-        }
 
         Column{
             Text(
-                text = stringResource(device.name),
-                fontSize = dimensionResource(R.dimen.font_size_medium).value.sp,
+                text = device.name,
+                fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
                 fontWeight = FontWeight.SemiBold
             )
             Text(
-                text = stringResource(device.address),
-                fontSize = dimensionResource(R.dimen.font_size_small).value.sp,
+                text = device.address,
+                fontSize = dimensionResource(R.dimen.font_size_medium).value.sp,
                 color = Green800
             )
             Text(
-                text = stringResource(device.version),
-                fontSize = dimensionResource(R.dimen.font_size_small).value.sp,
+                text = device.version,
+                fontSize = dimensionResource(R.dimen.font_size_medium).value.sp,
                 color = Gray999
             )
         }

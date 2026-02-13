@@ -16,6 +16,12 @@ import com.example.growbox.screen.auth.auth.SignUpDestination
 import com.example.growbox.screen.auth.auth.SignUpScreen
 import com.example.growbox.screen.auth.auth.SplashDestination
 import com.example.growbox.screen.auth.auth.SplashScreen
+import com.example.growbox.screen.bluetooth.connected.ConnectedDeviceDestination
+import com.example.growbox.screen.bluetooth.connected.ConnectedDeviceScreen
+import com.example.growbox.screen.bluetooth.initial.InitialDeviceDestination
+import com.example.growbox.screen.bluetooth.initial.InitialDeviceScreen
+import com.example.growbox.screen.bluetooth.select_device.ConnectDeviceDestination
+import com.example.growbox.screen.bluetooth.select_device.ConnectDeviceScreen
 import com.example.growbox.screen.home.chart.ChartDestination
 import com.example.growbox.screen.home.chart.ChartScreen
 import com.example.growbox.screen.home.HomeDestination
@@ -103,7 +109,7 @@ fun GrowBoxNavHost(
         composable(route = OnBoardingScreenDestination.route) {
             OnBoardingScreen(
                 onNavigateToHome = {
-                    navController.navigate(HomeDestination.route) {
+                    navController.navigate(InitialDeviceDestination.route) {
                         popUpTo(OnBoardingScreenDestination.route) { inclusive = true }
                     }
                 }
@@ -218,6 +224,40 @@ fun GrowBoxNavHost(
                     }
                 )
             }
+
+        //INITIAL DEVICE SCREEN
+        composable(route = InitialDeviceDestination.route) {
+            InitialDeviceScreen(
+                onConnectClick = {
+                    navController.navigate(ConnectDeviceDestination.route)
+                }
+            )
+        }
+
+        //CONNECT DEVICE SCREEN
+        composable(route = ConnectDeviceDestination.route) {
+            ConnectDeviceScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+                onDeviceSelected = { device ->
+                    navController.navigate(ConnectedDeviceDestination.route)
+                }
+            )
+        }
+
+        //CONNECTED DEVICE SCREEN
+        composable(route = ConnectedDeviceDestination.route) {
+            ConnectedDeviceScreen(
+                onNavigateBack = {
+                    navController.popBackStack()
+                },
+                onNextClick = {
+                    navController.navigate(HomeDestination.route)
+                }
+            )
+        }
+
         }
     }
 
