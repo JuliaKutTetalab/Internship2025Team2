@@ -30,7 +30,6 @@ import androidx.compose.ui.res.stringResource
 import com.example.growbox.navigation.NavigationDestination
 
 
-// SCREEN 1: Choose your plants
 object Onboarding1Destination : NavigationDestination {
     override val route = "onboarding1"
     override val titleRes =R.string.onboarding_screen1_title
@@ -51,7 +50,6 @@ fun OnboardingScreen1(
     )
 }
 
-// SCREEN 2: Connect and control
 object Onboarding2Destination : NavigationDestination {
     override val route = "onboarding2"
     override val titleRes =R.string.onboarding_screen2_title
@@ -71,8 +69,6 @@ fun OnboardingScreen2(
         onNext = onNext
     )
 }
-
-// SCREEN 3: Observe and grow
 
 object Onboarding3Destination : NavigationDestination {
     override val route = "onboarding3"
@@ -94,7 +90,6 @@ fun OnboardingScreen3(
     )
 }
 
-// TEMPLATE (for all 3 screens)
 @Composable
 private fun OnboardingScreenTemplate(
     title: String,
@@ -150,7 +145,6 @@ private fun OnboardingScreenTemplate(
 
                 Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_huge)))
 
-                //Індикатори сторінок (крапки)
                 PageIndicator(
                     currentPage = currentPage,
                     totalPages = totalPages
@@ -165,7 +159,6 @@ private fun OnboardingScreenTemplate(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ){
-                    //Slip button
                     TextButton(onClick = onSkip) {
                         Text(
                             text = stringResource(R.string.onboarding_skip),
@@ -174,7 +167,6 @@ private fun OnboardingScreenTemplate(
                             fontWeight = FontWeight.Medium
                         )
                     }
-                    //Next button
                     Button(
                         onClick = onNext,
                         colors = ButtonDefaults.buttonColors(
@@ -197,7 +189,6 @@ private fun OnboardingScreenTemplate(
         }
 }
 
-//Page indicator (точки внизу)
 @Composable
 private fun PageIndicator(
     currentPage: Int,

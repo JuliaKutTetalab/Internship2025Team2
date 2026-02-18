@@ -29,6 +29,7 @@ fun ChartTabRow(
 
     TabRow(
         selectedTabIndex = tabs.indexOfFirst { it.first == selectedPeriod },
+        containerColor = Color.White,
         contentColor = GreenLight,
         indicator = { tabPositions ->
             val selectedIndex = tabs.indexOfFirst { it.first == selectedPeriod }

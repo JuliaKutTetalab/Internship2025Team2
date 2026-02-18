@@ -1,5 +1,8 @@
 package com.example.growbox.screen.settings.components
 
+
+
+
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -13,7 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -29,7 +31,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.growbox.R
-import com.example.growbox.ui.theme.Gray999
 import com.example.growbox.ui.theme.GreenLight
 import com.example.growbox.ui.theme.White
 
@@ -41,6 +42,7 @@ fun SettingsCards(
     onToggle: ((Boolean) -> Unit)? = null,
     sliderValue: Float,
     onSliderChange: (Float) -> Unit,
+    onSliderChangeFinished: (() -> Unit)? = null,
     sliderRange: ClosedFloatingPointRange<Float>,
     minLabel: String,
     maxLabel: String,
@@ -48,8 +50,7 @@ fun SettingsCards(
     frequency: Int? = null,
     onFrequencyChange: ((Int) -> Unit)? = null,
     modifier: Modifier = Modifier
-    ){
-
+) {
     Box(
         modifier = modifier
             .shadow(
@@ -65,7 +66,6 @@ fun SettingsCards(
         Column(
             modifier = Modifier.padding(dimensionResource(R.dimen.padding_medium))
         ) {
-            // Header^ Icon + Name + Switch
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -79,13 +79,14 @@ fun SettingsCards(
                         tint = Color.Unspecified
                     )
                     Spacer(modifier = Modifier.width(dimensionResource(R.dimen.spacing_medium)))
-
                     Text(
                         text = title,
                         fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
-                        fontWeight = FontWeight.SemiBold
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color.Black
                     )
                 }
+
                 if (isEnabled != null && onToggle != null) {
                     Switch(
                         checked = isEnabled,
@@ -96,8 +97,6 @@ fun SettingsCards(
                         )
                     )
                 }
-
-                // Frequency dropdown (якщо він є)
 
                 if (frequency != null && onFrequencyChange != null) {
                     Spacer(modifier = Modifier.height(dimensionResource(R.dimen.height_frequency_dropdown)))
@@ -113,6 +112,7 @@ fun SettingsCards(
             SettingsSlider(
                 value = sliderValue,
                 onValueChange = onSliderChange,
+                onValueChangeFinished = onSliderChangeFinished,
                 valueRange = sliderRange,
                 label = currentLabel,
                 minLabel = minLabel,
@@ -121,3 +121,4 @@ fun SettingsCards(
         }
     }
 }
+

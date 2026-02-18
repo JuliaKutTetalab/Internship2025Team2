@@ -20,9 +20,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.growbox.R
 import com.example.growbox.ui.theme.GreenLight
 
 @Composable
@@ -37,15 +39,15 @@ fun ProfileMenuItem(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = 4.dp)
+            .padding(vertical = dimensionResource(R.dimen.padding_extra_small))
             .clickable { onClick() },
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_large)),
         colors = CardDefaults.cardColors(containerColor = Color.White),
         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
     ) {
         Row(
             modifier = Modifier
-                .padding(16.dp)
+                .padding(dimensionResource(R.dimen.padding_medium))
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
@@ -54,13 +56,13 @@ fun ProfileMenuItem(
                 Icon(
                     imageVector = icon,
                     contentDescription = null,
-                    modifier = Modifier.size(24.dp),
+                    modifier = Modifier.size(dimensionResource(R.dimen.icon_size_small)),
                     tint = if (isLogout) contentColor else GreenLight
                 )
-                Spacer(modifier = Modifier.width(16.dp))
+                Spacer(modifier = Modifier.width(dimensionResource(R.dimen.spacing_medium)))
                 Text(
                     text = label,
-                    fontSize = 16.sp,
+                    fontSize = dimensionResource(R.dimen.font_size_medium).value.sp,
                     fontWeight = FontWeight.Medium,
                     color = contentColor
                 )

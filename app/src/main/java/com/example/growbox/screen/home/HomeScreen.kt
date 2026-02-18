@@ -1,7 +1,6 @@
 package com.example.growbox.screen.home
 
-
-
+import android.util.Log
 import com.example.growbox.R
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -17,6 +16,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,33 +40,64 @@ object HomeDestination : NavigationDestination {
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    onNavigateToLight: () -> Unit,
-    onNavigateToTemperature: () -> Unit,
-    onNavigateToHumidity: () -> Unit,
-    onNavigateToNutrition: () -> Unit,
+    onNavigateToLight: (String) -> Unit,
+    onNavigateToTemperature: (String) -> Unit,
+    onNavigateToHumidity: (String) -> Unit,
+    onNavigateToNutrition: (String) -> Unit,
     viewModel: HomeScreenViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
     val cropState by viewModel.cropState.collectAsState()
 
+    if (cropState == null) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator()
+        }
+        return
+    }
+
+    SideEffect {
+        Log.d("UI_DEBUG", "HOME cropId=${cropState?.cropId} vent=${cropState?.isVentOn} water=${cropState?.isWateringOn}")
+    }
+
     HomeScreenContent(
         modifier = modifier,
         cropState = cropState,
-        onNavigateToLight = onNavigateToLight,
-        onNavigateToTemperature = onNavigateToTemperature,
-        onNavigateToHumidity = onNavigateToHumidity,
-        onNavigateToNutrition = onNavigateToNutrition,
-        onToggleVent = { isActive ->
-            cropState?.let { viewModel.toggleVent(it.cropId, isActive) }
+        onNavigateToLight = {
+            val currentId = cropState?.cropId
+            if (!currentId.isNullOrEmpty()) {
+                onNavigateToLight(currentId)
+            }
         },
-        onToggleWatering = { isActive ->
-            cropState?.let { viewModel.toggleWatering(it.cropId, isActive) }
+        onNavigateToTemperature = {
+            cropState?.cropId?.let { id -> onNavigateToTemperature(id) }
+        },
+        onNavigateToHumidity = {
+            cropState?.cropId?.let { id -> onNavigateToHumidity(id) }
+        },
+        onNavigateToNutrition = {
+            cropState?.cropId?.let { id -> onNavigateToNutrition(id) }
+        },
+        onToggleVent = { newStatus ->
+            cropState?.cropId?.let { id ->
+                viewModel.toggleVent(id, newStatus)
+            }
+        },
+        onToggleWatering = { newStatus ->
+            cropState?.cropId?.let { id ->
+                viewModel.toggleWatering(id, newStatus)
+            }
         }
     )
 }
 
 @Composable
 fun HomeScreenContent(
-    modifier : Modifier,
+    modifier: Modifier,
     cropState: Crop?,
     onNavigateToLight: () -> Unit,
     onNavigateToTemperature: () -> Unit,
@@ -79,15 +110,13 @@ fun HomeScreenContent(
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White)
-            .background(Color(0xFFF8F8F8))
-            .padding(horizontal = 16.dp)
+            .padding(horizontal = dimensionResource(R.dimen.padding_medium))
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(24.dp))
-        PlantHeader(cropState) //
-        Spacer(modifier = Modifier.height(32.dp))
-
+        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium_24)))
+        PlantHeader(cropState)
+        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_extra_large)))
 
         Row(modifier = Modifier.fillMaxWidth()) {
             SensorCard(
@@ -97,7 +126,7 @@ fun HomeScreenContent(
                 onClick = onNavigateToLight,
                 modifier = Modifier.weight(1f)
             )
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(dimensionResource(R.dimen.spacing_medium)))
             SensorCard(
                 iconRes = R.drawable.ic_temperature_icon,
                 value = "${cropState?.temperature ?: 0} °C",
@@ -107,7 +136,7 @@ fun HomeScreenContent(
             )
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium)))
 
         Row(modifier = Modifier.fillMaxWidth()) {
             SensorCard(
@@ -117,10 +146,8 @@ fun HomeScreenContent(
                 onClick = onNavigateToHumidity,
                 modifier = Modifier.weight(1f)
             )
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(dimensionResource(R.dimen.spacing_medium)))
             SensorCard(
-              //  iconRes = R.drawable.ic_watering,
-             //   iconRes = R.drawable.ic_nutrion_icon,
                 iconRes = R.drawable.ic_nutrition_icon,
                 value = "${cropState?.nutrition ?: 0}%",
                 label = "Nutrition",
@@ -129,9 +156,8 @@ fun HomeScreenContent(
             )
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium)))
 
-        // Картки перемикачів
         Row(modifier = Modifier.fillMaxWidth()) {
             ToggleCard(
                 iconRes = R.drawable.ic_vent,
@@ -140,7 +166,7 @@ fun HomeScreenContent(
                 onToggle = onToggleVent,
                 modifier = Modifier.weight(1f)
             )
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(dimensionResource(R.dimen.spacing_medium)))
             ToggleCard(
                 iconRes = R.drawable.ic_watering,
                 label = "Watering",
@@ -149,15 +175,13 @@ fun HomeScreenContent(
                 modifier = Modifier.weight(1f)
             )
         }
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_extra_large)))
     }
 }
-
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun HomeScreenPreview() {
-
     val mockCrop = Crop(
         cropId = "test_id",
         cropType = "Microgreens",

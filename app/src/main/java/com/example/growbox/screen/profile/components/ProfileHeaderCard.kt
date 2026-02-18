@@ -26,7 +26,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.growbox.ui.theme.GreenLight
-
 import com.example.growbox.R
 import com.example.growbox.data.model.Crop
 import com.example.growbox.data.model.User
@@ -41,40 +40,47 @@ fun ProfileHeaderCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = dimensionResource(R.dimen.padding_small)),
-        shape = RoundedCornerShape(24.dp),
+        shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_huge)),
         colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = dimensionResource(R.dimen.card_elevation_small))
     ) {
         Column(
-            modifier = Modifier.padding(24.dp).fillMaxWidth(),
+            modifier = Modifier
+                .padding(dimensionResource(R.dimen.padding_large))
+                .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_nutrition_icon),
+                painter = painterResource(id = R.drawable.ic_plant),
                 contentDescription = null,
-                modifier = Modifier.size(48.dp),
-                tint = GreenLight
+                modifier = Modifier.size(dimensionResource(R.dimen.profile_avatar_size)),
+                tint = Color.Unspecified
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_small_12)))
 
-
+            val farmName = user?.farmName?.takeIf { it.isNotBlank() }
+            if (farmName != null) {
+                Text(
+                    text = farmName,
+                    fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = GreenLight
+                )
+            }
             Text(
-                text = user?.farmName ?: "Loading...",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                color = GreenLight
+                text = email,
+                fontSize = dimensionResource(R.dimen.font_size_medium).value.sp,
+                color = Color.Gray
             )
-            Text(text = email, fontSize = 14.sp, color = Color.Gray)
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium_24)))
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-
                 StatItem(
                     label = "Total Harvest",
                     value = user?.totalHarvestCount?.toString() ?: "0",
@@ -100,12 +106,26 @@ fun ProfileHeaderCard(
 @Composable
 fun StatItem(label: String, value: String, valueColor: Color) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = label, fontSize = 12.sp, color = Color.Black)
-        Text(text = value, fontSize = 16.sp, fontWeight = FontWeight.Bold, color = valueColor)
+        Text(
+            text = label,
+            fontSize = dimensionResource(R.dimen.font_size_small).value.sp,
+            color = Color.Black
+        )
+        Text(
+            text = value,
+            fontSize = dimensionResource(R.dimen.font_size_medium).value.sp,
+            fontWeight = FontWeight.Bold,
+            color = valueColor
+        )
     }
 }
 
 @Composable
 fun VerticalDivider() {
-    Box(modifier = Modifier.height(30.dp).width(1.dp).background(Color(0xFFE0E0E0)))
+    Box(
+        modifier = Modifier
+            .height(dimensionResource(R.dimen.profile_divider_height))
+            .width(1.dp)
+            .background(Color(0xFFE0E0E0))
+    )
 }

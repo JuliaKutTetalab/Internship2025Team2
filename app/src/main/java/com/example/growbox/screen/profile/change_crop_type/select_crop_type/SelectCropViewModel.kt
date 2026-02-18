@@ -29,15 +29,16 @@ class SelectCropViewModel(
         _uiState.value = _uiState.value.copy(selectedCropType = index)
     }
 
+
     fun saveCropType(cropTypeName: String) {
         viewModelScope.launch {
             val userId = growBoxRepository.getCurrentUserId() ?: return@launch
-
             try {
-                growBoxRepository.startNewCropCycle(userId,cropTypeName )
+                growBoxRepository.harvestAndStartNewCycle(userId, cropTypeName)
             } catch (e: Exception) {
-                //якщо є потреба, то обробляєм помилку
+
             }
         }
     }
+
 }

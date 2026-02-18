@@ -52,7 +52,7 @@ fun SensorCard(
                 painter = painterResource(id = iconRes),
                 contentDescription = null,
                 tint = Green800,
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(dimensionResource(R.dimen.icon_size_small))
             )
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_small)))
             Text(

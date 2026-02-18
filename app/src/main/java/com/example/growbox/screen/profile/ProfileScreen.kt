@@ -20,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.growbox.R
@@ -34,13 +33,16 @@ object ProfileDestination : NavigationDestination {
     override val titleRes = R.string.profile_title
     override val showBottomBar = true
 }
+
 @Composable
 fun ProfileScreen(
-    modifier: Modifier = Modifier,
     viewModel: ProfileViewModel = viewModel(factory = AppViewModelProvider.Factory),
-    onNavigateToLogin: () -> Unit
+    onNavigateToLogin: () -> Unit,
+    onNavigateToChangeCrop: () -> Unit,
+    onNavigateToMyHarvest: () -> Unit,
+    onNavigateToHistoric: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-
     val user by viewModel.userState.collectAsState()
     val crop by viewModel.cropState.collectAsState()
 
@@ -53,11 +55,11 @@ fun ProfileScreen(
     ) {
         Text(
             text = "Profile",
-            fontSize = 24.sp,
+            fontSize = dimensionResource(R.dimen.font_size_huge).value.sp,
             fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(vertical = 16.dp)
+            color = Color.Black,
+            modifier = Modifier.padding(vertical = dimensionResource(R.dimen.padding_medium))
         )
-
 
         ProfileHeaderCard(
             user = user,
@@ -65,13 +67,27 @@ fun ProfileScreen(
             email = viewModel.userEmail
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium_24)))
 
-        ProfileMenuItem(icon = Icons.Default.Sync, label = "Change Crop Type")
-        ProfileMenuItem(icon = Icons.Default.Eco, label = "My Harvest")
-        ProfileMenuItem(icon = Icons.Default.History, label = "Historic Data")
+        ProfileMenuItem(
+            icon = Icons.Default.Sync,
+            label = "Change Crop Type",
+            onClick = { onNavigateToChangeCrop() }
+        )
 
-        Spacer(modifier = Modifier.height(8.dp))
+        ProfileMenuItem(
+            icon = Icons.Default.Eco,
+            label = "My Harvest",
+            onClick = { onNavigateToMyHarvest() }
+        )
+
+        ProfileMenuItem(
+            icon = Icons.Default.History,
+            label = "Historic Data",
+            onClick = { onNavigateToHistoric() }
+        )
+
+        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_small)))
 
         ProfileMenuItem(
             icon = Icons.Default.ExitToApp,
@@ -83,21 +99,3 @@ fun ProfileScreen(
         )
     }
 }
-
-
-//@Preview(showBackground = true, name = "Profile Screen Preview")
-//@Composable
-//fun ProfileScreenPreview() {
-//    // Якщо у тебе є тема GrowBoxTheme, краще обгорнути в неї
-//    Surface {
-//        ProfileScreen()
-//    }
-//}
-
-//@Preview(showBackground = true, name = "Header Card Preview")
-//@Composable
-//fun ProfileHeaderCardPreview() {
-//    Box(modifier = Modifier.padding(16.dp)) {
-//        ProfileHeaderCard()
-//    }
-//}

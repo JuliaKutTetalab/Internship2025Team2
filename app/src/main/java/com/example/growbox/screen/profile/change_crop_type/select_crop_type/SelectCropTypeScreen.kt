@@ -40,8 +40,8 @@ import com.example.growbox.navigation.NavigationDestination
 
 object SelectCropTypeDestination: NavigationDestination{
     override val route = "select_crop_type"
-    override val titleRes = null
-    override val showBottomBar = false
+    override val titleRes = R.string.select_crop_type_title
+    override val showBottomBar = true
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -88,6 +88,7 @@ fun SelectCropTypeScreen (
                     text = stringResource(R.string.select_crop_type_title),
                     fontSize = dimensionResource(R.dimen.font_size_title).value.sp,
                     fontWeight = FontWeight.Bold,
+                    color = Color.Black
                 )
             }
 

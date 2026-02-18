@@ -1,10 +1,12 @@
 package com.example.growbox.screen.home.chart.model
 
+import com.example.growbox.R
 import com.example.growbox.screen.home.chart.model.ChartDataPoint
 import com.example.growbox.screen.home.chart.model.ChartPeriod
 
 data class ChartUiState(
     val chartType: ChartType = ChartType.LIGHT,
+
     val currentValue: Int = 0,
     val recommendedValue: Int = 0,
     val weekConsumption: String = "",
@@ -17,5 +19,10 @@ data class ChartUiState(
     val consumptionUnit: String = "%",
     val iconRes: Int = 0,
     val titleRes: Int = 0,
-    val isLoading: Boolean = false
+
+    val isLoading: Boolean = false,
+
+
+    val weekValue: String = "0",
+    val totalValue: String = "0"
 )

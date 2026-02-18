@@ -40,7 +40,7 @@ import com.example.growbox.screen.profile.change_crop_type.components.CurrentCro
 
 object ChangeCropTypeDestination: NavigationDestination{
     override val route = "change_crop_type"
-    override val titleRes = null
+    override val titleRes = R.string.change_crop_type_title
     override val showBottomBar = true
 }
 
@@ -48,9 +48,10 @@ object ChangeCropTypeDestination: NavigationDestination{
 @Composable
 fun ChangeCropTypeScreen (
     onNavigateBack: () -> Unit,
-    onNavigateToSelectCropType: () -> Unit
+    onNavigateToSelectCropType: () -> Unit,
+    viewModel: ChangeCropViewModel = viewModel(factory = AppViewModelProvider.Factory)
 ) {
-    val viewModel: ChangeCropViewModel = viewModel(factory = AppViewModelProvider.Factory)
+
     val uiState by viewModel.uiState.collectAsState()
 
     LaunchedEffect(Unit) {
@@ -74,7 +75,8 @@ fun ChangeCropTypeScreen (
                     Text(
                         text = stringResource(R.string.change_crop_type_title),
                         fontSize = dimensionResource(R.dimen.font_size_huge).value.sp,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black
                     )
                 },
                 navigationIcon = {
@@ -102,7 +104,7 @@ fun ChangeCropTypeScreen (
         ){
             CropWarningText(
                 description = stringResource(R.string.crop_type_warning_text),
-//                isEnabled = uiState.isButtonEnabled
+
             )
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium)))
 
@@ -120,7 +122,10 @@ fun ChangeCropTypeScreen (
 
             ChangeCropGradientButton(
                 isEnabled = uiState.isButtonEnabled,
-                onClick = {onNavigateToSelectCropType()},
+                onClick = {
+                    if (uiState.isButtonEnabled)
+                        onNavigateToSelectCropType()
+                },
                 modifier = Modifier.padding(horizontal = dimensionResource(R.dimen.padding_medium))
             )
         }
