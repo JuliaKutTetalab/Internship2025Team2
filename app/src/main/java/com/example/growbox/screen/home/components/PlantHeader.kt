@@ -14,9 +14,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.growbox.data.model.Crop
 import com.example.growbox.R
@@ -27,17 +28,18 @@ import com.example.growbox.ui.theme.GreenLight
 fun PlantHeader(crop: Crop?) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Image(
-            painter = painterResource(id = R.drawable.ic_nutrition_icon),//поки така іконка
+            painter = painterResource(id = R.drawable.ic_nutrition_icon),
             contentDescription = null,
             modifier = Modifier
-                .size(140.dp)
+                .size(dimensionResource(R.dimen.plant_header_image_size))
                 .clip(CircleShape)
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_small)))
         Text(
             text = crop?.cropType ?: "No active crop",
-            fontSize = 22.sp,
-            fontWeight = FontWeight.Bold
+            fontSize = dimensionResource(R.dimen.plant_header_title_size).value.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black
         )
 
         val current = crop?.currentDay ?: 0
@@ -48,14 +50,14 @@ fun PlantHeader(crop: Crop?) {
             progress = progress,
             modifier = Modifier
                 .fillMaxWidth(0.6f)
-                .height(8.dp)
-                .clip(RoundedCornerShape(4.dp)),
+                .height(dimensionResource(R.dimen.spacing_small))
+                .clip(RoundedCornerShape(dimensionResource(R.dimen.corner_radius_small))),
             color = GreenLight,
             trackColor = Gray999.copy(alpha = 0.3f)
         )
         Text(
             text = "$current/$total days (${total - current} days till harvest)",
-            fontSize = 12.sp,
+            fontSize = dimensionResource(R.dimen.font_size_small).value.sp,
             color = GreenLight
         )
     }

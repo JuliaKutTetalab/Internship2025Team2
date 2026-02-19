@@ -1,0 +1,28 @@
+0000000000000000000000000000000000000000 f6ecd16233a17eac3f26bb9d5c57b437ff6b1ed6 Mac Pro <macpro@MacBook-Pro-Mac.local> 1764758952 +0200	commit (initial): Initial Android Project Setup and .gitignore
+f6ecd16233a17eac3f26bb9d5c57b437ff6b1ed6 f6ecd16233a17eac3f26bb9d5c57b437ff6b1ed6 Mac Pro <macpro@MacBook-Pro-Mac.local> 1764759083 +0200	checkout: moving from main to initial_setup
+f6ecd16233a17eac3f26bb9d5c57b437ff6b1ed6 acc8f86e0402ab8b47968a81fc1ea3cea197a2fa Mac Pro <macpro@MacBook-Pro-Mac.local> 1764759831 +0200	commit: Add Android project source code
+acc8f86e0402ab8b47968a81fc1ea3cea197a2fa f6ecd16233a17eac3f26bb9d5c57b437ff6b1ed6 Mac Pro <macpro@MacBook-Pro-Mac.local> 1764761509 +0200	checkout: moving from initial_setup to main
+f6ecd16233a17eac3f26bb9d5c57b437ff6b1ed6 7ea4ad6ac746b1be20b2017d716d050df8051c56 Mac Pro <macpro@MacBook-Pro-Mac.local> 1764761533 +0200	commit: Initialize main branch
+7ea4ad6ac746b1be20b2017d716d050df8051c56 e3fb84a6400adc807b84381defa7dfa7854740aa Mac Pro <macpro@MacBook-Pro-Mac.local> 1770284301 +0200	commit: Add home, settings, charts and resources
+e3fb84a6400adc807b84381defa7dfa7854740aa e38219d86dfb7f3e73086cc2ab3cf11e85d5fd8a Mac Pro <macpro@MacBook-Pro-Mac.local> 1770285056 +0200	checkout: moving from main to home
+e38219d86dfb7f3e73086cc2ab3cf11e85d5fd8a e3fb84a6400adc807b84381defa7dfa7854740aa Mac Pro <macpro@MacBook-Pro-Mac.local> 1770285101 +0200	checkout: moving from home to main
+e3fb84a6400adc807b84381defa7dfa7854740aa e3fb84a6400adc807b84381defa7dfa7854740aa Mac Pro <macpro@MacBook-Pro-Mac.local> 1770508259 +0200	checkout: moving from main to feature/new-screens
+e3fb84a6400adc807b84381defa7dfa7854740aa e3fb84a6400adc807b84381defa7dfa7854740aa Mac Pro <macpro@MacBook-Pro-Mac.local> 1770573171 +0200	checkout: moving from feature/new-screens to main
+e3fb84a6400adc807b84381defa7dfa7854740aa 518864d09d63e74c19d3872fa697e3a1ccf80f4c Mac Pro <macpro@MacBook-Pro-Mac.local> 1770573266 +0200	reset: moving to origin/main
+518864d09d63e74c19d3872fa697e3a1ccf80f4c 518864d09d63e74c19d3872fa697e3a1ccf80f4c Mac Pro <macpro@MacBook-Pro-Mac.local> 1770573303 +0200	checkout: moving from main to feature/profile-fixed-final
+518864d09d63e74c19d3872fa697e3a1ccf80f4c be6e4cee96f8af0c37be08b8d48ce3aa1c9df619 Mac Pro <macpro@MacBook-Pro-Mac.local> 1770573339 +0200	commit: feat: complete profile screen with clean history
+be6e4cee96f8af0c37be08b8d48ce3aa1c9df619 29b0dfd5f0958a10b2dd6aed11186894eaf600b2 Mac Pro <macpro@MacBook-Pro-Mac.local> 1770644197 +0200	checkout: moving from feature/profile-fixed-final to refactor/marge-chart-screens
+29b0dfd5f0958a10b2dd6aed11186894eaf600b2 29b0dfd5f0958a10b2dd6aed11186894eaf600b2 Mac Pro <macpro@MacBook-Pro-Mac.local> 1770645391 +0200	reset: moving to origin/refactor/marge-chart-screens
+29b0dfd5f0958a10b2dd6aed11186894eaf600b2 518864d09d63e74c19d3872fa697e3a1ccf80f4c Mac Pro <macpro@MacBook-Pro-Mac.local> 1770645562 +0200	checkout: moving from refactor/marge-chart-screens to main
+518864d09d63e74c19d3872fa697e3a1ccf80f4c 9a26741aa26fe5ad315014892b3b840367f13dc8 Mac Pro <macpro@MacBook-Pro-Mac.local> 1770645578 +0200	pull origin main: Fast-forward
+9a26741aa26fe5ad315014892b3b840367f13dc8 9a26741aa26fe5ad315014892b3b840367f13dc8 Mac Pro <macpro@MacBook-Pro-Mac.local> 1770645840 +0200	reset: moving to origin/main
+9a26741aa26fe5ad315014892b3b840367f13dc8 be6e4cee96f8af0c37be08b8d48ce3aa1c9df619 Mac Pro <macpro@MacBook-Pro-Mac.local> 1770652509 +0200	checkout: moving from main to feature/profile-fixed-final
+be6e4cee96f8af0c37be08b8d48ce3aa1c9df619 29b0dfd5f0958a10b2dd6aed11186894eaf600b2 Mac Pro <macpro@MacBook-Pro-Mac.local> 1770652537 +0200	checkout: moving from feature/profile-fixed-final to refactor/marge-chart-screens
+29b0dfd5f0958a10b2dd6aed11186894eaf600b2 be6e4cee96f8af0c37be08b8d48ce3aa1c9df619 Mac Pro <macpro@MacBook-Pro-Mac.local> 1770652568 +0200	checkout: moving from refactor/marge-chart-screens to feature/profile-fixed-final
+be6e4cee96f8af0c37be08b8d48ce3aa1c9df619 be6e4cee96f8af0c37be08b8d48ce3aa1c9df619 Mac Pro <macpro@MacBook-Pro-Mac.local> 1770653016 +0200	checkout: moving from feature/profile-fixed-final to feature/profile-fixed-final
+be6e4cee96f8af0c37be08b8d48ce3aa1c9df619 be6e4cee96f8af0c37be08b8d48ce3aa1c9df619 Mac Pro <macpro@MacBook-Pro-Mac.local> 1770661936 +0200	reset: moving to HEAD
+be6e4cee96f8af0c37be08b8d48ce3aa1c9df619 10a47faf75a5b174546902d90a2f031faa290f27 Mac Pro <macpro@MacBook-Pro-Mac.local> 1770675119 +0200	checkout: moving from feature/profile-fixed-final to stable-auth-flow
+10a47faf75a5b174546902d90a2f031faa290f27 be6e4cee96f8af0c37be08b8d48ce3aa1c9df619 Mac Pro <macpro@MacBook-Pro-Mac.local> 1770675192 +0200	checkout: moving from stable-auth-flow to feature/profile-fixed-final
+be6e4cee96f8af0c37be08b8d48ce3aa1c9df619 10a47faf75a5b174546902d90a2f031faa290f27 Mac Pro <macpro@MacBook-Pro-Mac.local> 1770675233 +0200	checkout: moving from feature/profile-fixed-final to stable-auth-flow
+10a47faf75a5b174546902d90a2f031faa290f27 be6e4cee96f8af0c37be08b8d48ce3aa1c9df619 Mac Pro <macpro@MacBook-Pro-Mac.local> 1770716918 +0200	checkout: moving from stable-auth-flow to feature/profile-fixed-final
+be6e4cee96f8af0c37be08b8d48ce3aa1c9df619 e59cc569969bedf7f5252d42371a7f3edc74d2da macpro <levkurliandski.com@gmail.com> 1770721238 +0200	commit: fix: restore files and add profile

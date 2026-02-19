@@ -1,108 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="content_max_width">400dp</dimen>
+    <dimen name="content_max_width_small">300dp</dimen>
+    <dimen name="content_max_width_large">600dp</dimen>
 
+    <dimen name="button_width_small">80dp</dimen>
+    <dimen name="button_width_medium">1200dp</dimen>
+    <dimen name="button_width_large">200dp</dimen>
 
+    <dimen name="page_indicator_size_selected">10dp</dimen>
+    <dimen name="page_indicator_size_unselected">10dp</dimen>
+    <dimen name="page_block_width">200dp</dimen>
+    <dimen name="icon_size__extra_huge">120dp</dimen>
+    <dimen name="page_indicator_width">52dp</dimen>
 
+    <dimen name="spacing_extra_small">4dp</dimen>
+    <dimen name="spacing_small">8dp</dimen>
+    <dimen name="spacing_small_12">12dp</dimen>
+    <dimen name="spacing_medium">16dp</dimen>
+    <dimen name="spacing_medium_24">24dp</dimen>
+    <dimen name="spacing_large">40dp</dimen>
+    <dimen name="spacing_extra_large">62dp</dimen>
+    <dimen name="spacing_huge">80dp</dimen>
+    <dimen name="spacing_extra_huge">120dp</dimen>
+    <dimen name="spacing_giant">160dp</dimen>
 
-    <resources>
-        <!-- Content max Width -->
-        <dimen name="content_max_width">400dp</dimen>
-        <dimen name="content_max_width_small">300dp</dimen>
-        <dimen name="content_max_width_large">600dp</dimen>
+    <dimen name="padding_zero">0dp</dimen>
+    <dimen name="padding_extra_small">4dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_large">24dp</dimen>
+    <dimen name="padding_extra_large">32dp</dimen>
+    <dimen name="padding_huge">40dp</dimen>
+    <dimen name="padding_extra_huge">100dp</dimen>
 
+    <dimen name="icon_size_small">24dp</dimen>
+    <dimen name="icon_size_medium">32dp</dimen>
+    <dimen name="icon_size_large">48dp</dimen>
+    <dimen name="icon_size_extra_large">60dp</dimen>
+    <dimen name="icon_size_huge">100dp</dimen>
+    <dimen name="icon_size_extra_huge">160dp</dimen>
+    <dimen name="onboarding_icon_size_small">180dp</dimen>
+    <dimen name="onboarding_icon_size">220dp</dimen>
 
-<!--        &lt;!&ndash; Weights    &ndash;&gt;-->
-<!--        <dimen name="weight_equal">1f</dimen>-->
-<!--        <dimen name="weight_half">0.5f</dimen>-->
+    <dimen name="height_tab_row_small">3dp</dimen>
+    <dimen name="height_frequency_dropdown">8dp</dimen>
+    <dimen name="height_slider_small">8dp</dimen>
+    <dimen name="height_slider_large">32dp</dimen>
+    <dimen name="height_large">150dp</dimen>
+    <dimen name="height_huge">200dp</dimen>
+    <dimen name="crop_type_height_huge">300dp</dimen>
 
-        <!-- Button widths -->
-        <dimen name="button_width_small">80dp</dimen>
-        <dimen name="button_width_medium">1200dp</dimen>
-        <dimen name="button_width_large">200dp</dimen>
+    <dimen name="button_height_small">40dp</dimen>
+    <dimen name="button_height_medium">48dp</dimen>
+    <dimen name="button_height_large">56dp</dimen>
+    <dimen name="button_onboarding_large">140dp</dimen>
 
-        <!-- Page indicator -->
-        <dimen name="page_indicator_size_selected">10dp</dimen>
-        <dimen name="page_indicator_size_unselected">10dp</dimen>
-        <dimen name="page_block_width">200dp</dimen>
-        <dimen name="icon_size__extra_huge">120dp</dimen>
-        <dimen name="page_indicator_width">52dp</dimen>
+    <dimen name="corner_radius_slider">2dp</dimen>
+    <dimen name="corner_radius_small">8dp</dimen>
+    <dimen name="corner_radius_medium">12dp</dimen>
+    <dimen name="corner_radius_large">16dp</dimen>
+    <dimen name="corner_radius_huge">24dp</dimen>
 
+    <dimen name="font_size_graph">8sp</dimen>
+    <dimen name="font_size_graph_point">10sp</dimen>
+    <dimen name="font_size_description">10sp</dimen>
+    <dimen name="font_size_small">12sp</dimen>
+    <dimen name="font_size_medium">14sp</dimen>
+    <dimen name="font_size_large">18sp</dimen>
+    <dimen name="font_size_huge">24sp</dimen>
+    <dimen name="font_size_title">30sp</dimen>
+    <dimen name="font_size_title_large">36sp</dimen>
+    <dimen name="font_size_icon">60sp</dimen>
 
-        <!-- Spacing (проміжки між елементами) -->
-        <dimen name="spacing_extra_small">4dp</dimen>
-        <dimen name="spacing_small">8dp</dimen>
-        <dimen name="spacing_small_12">12dp</dimen>
-        <dimen name="spacing_medium">16dp</dimen>
-        <dimen name="spacing_medium_24">24dp</dimen>
-        <dimen name="spacing_large">40dp</dimen>
-        <dimen name="spacing_extra_large">62dp</dimen>
-        <dimen name="spacing_huge">80dp</dimen>
-        <dimen name="spacing_extra_huge">120dp</dimen>
-        <dimen name="spacing_giant">160dp</dimen>
+    <dimen name="card_elevation_small">2dp</dimen>
+    <dimen name="card_elevation">5dp</dimen>
+    <dimen name="top_bar_elevation">0dp</dimen>
 
-        <!-- Padding -->
-        <!-- Zero padding (для випадків коли padding = 0) -->
-        <dimen name="padding_zero">0dp</dimen>
-        <dimen name="padding_extra_small">4dp</dimen>
-        <dimen name="padding_small">8dp</dimen>
-        <dimen name="padding_medium">16dp</dimen>
-        <dimen name="padding_large">24dp</dimen>
-        <dimen name="padding_extra_large">32dp</dimen>
-        <dimen name="padding_huge">40dp</dimen>
-        <dimen name="padding_extra_huge">100dp</dimen>
+    <dimen name="plant_header_image_size">140dp</dimen>
+    <dimen name="plant_header_title_size">22sp</dimen>
 
+    <dimen name="bottom_bar_icon_size">26dp</dimen>
 
+    <dimen name="profile_avatar_size">56dp</dimen>
+    <dimen name="profile_divider_height">30dp</dimen>
 
-        <!-- Icon sizes -->
-        <dimen name="icon_size_small">24dp</dimen>
-        <dimen name="icon_size_medium">32dp</dimen>
-        <dimen name="icon_size_large">48dp</dimen>
-        <dimen name="icon_size_extra_large">60dp</dimen>
-        <dimen name="icon_size_huge">100dp</dimen>
-        <dimen name="icon_size_extra_huge">160dp</dimen>
-        <dimen name="onboarding_icon_size_small">180dp</dimen>
-        <dimen name="onboarding_icon_size">220dp</dimen>
+    <dimen name="login_logo_size">110dp</dimen>
+    <dimen name="auth_subtitle_size">16sp</dimen>
+    <dimen name="auth_label_size">13sp</dimen>
+    <dimen name="auth_link_size">15sp</dimen>
+    <dimen name="auth_error_size">11sp</dimen>
 
-        <!-- Height elements   -->
-        <dimen name="height_tab_row_small">3dp</dimen>
-        <dimen name="height_frequency_dropdown">8dp</dimen>
-        <dimen name="height_slider_small">8dp</dimen>
-        <dimen name="height_slider_large">32dp</dimen>
-        <dimen name="height_large">150dp</dimen>
-        <dimen name="height_huge">200dp</dimen>
-        <dimen name="crop_type_height_huge">300dp</dimen>
+    <dimen name="signup_title_size">28sp</dimen>
+    <dimen name="signup_bottom_padding">20dp</dimen>
+    <dimen name="signup_error_top_padding">2dp</dimen>
 
-
-
-        <!-- Button heights -->
-        <dimen name="button_height_small">40dp</dimen>
-        <dimen name="button_height_medium">48dp</dimen>
-        <dimen name="button_height_large">56dp</dimen>
-        <dimen name="button_onboarding_large">140dp</dimen>
-
-        <!-- Corner radius  -->
-        <dimen name="corner_radius_slider">2dp</dimen>
-        <dimen name="corner_radius_small">8dp</dimen>
-        <dimen name="corner_radius_medium">12dp</dimen>
-        <dimen name="corner_radius_large">16dp</dimen>
-        <dimen name="corner_radius_huge">24dp</dimen>
-
-
-
-        <!-- Font sizes -->
-        <dimen name="font_size_graph">8sp</dimen>
-        <dimen name="font_size_graph_point">10sp</dimen>
-        <dimen name="font_size_description">10sp</dimen>
-        <dimen name="font_size_small">12sp</dimen>
-        <dimen name="font_size_medium">14sp</dimen>
-        <dimen name="font_size_large">18sp</dimen>
-        <dimen name="font_size_huge">24sp</dimen>
-        <dimen name="font_size_title">30sp</dimen>
-        <dimen name="font_size_title_large">36sp</dimen>
-        <dimen name="font_size_icon">60sp</dimen>
-
-        <!-- Card elevation -->
-        <dimen name="card_elevation_small">2dp</dimen>
-        <dimen name="card_elevation">5dp</dimen>
-        <dimen name="top_bar_elevation">0dp</dimen>
-    </resources>
-
+    <dimen name="harvest_card_elevation">6dp</dimen>
+    <dimen name="harvest_card_padding">20dp</dimen>
+    <dimen name="harvest_icon_box_size">70dp</dimen>
+    <dimen name="harvest_icon_size">36dp</dimen>
+    <dimen name="harvest_crop_name_size">20sp</dimen>
+    <dimen name="harvest_row_spacing">6dp</dimen>
+    <dimen name="harvest_grid_vertical_padding">10dp</dimen>
+</resources>

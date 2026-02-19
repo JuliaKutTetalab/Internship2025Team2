@@ -9,6 +9,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import com.example.growbox.utils.calculateCurrentDay
+
+
+
+
+
+
 
 class ChangeCropViewModel(
     private val growBoxRepository: GrowBoxRepository,
@@ -19,23 +26,51 @@ class ChangeCropViewModel(
     private val _uiState = MutableStateFlow(ChangeCropUiState())
     val uiState: StateFlow<ChangeCropUiState> = _uiState.asStateFlow()
 
-    fun loadData(){
-        viewModelScope.launch {
-            offlineRepository.getCropStream(currentUserId).collect {crop ->
-                if (crop != null) {
-                    val daysLeft = crop.totalDays - crop.currentDay
-                    val isHarvestReady = crop.currentDay >= crop.totalDays
 
-                    _uiState.value = ChangeCropUiState(
-                        cropType = crop.cropType,
-                        currentDay = crop.currentDay,
-                        totalDays = crop.totalDays,
-                        daysLeft = daysLeft,
-                        isButtonEnabled = isHarvestReady,
-                        isLoading = false
+    fun loadData() {
+        viewModelScope.launch {
+
+
+            runCatching {
+                growBoxRepository.fetchCurrentCrop(currentUserId)
+            }
+
+
+            offlineRepository.getCropStream(currentUserId).collect { crop ->
+                crop ?: return@collect
+
+                val computedDay = calculateCurrentDay(crop.startedAt, crop.totalDays)
+
+                val uiDay = when {
+                    crop.currentDay > 1 -> crop.currentDay
+                    else -> computedDay
+                }.coerceIn(1, crop.totalDays)
+
+                val daysLeft = (crop.totalDays - uiDay).coerceAtLeast(0)
+                val isHarvestReady = uiDay >= crop.totalDays
+
+
+                val shouldUpdateLocal =
+                    computedDay > crop.currentDay && computedDay in 1..crop.totalDays
+
+                if (shouldUpdateLocal) {
+                    offlineRepository.insertCrop(
+                        crop.copy(currentDay = computedDay),
+                        currentUserId
                     )
+
                 }
+
+                _uiState.value = ChangeCropUiState(
+                    cropType = crop.cropType,
+                    currentDay = uiDay,
+                    totalDays = crop.totalDays,
+                    daysLeft = daysLeft,
+                    isButtonEnabled = isHarvestReady,
+                    isLoading = false
+                )
             }
         }
     }
+
 }

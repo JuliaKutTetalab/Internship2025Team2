@@ -118,7 +118,6 @@ fun OnBoardingScreen(
                     onClick = {
                         scope.launch {
                             if (pagerState.currentPage == pages.size - 1) {
-                                //Event переходить в ViewModel
                                 viewModel.onEvent(OnBoardingEvent.CompleteOnBoarding)
                             } else {
                                 pagerState.animateScrollToPage(

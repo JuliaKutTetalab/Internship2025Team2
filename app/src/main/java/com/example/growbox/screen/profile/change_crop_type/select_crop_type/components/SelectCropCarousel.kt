@@ -41,7 +41,7 @@ fun SelectCropCarousel(
 ){
     val pagerState = rememberPagerState (pageCount = { cropTypeResIds.size })
 
-    // Передасть вибраний індекс назовні
+
     LaunchedEffect(pagerState.currentPage) {
         onCropTypeSelected(pagerState.currentPage)
     }

@@ -1,183 +1,318 @@
 package com.example.growbox.screen.home.chart
 
-import androidx.compose.ui.res.stringResource
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.growbox.R
-import com.example.growbox.screen.home.chart.model.ChartType
-import com.example.growbox.screen.home.chart.model.ChartUiState
+import com.example.growbox.data.GrowBoxRepository
+import com.example.growbox.data.model.OfflineRepository
 import com.example.growbox.screen.home.chart.model.ChartDataPoint
 import com.example.growbox.screen.home.chart.model.ChartPeriod
+import com.example.growbox.screen.home.chart.model.ChartType
+import com.example.growbox.screen.home.chart.model.ChartUiState
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Calendar
 
 class ChartViewModel(
-//    savedStateHandle: SavedStateHandle
-    private val chartType: ChartType
-): ViewModel() {
+    savedStateHandle: SavedStateHandle,
+    private val growBoxRepository: GrowBoxRepository,
+    private val offlineRepository: OfflineRepository
+) : ViewModel() {
 
-    // Тип отримуємо з навігації
-//    private val chartType: ChartType = savedStateHandle.get<String>("chartType")?.let {
-//        ChartType.valueOf(it)
-//    } ?: ChartType.LIGHT
+    private var cropStartedAtMillis: Long? = null
+    private var cropCurrentDay: Int? = null
 
-    private val _uiState = MutableStateFlow(ChartUiState())
+    private val cropId: String = savedStateHandle[ChartDestination.cropIdArg] ?: ""
+    private val initialType: String = savedStateHandle[ChartDestination.chartTypeArg] ?: "LIGHT"
+
+    private val chartType: ChartType = runCatching { ChartType.valueOf(initialType) }
+        .getOrElse { ChartType.LIGHT }
+
+    private val currentUserId: String = growBoxRepository.getCurrentUserId() ?: ""
+
+    private val _uiState = MutableStateFlow(ChartUiState(chartType = chartType))
     val uiState: StateFlow<ChartUiState> = _uiState.asStateFlow()
 
-    init {
-        loadDataForType(chartType)
+    private var allHistory: List<ChartDataPoint> = emptyList()
+    private var allHourly: List<ChartDataPoint> = emptyList()
+
+    private var historyJob: Job? = null
+    private var hourlyJob: Job? = null
+    private var cropJob: Job? = null
+
+    private val DATE_FMT: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
+    private fun String.toLocalDateOrNull(): LocalDate? =
+        runCatching { LocalDate.parse(this.trim(), DATE_FMT) }.getOrNull()
+
+    private fun LocalDate.toIsoString(): String = format(DATE_FMT)
+
+    private fun dayOfWeekShort(date: LocalDate): String = when (date.dayOfWeek.value) {
+        1 -> "Mon"
+        2 -> "Tue"
+        3 -> "Wed"
+        4 -> "Thu"
+        5 -> "Fri"
+        6 -> "Sat"
+        else -> "Sun"
     }
 
-    private fun loadDataForType(type: ChartType){
-        when (type){
-            ChartType.LIGHT -> loadLightData()
-            ChartType.TEMPERATURE -> loadTemperatureData()
-            ChartType.HUMIDITY -> loadHumidityData()
-            ChartType.NUTRITION -> loadNutritionData()
+    init {
+        if (cropId.isNotEmpty()) {
+            setupInitialConfiguration()
+            observeCropData()
+            observeHistory()
+
+            if (_uiState.value.selectedPeriod == ChartPeriod.DAY) observeHourly()
+
+            applyPeriodToUi()
         }
     }
 
-    private fun loadLightData() {
-        val testChartData = generateChartData(20..80)
+    fun onPeriodSelected(period: ChartPeriod) {
+        _uiState.update { it.copy(selectedPeriod = period) }
 
-        _uiState.value = ChartUiState(
-            chartType = ChartType.LIGHT,
-            currentValue = 60,
-            recommendedValue = 72,
-            weekConsumption = "60 ",
-            totalConsumption = "456 ",
-            chartData = testChartData,
-            unit = "%",
-            currentUnit = "%",
-            consumptionUnit = "kw",
-            iconRes = R.drawable.ic_light_icon,
-            titleRes = R.string.light_title
-        )
-    }
-    private fun loadTemperatureData() {
-        val testChartData = generateChartData(10..36)
+        if (period == ChartPeriod.DAY) observeHourly() else hourlyJob?.cancel()
 
-        _uiState.value = ChartUiState(
-            chartType = ChartType.TEMPERATURE,
-            currentValue = 24,
-            recommendedValue = 26,
-            weekConsumption = "24 ",
-            totalConsumption = "26 ",
-            chartData = testChartData,
-            unit = "`C",
-            currentUnit = "`C`",
-            consumptionUnit = "kw",
-            iconRes = R.drawable.ic_temperature_icon,
-            titleRes = R.string.temperature_title
-        )
-    }
-    private fun loadHumidityData() {
-        val testChartData = generateChartData(40..70)
-
-        _uiState.value = ChartUiState(
-            chartType = ChartType.HUMIDITY,
-            currentValue = 55,
-            recommendedValue = 60,
-            weekConsumption = "55 ",
-            totalConsumption = "70 ",
-            chartData = testChartData,
-            unit = "%",
-            currentUnit = "%",
-            consumptionUnit = "ml",
-            iconRes = R.drawable.ic_humidity_icon,
-            titleRes = R.string.humidity_title
-        )
-    }
-    private fun loadNutritionData() {
-        val testChartData = generateChartData(10..30)
-
-        _uiState.value = ChartUiState(
-            chartType = ChartType.NUTRITION,
-            currentValue = 250,
-            recommendedValue = 300,
-            weekConsumption = "250 ",
-            totalConsumption = "500 ",
-            chartData = testChartData,
-            unit = "mg",
-            currentUnit = "%",
-            consumptionUnit = "mg",
-            iconRes = R.drawable.ic_nutrition_icon,
-            titleRes = R.string.nutrition_title
-        )
+        applyPeriodToUi()
     }
 
-    private fun generateChartData(range: IntRange): List<ChartDataPoint>{
-        val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
-        val dates = listOf("08", "09", "10", "11", "12", "13", "14")
+    private fun observeCropData() {
+        if (currentUserId.isEmpty()) return
 
-        return days.mapIndexed { index, day ->
-            ChartDataPoint(
-                value = range.random().toFloat(),
-                dayLabel = day,
-                dataLabel = dates[index]
+        cropJob?.cancel()
+        cropJob = viewModelScope.launch {
+            offlineRepository.getCropStream(currentUserId).collect { crop ->
+                crop ?: return@collect
+
+                cropStartedAtMillis = crop.startedAt?.toDate()?.time
+                cropCurrentDay = crop.currentDay
+
+                val value = when (chartType) {
+                    ChartType.LIGHT -> crop.light
+                    ChartType.TEMPERATURE -> crop.temperature
+                    ChartType.HUMIDITY -> crop.humidity
+                    ChartType.NUTRITION -> crop.nutrition
+                }
+
+                val recommended = when (chartType) {
+                    ChartType.LIGHT -> crop.lightRecommended
+                    ChartType.TEMPERATURE -> crop.tempRecommended
+                    ChartType.HUMIDITY -> crop.humidityRecommended
+                    ChartType.NUTRITION -> crop.nutritionRecommended
+                }
+
+                _uiState.update { it.copy(currentValue = value, recommendedValue = recommended) }
+
+                applyPeriodToUi()
+            }
+        }
+    }
+
+    private fun observeHistory() {
+        if (currentUserId.isEmpty()) return
+
+        historyJob?.cancel()
+        historyJob = viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true) }
+
+            growBoxRepository.getCropHistory(currentUserId, cropId, chartType)
+                .collect { points ->
+                    allHistory = points.sortedBy { it.dataLabel.trim() }
+                    applyPeriodToUi()
+                    _uiState.update { it.copy(isLoading = false) }
+                }
+        }
+    }
+
+    private fun observeHourly() {
+        if (currentUserId.isEmpty()) return
+
+        hourlyJob?.cancel()
+
+        hourlyJob = viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true) }
+
+            growBoxRepository.getCropHourly(currentUserId, cropId, chartType)
+                .collect { points ->
+                    allHourly = points
+                    applyPeriodToUi()
+                    _uiState.update { it.copy(isLoading = false) }
+                }
+        }
+    }
+
+    private fun applyPeriodToUi() {
+        val period = _uiState.value.selectedPeriod
+
+        val window = when (period) {
+            ChartPeriod.DAY -> buildDayWindow(allHourly)
+            ChartPeriod.WEEK -> buildWeekWindow(allHistory)
+            ChartPeriod.MONTH -> buildMonthWindow(allHistory)
+        }
+
+        val usageUnit = when (chartType) {
+            ChartType.LIGHT -> "kw"
+            ChartType.TEMPERATURE -> "kw"
+            ChartType.HUMIDITY -> "ml"
+            ChartType.NUTRITION -> "mg"
+        }
+
+        val periodSum = window.sumOf { it.usageValue.toDouble() }.toFloat()
+        val totalSum = allHistory.sumOf { it.usageValue.toDouble() }.toFloat()
+
+        _uiState.update {
+            it.copy(
+                chartData = window,
+                weekConsumption = "${periodSum.toInt()} $usageUnit",
+                totalConsumption = "${totalSum.toInt()} $usageUnit",
+                weekValue = "${periodSum.toInt()} $usageUnit",
+                totalValue = "${totalSum.toInt()} $usageUnit"
             )
         }
     }
-    private fun loadDataForPeriod(period: ChartPeriod) {
-        val testChartData = mutableListOf<ChartDataPoint>()
-        val range = when (chartType){
-            ChartType.LIGHT -> 20..80
-            ChartType.HUMIDITY -> 40..70
-            ChartType.NUTRITION -> 10..30
-            ChartType.TEMPERATURE -> 10..36
+
+    private fun buildDayWindow(hourly: List<ChartDataPoint>): List<ChartDataPoint> {
+        val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        val startHour = (currentHour - 23 + 24) % 24
+
+        val mapByHour = mutableMapOf<Int, ChartDataPoint>()
+        for (p in hourly) {
+            val h = p.hour ?: continue
+            mapByHour[h] = p
         }
 
-        when (period) {
-            ChartPeriod.DAY -> {
-                //for day (hours)
-                val hours = listOf("00", "04", "08", "12", "16", "20", "23")
-                for (i in hours.indices) {
-                    testChartData.add(
-                        ChartDataPoint(
-                            value = range.random().toFloat(),
-                            dayLabel = hours[i],
-                            dataLabel = "h"
-                        )
-                    )
-                }
-            }
+        return (0..23).map { idx ->
+            val h = (startHour + idx) % 24
+            val label = String.format("%02d:00", h)
+            val p = mapByHour[h]
 
-            ChartPeriod.WEEK -> {
-                val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
-                val dates = listOf("08", "09", "10", "11", "12", "13", "14")
-
-                for (i in days.indices) {
-                    testChartData.add(
-                        ChartDataPoint(
-                            value = range.random().toFloat(),
-                            dayLabel = days[i],
-                            dataLabel = dates[i]
-                        )
-                    )
-                }
-            }
-
-            ChartPeriod.MONTH -> {
-                //for month (12 months)
-                val months =
-                    listOf("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12")
-                for (i in months.indices) {
-                    testChartData.add(
-                        ChartDataPoint(
-                            value = range.random().toFloat(),
-                            dayLabel = months[i],
-                            dataLabel = ""
-                        )
-                    )
-                }
+            if (p != null) {
+                p.copy(
+                    hour = idx,
+                    dayLabel = label,
+                    dataLabel = "",
+                    isMissing = false
+                )
+            } else {
+                ChartDataPoint(
+                    value = 0f,
+                    dayLabel = label,
+                    dataLabel = "",
+                    usageValue = 0f,
+                    hour = idx,
+                    isMissing = true
+                )
             }
         }
-        _uiState.value = _uiState.value.copy(chartData = testChartData)
     }
 
-    fun onPeriodSelected(period: ChartPeriod){
-        _uiState.value = _uiState.value.copy(selectedPeriod = period)
-        loadDataForPeriod(period)
+    private fun buildWeekWindow(history: List<ChartDataPoint>): List<ChartDataPoint> {
+        val yesterday = LocalDate.now(ZoneId.systemDefault()).minusDays(1)
+        val start = yesterday.minusDays(6)
+
+        val byDate = history.mapNotNull { p ->
+            val d = p.dataLabel.toLocalDateOrNull() ?: return@mapNotNull null
+            d to p
+        }.toMap()
+
+        return (0..6).map { offset ->
+            val d = start.plusDays(offset.toLong())
+            val fromDb = byDate[d]
+
+            val base = fromDb ?: ChartDataPoint(
+                value = 0f,
+                dayLabel = "",
+                dataLabel = d.toIsoString(),
+                usageValue = 0f,
+                hour = null,
+                isMissing = true
+            )
+
+            base.copy(
+                dayLabel = dayOfWeekShort(d),
+                dataLabel = d.toIsoString(),
+                isMissing = fromDb == null
+            )
+        }
+    }
+
+    private fun buildMonthWindow(history: List<ChartDataPoint>): List<ChartDataPoint> {
+        val yesterday = LocalDate.now(ZoneId.systemDefault()).minusDays(1)
+        val start = yesterday.minusDays(29)
+
+        val byDate = history.mapNotNull { p ->
+            val d = p.dataLabel.toLocalDateOrNull() ?: return@mapNotNull null
+            d to p
+        }.toMap()
+
+        val showPos = setOf(0, 4, 9, 14, 19, 24, 29)
+
+        return (0..29).map { idx ->
+            val d = start.plusDays(idx.toLong())
+            val fromDb = byDate[d]
+
+            val base = fromDb ?: ChartDataPoint(
+                value = 0f,
+                dayLabel = "",
+                dataLabel = d.toIsoString(),
+                usageValue = 0f,
+                hour = null,
+                isMissing = true
+            )
+
+            base.copy(
+                dayLabel = if (idx in showPos) d.dayOfMonth.toString() else "",
+                dataLabel = d.toIsoString(),
+                isMissing = fromDb == null
+            )
+        }
+    }
+
+    private fun setupInitialConfiguration() {
+        _uiState.update { state ->
+            when (chartType) {
+                ChartType.LIGHT -> state.copy(
+                    unit = "%",
+                    iconRes = R.drawable.ic_light_icon,
+                    titleRes = R.string.light_title,
+                    consumptionUnit = "kw"
+                )
+                ChartType.TEMPERATURE -> state.copy(
+                    unit = "°C",
+                    iconRes = R.drawable.ic_temperature_icon,
+                    titleRes = R.string.temperature_title,
+                    consumptionUnit = "kw"
+                )
+                ChartType.HUMIDITY -> state.copy(
+                    unit = "%",
+                    iconRes = R.drawable.ic_humidity_icon,
+                    titleRes = R.string.humidity_title,
+                    consumptionUnit = "ml"
+                )
+                ChartType.NUTRITION -> state.copy(
+                    unit = "%",
+                    iconRes = R.drawable.ic_nutrition_icon,
+                    titleRes = R.string.nutrition_title,
+                    consumptionUnit = "mg"
+                )
+            }
+        }
+    }
+
+    override fun onCleared() {
+        historyJob?.cancel()
+        hourlyJob?.cancel()
+        cropJob?.cancel()
+        super.onCleared()
     }
 }

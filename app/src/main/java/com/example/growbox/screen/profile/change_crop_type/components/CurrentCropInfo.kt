@@ -12,6 +12,7 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -42,7 +43,8 @@ fun CurrentCropInfo(
         Text(
             text = cropType,
             fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
-            fontWeight = FontWeight.SemiBold
+            fontWeight = FontWeight.SemiBold,
+            color = Color.Black
         )
         Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_small)))
 

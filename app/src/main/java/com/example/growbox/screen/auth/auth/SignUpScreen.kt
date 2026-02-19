@@ -1,7 +1,6 @@
 package com.example.growbox.screen.auth.auth
 
 import androidx.compose.runtime.Composable
-//import com.example.growbox.R
 import com.example.growbox.navigation.NavigationDestination
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,7 +26,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.growbox.R
@@ -37,18 +35,13 @@ import com.example.growbox.ui.theme.Green800
 import com.example.growbox.ui.theme.GreenLight
 import com.example.growbox.ui.theme.White
 import com.example.growbox.utils.isPasswordValid
-
 import com.example.growbox.di.AppViewModelProvider
 
-
-
-object SignUpDestination: NavigationDestination {
+object SignUpDestination : NavigationDestination {
     override val route = "signup_route"
     override val titleRes = R.string.signUp_screen
     override val showBottomBar: Boolean = false
 }
-
-
 
 @Composable
 fun SignUpScreen(
@@ -66,7 +59,6 @@ fun SignUpScreen(
 
     var isPasswordVisible by remember { mutableStateOf(false) }
     var isConfirmPasswordVisible by remember { mutableStateOf(false) }
-
 
     val isEmailFormatValid = email.contains("@") && email.contains(".")
     val isPasswordStrong = isPasswordValid(password)
@@ -94,7 +86,7 @@ fun SignUpScreen(
             modifier = Modifier
                 .padding(paddingValues)
                 .fillMaxSize()
-                .padding(horizontal = 24.dp)
+                .padding(horizontal = dimensionResource(R.dimen.padding_large))
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -104,20 +96,28 @@ fun SignUpScreen(
                 painter = painterResource(id = R.drawable.ic_plant),
                 contentDescription = null,
                 tint = Color.Unspecified,
-                modifier = Modifier.size(100.dp)
+                modifier = Modifier.size(dimensionResource(R.dimen.icon_size_huge))
             )
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium_24)))
 
-            Text(stringResource(R.string.signup_title), fontSize = 28.sp, fontWeight = FontWeight.Bold, color = Black)
-            Text(stringResource(R.string.signup_subtitle) ,fontSize = 15.sp, color = Gray999)
+            Text(
+                text = stringResource(R.string.signup_title),
+                fontSize = dimensionResource(R.dimen.signup_title_size).value.sp,
+                fontWeight = FontWeight.Bold,
+                color = Black
+            )
+            Text(
+                text = stringResource(R.string.signup_subtitle),
+                fontSize = dimensionResource(R.dimen.auth_link_size).value.sp,
+                color = Gray999
+            )
 
             Spacer(modifier = Modifier.weight(0.5f))
 
-            Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                // ПОЛЕ EMAIL
+            Column(verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.spacing_small_12))) {
                 AppDesignField(
-                    label =stringResource(R.string.signup_email_label),
+                    label = stringResource(R.string.signup_email_label),
                     value = email,
                     onValueChange = { email = it },
                     placeholder = stringResource(R.string.signup_email_placeholder),
@@ -126,26 +126,24 @@ fun SignUpScreen(
                     errorText = stringResource(R.string.signup_email_valid_error)
                 )
 
-                // ПОЛЕ PASSWORD
                 AppDesignField(
-                    label = stringResource(id= R.string.signup_password_label),
+                    label = stringResource(id = R.string.signup_password_label),
                     value = password,
                     onValueChange = { password = it },
-                    placeholder = stringResource(id= R.string.signup_password_placeholder),
+                    placeholder = stringResource(id = R.string.signup_password_placeholder),
                     isPassword = true,
                     isPasswordVisible = isPasswordVisible,
                     onToggleVisibility = { isPasswordVisible = !isPasswordVisible },
                     isValid = isPasswordStrong,
                     isError = password.isNotEmpty() && !isPasswordStrong,
-                    errorText = stringResource(id= R.string.signup_password_valid_error)
+                    errorText = stringResource(id = R.string.signup_password_valid_error)
                 )
 
-                // ПОЛЕ CONFIRM PASSWORD
                 AppDesignField(
                     label = stringResource(R.string.signup_confirm_password_label),
                     value = confirmPassword,
                     onValueChange = { confirmPassword = it },
-                    placeholder = stringResource(id= R.string.signup_confirm_password_placeholder),
+                    placeholder = stringResource(id = R.string.signup_confirm_password_placeholder),
                     isPassword = true,
                     isPasswordVisible = isConfirmPasswordVisible,
                     onToggleVisibility = { isConfirmPasswordVisible = !isConfirmPasswordVisible },
@@ -158,14 +156,17 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.weight(1f))
 
             Button(
-                onClick = {
-                    viewModel.register(email, password)
-                          },
+                onClick = { viewModel.register(email, password) },
                 enabled = !isLoading && isEmailFormatValid && isPasswordStrong && doPasswordsMatch,
-                modifier = Modifier.fillMaxWidth().height(56.dp),
-                shape = RoundedCornerShape(12.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Transparent, disabledContainerColor = Color.Transparent),
-                contentPadding = PaddingValues(0.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(dimensionResource(R.dimen.button_height_large)),
+                shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_medium)),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Transparent,
+                    disabledContainerColor = Color.Transparent
+                ),
+                contentPadding = PaddingValues(dimensionResource(R.dimen.padding_zero))
             ) {
                 val canSubmit = isEmailFormatValid && isPasswordStrong && doPasswordsMatch
                 Box(
@@ -176,19 +177,41 @@ fun SignUpScreen(
                                 Brush.verticalGradient(listOf(Color(0xFFE0E0E0), Color(0xFFBDBDBD)))
                             else
                                 Brush.verticalGradient(listOf(GreenLight, Green800)),
-                            shape = RoundedCornerShape(12.dp)
+                            shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_medium))
                         ),
                     contentAlignment = Alignment.Center
                 ) {
-                    if (isLoading) CircularProgressIndicator(color = White, modifier = Modifier.size(24.dp))
-                    else Text(stringResource(R.string.signUp_screen), color = White, fontSize = 16.sp, fontWeight = FontWeight.Bold)
+                    if (isLoading) CircularProgressIndicator(
+                        color = White,
+                        modifier = Modifier.size(dimensionResource(R.dimen.icon_size_small))
+                    )
+                    else Text(
+                        text = stringResource(R.string.signUp_screen),
+                        color = White,
+                        fontSize = dimensionResource(R.dimen.auth_subtitle_size).value.sp,
+                        fontWeight = FontWeight.Bold
+                    )
                 }
             }
 
-            Row(modifier = Modifier.padding(top = 20.dp, bottom = 24.dp)) {
-                Text(stringResource(R.string.signup_have_account), color = Black)
-                Text(stringResource(R.string.signup_login_link), color = Green800, fontWeight = FontWeight.Bold,
-                    modifier = Modifier.clickable { onNavigateToLogin() })
+            Row(
+                modifier = Modifier.padding(
+                    top = dimensionResource(R.dimen.signup_bottom_padding),
+                    bottom = dimensionResource(R.dimen.spacing_medium_24)
+                )
+            ) {
+                Text(
+                    text = stringResource(R.string.signup_have_account),
+                    color = Black,
+                    fontSize = dimensionResource(R.dimen.auth_link_size).value.sp
+                )
+                Text(
+                    text = stringResource(R.string.signup_login_link),
+                    color = Green800,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = dimensionResource(R.dimen.auth_link_size).value.sp,
+                    modifier = Modifier.clickable { onNavigateToLogin() }
+                )
             }
         }
     }
@@ -208,7 +231,11 @@ fun AppDesignField(
     onToggleVisibility: (() -> Unit)? = null
 ) {
     Column(modifier = Modifier.fillMaxWidth()) {
-        Text(text = label, color = if (isError) Color.Red else Color(0xFFBCBCBC), fontSize = 13.sp)
+        Text(
+            text = label,
+            color = if (isError) Color.Red else Color(0xFFBCBCBC),
+            fontSize = dimensionResource(R.dimen.auth_label_size).value.sp
+        )
 
         OutlinedTextField(
             value = value,
@@ -217,19 +244,26 @@ fun AppDesignField(
             singleLine = true,
             isError = isError,
             visualTransformation = if (isPassword && !isPasswordVisible) PasswordVisualTransformation() else VisualTransformation.None,
-            textStyle = TextStyle(color = Black, fontSize = 15.sp),
+            textStyle = TextStyle(color = Black, fontSize = dimensionResource(R.dimen.auth_link_size).value.sp),
             placeholder = { Text(placeholder, color = Color(0xFFD1D1D1)) },
             trailingIcon = {
-                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.padding(end = 4.dp)) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(end = dimensionResource(R.dimen.padding_extra_small))
+                ) {
                     if (isValid) Icon(Icons.Default.Check, null, tint = Green800)
                     if (isPassword) {
                         IconButton(onClick = onToggleVisibility!!) {
-                            Icon(if (isPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff, null, tint = Green800)
+                            Icon(
+                                if (isPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+                                null,
+                                tint = Green800
+                            )
                         }
                     }
                 }
             },
-            shape = RoundedCornerShape(12.dp),
+            shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_medium)),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = Color(0xFFF9F9F9),
                 unfocusedContainerColor = Color(0xFFF9F9F9),
@@ -243,301 +277,18 @@ fun AppDesignField(
             Text(
                 text = errorText,
                 color = Color.Red,
-                fontSize = 11.sp,
-                modifier = Modifier.padding(start = 4.dp, top = 2.dp)
+                fontSize = dimensionResource(R.dimen.auth_error_size).value.sp,
+                modifier = Modifier.padding(
+                    start = dimensionResource(R.dimen.padding_extra_small),
+                    top = dimensionResource(R.dimen.signup_error_top_padding)
+                )
             )
         }
     }
 }
+
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun SignUpScreenPreview() {
     SignUpScreen(onRegistrationSuccess = {}, onNavigateToLogin = {})
 }
-
-
-
-
-//@Composable
-//fun SignUpScreen(
-//    onRegistrationSuccess: () -> Unit,
-//    onNavigateToLogin: () -> Unit = {}
-//) {
-//
-//    val viewModel: SignUpViewModel = viewModel(factory = AppViewModelProvider.Factory)
-//    val signUpState by viewModel.signUpState.collectAsState()
-//    val isLoading = signUpState is SignUpState.Loading
-//
-//
-//    var email by remember { mutableStateOf("") }
-//    var password by remember { mutableStateOf("") }
-//    var confirmPassword by remember { mutableStateOf("") }
-//    var isPasswordVisible by remember { mutableStateOf(false) }
-//    var isConfirmPasswordVisible by remember { mutableStateOf(false) }
-//
-//    val snackbarHostState = remember { SnackbarHostState() }
-//    var passwordError by remember { mutableStateOf<String?>(null) }
-//
-//
-//    LaunchedEffect(signUpState) {
-//        when (signUpState) {
-//            is SignUpState.Success -> {
-//                onRegistrationSuccess()
-//
-//                viewModel.resetState()
-//            }
-//            is SignUpState.Error -> {
-//                val message = (signUpState as SignUpState.Error).message
-//                snackbarHostState.showSnackbar(
-//                    message = message,
-//                    duration = SnackbarDuration.Long
-//                )
-//
-//                viewModel.resetState()
-//            }
-//            else -> {}
-//        }
-//    }
-//
-//    Scaffold(
-//        snackbarHost = { SnackbarHost(snackbarHostState) },
-//    ) { paddingValues ->
-//
-//        Column(
-//            modifier = Modifier
-//                .padding(paddingValues)
-//                .fillMaxSize()
-//                .background(Color.White)
-//                .padding(horizontal = dimensionResource(R.dimen.padding_large)),
-//            horizontalAlignment = Alignment.CenterHorizontally
-//        ){
-//            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_giant)))
-//
-//            // ІКОНКА ТА ЗАГОЛОВКИ
-//            Icon(
-//                painter = painterResource(id = R.drawable.ic_plant),
-//                contentDescription = stringResource(R.string.content_description_plant_icon),
-//                tint = Color.Unspecified,
-//                modifier = Modifier.size(dimensionResource(id = R.dimen.icon_size_huge))
-//            )
-//
-//            Spacer( modifier = Modifier.height(dimensionResource(R.dimen.spacing_large)))
-//
-//            Text(
-//                text = stringResource(R.string.signup_title),
-//                fontSize = dimensionResource(R.dimen.font_size_title).value.sp,
-//                fontWeight = FontWeight.Bold,
-//                color = Black
-//            )
-//
-//            Spacer( modifier = Modifier.height(dimensionResource(R.dimen.spacing_small)))
-//
-//            Text(
-//                text = stringResource(R.string.signup_subtitle),
-//                fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
-//                color = Gray999
-//            )
-//
-//            Spacer( modifier = Modifier.height(dimensionResource(R.dimen.spacing_large)))
-//
-//            // ПОЛЕ EMAIL
-//            Column(modifier = Modifier.fillMaxWidth()){
-//                Text(
-//                    text = stringResource(R.string.signup_email_label),
-//                    fontSize = dimensionResource(R.dimen.font_size_small).value.sp,
-//                    color = Gray999,
-//                    modifier = Modifier.padding(bottom = dimensionResource(R.dimen.spacing_small))
-//                )
-//
-//                OutlinedTextField(
-//                    value = email,
-//                    onValueChange = { email = it; passwordError = null },
-//                    placeholder = { Text(stringResource(R.string.signup_email_placeholder), color = Black) },
-//                    singleLine = true,
-//                    trailingIcon = {
-//                        // Дуже проста валідація наявності символів @ та .
-//                        if (email.contains("@") && email.contains(".")){
-//                            Icon(Icons.Default.Check, contentDescription = stringResource(R.string.content_description_valid_email), tint = Green800)
-//                        }
-//                    },
-//                    modifier = Modifier.fillMaxWidth(),
-//                    shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_medium)),
-//                    colors = OutlinedTextFieldDefaults.colors(focusedBorderColor = Green800, unfocusedBorderColor = White)
-//                )
-//            }
-//
-//            Spacer( modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium)))
-//
-//            // ПОЛЕ PASSWORD
-//            Column(modifier = Modifier.fillMaxWidth()){
-//                Text(
-//                    text = stringResource(R.string.signup_password_label),
-//                    fontSize = dimensionResource(R.dimen.font_size_small).value.sp,
-//                    color = Gray999,
-//                    modifier = Modifier.padding(bottom = dimensionResource(R.dimen.spacing_small))
-//                )
-//
-//                OutlinedTextField(
-//                    value = password,
-//                    onValueChange = { password = it; passwordError = null },
-//                    placeholder = { Text (stringResource(R.string.signup_password_placeholder), color = Black ) },
-//                    singleLine = true,
-//                    visualTransformation = if (isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-//                    trailingIcon = {
-//                        Row {
-//                            if (password.length >= 8){
-//                                Icon(
-//                                    Icons.Default.Check,
-//                                    contentDescription = stringResource(R.string.content_description_valid_password),
-//                                    tint = Green800,
-//                                    modifier = Modifier.padding(end = dimensionResource(R.dimen.spacing_small))
-//                                )
-//                            }
-//                            IconButton(onClick = { isPasswordVisible = !isPasswordVisible }) {
-//                                Icon(
-//                                    imageVector = if (isPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
-//                                    contentDescription = stringResource(R.string.content_description_toggle_password),
-//                                    tint = Green800
-//                                )
-//                            }
-//                        }
-//                    },
-//                    modifier = Modifier.fillMaxWidth(),
-//                    shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_medium)),
-//                    colors = OutlinedTextFieldDefaults.colors(focusedBorderColor = Green800, unfocusedBorderColor = White)
-//                )
-//            }
-//
-//            Spacer( modifier = Modifier.height(dimensionResource(R.dimen.spacing_medium)))
-//
-//            // ПОЛЕ CONFIRM PASSWORD
-//            Column(modifier = Modifier.fillMaxWidth()){
-//                Text(
-//                    text = stringResource(R.string.signup_confirm_password_label),
-//                    fontSize = dimensionResource(R.dimen.font_size_small).value.sp,
-//                    color = Gray999,
-//                    modifier = Modifier.padding(bottom = dimensionResource(R.dimen.spacing_small))
-//                )
-//
-//                OutlinedTextField(
-//                    value = confirmPassword,
-//                    onValueChange = { confirmPassword = it; passwordError = null },
-//                    placeholder = { Text (stringResource(R.string.signup_confirm_password_placeholder), color = Black ) },
-//                    singleLine = true,
-//                    visualTransformation = if (isConfirmPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-//                    isError = passwordError != null, // Відображення помилки
-//                    trailingIcon = {
-//                        Row {
-//                            if (isPasswordValid(password)){
-//                                Icon(
-//                                    Icons.Default.Check,
-//                                    contentDescription = stringResource(R.string.content_description_valid_password),
-//                                    tint = Green800,
-//                                    modifier = Modifier.padding(end = dimensionResource( R.dimen.spacing_small))
-//                                )
-//                            }
-//                            IconButton(onClick = { isConfirmPasswordVisible = !isConfirmPasswordVisible }) {
-//                                Icon(
-//                                    imageVector = if (isConfirmPasswordVisible)
-//                                        Icons.Default.Visibility
-//                                        else Icons.Default.VisibilityOff,
-//                                    contentDescription = stringResource(R.string.content_description_toggle_password),
-//                                    tint = Green800
-//                                )
-//                            }
-//                        }
-//                    },
-//                    modifier = Modifier.fillMaxWidth(),
-//                    shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_medium)),
-//                    colors = OutlinedTextFieldDefaults.colors(focusedBorderColor = Green800, unfocusedBorderColor = White)
-//                )
-//                if (passwordError != null) {
-//                    Text(text = passwordError!!, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodySmall)
-//                }
-//            }
-//
-//            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.spacing_large)))
-//
-//            // КНОПКА "SIGN UP"
-//            Button(
-//                onClick = {
-//                    if (!isLoading) {
-//                        if (password != confirmPassword) {
-//                            passwordError = R.string.signup_password_error.toString()
-//                            return@Button
-//                        }
-//                        passwordError = null
-//                        viewModel.register(email, password)
-//                    }
-//                    if (!isPasswordValid(password)) {
-//                        passwordError = R.string.signup_password_valid_error.toString()
-//                        return@Button
-//                    }
-//                    passwordError = null
-//                    viewModel.register(email, password)
-//                },
-//                enabled = !isLoading && email.isNotBlank() && isPasswordValid(password) && password == confirmPassword,
-//                colors = ButtonDefaults.buttonColors(
-//                    containerColor = Color.Transparent,
-//                    disabledContainerColor = Color.LightGray.copy(alpha = 0.5f)
-//                ),
-//                contentPadding = PaddingValues(dimensionResource(R.dimen.padding_zero)),
-//                shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_medium)),
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .height(dimensionResource(R.dimen.button_height_large))
-//            ) {
-//                Box(
-//                    modifier = Modifier
-//                        .fillMaxSize()
-//                        .background(
-//                            brush = if (isLoading) {
-//                                Brush.verticalGradient(listOf(Color.Gray, Color.DarkGray))
-//                            } else {
-//                                Brush.verticalGradient(colors = listOf(GreenLight, Green800))
-//                            },
-//                            shape = RoundedCornerShape(dimensionResource(R.dimen.corner_radius_medium))
-//                        ),
-//                    contentAlignment = Alignment.Center
-//                ) {
-//                    if (isLoading) {
-//                        CircularProgressIndicator(color = White, modifier = Modifier.size(30.dp))
-//                    } else {
-//                        Text(
-//                            text = stringResource(R.string.signup_button),
-//                            fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
-//                            fontWeight = FontWeight.SemiBold,
-//                            color = White
-//                        )
-//                    }
-//                }
-//            }
-//
-//            Spacer(modifier = Modifier.weight(1f))
-//
-//            // НАВІГАЦІЯ НА LOGIN
-//            Row(
-//                horizontalArrangement = Arrangement.Center,
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(bottom = dimensionResource(R.dimen.padding_extra_large))
-//            ){
-//                Text(
-//                    text = stringResource(R.string.signup_have_account),
-//                    fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
-//                    color = Black,
-//                    fontWeight = FontWeight.SemiBold
-//                )
-//                Text(
-//                    text = stringResource(R.string.signup_login_link),
-//                    fontSize = dimensionResource(R.dimen.font_size_large).value.sp,
-//                    fontWeight = FontWeight.Bold,
-//                    color = Green800,
-//                    modifier = Modifier.clickable{ onNavigateToLogin() }
-//                )
-//            }
-//
-//        }
-//    }
-//}
-

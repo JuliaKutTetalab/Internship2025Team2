@@ -33,9 +33,11 @@ class DefaultAppContainer(private val context: Context) : AppContainer {
     }
 
     override val growBoxRepository: GrowBoxRepository by lazy {
-        GrowBoxRepositoryImpl(firebaseDataSource,offlineRepository)
+        GrowBoxRepositoryImpl(
+            firebaseDataSource = firebaseDataSource,
+            offlineRepository = offlineRepository,
+            firestore = firebaseFirestore
+        )
     }
-
-
 
 }

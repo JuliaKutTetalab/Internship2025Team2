@@ -1,12 +1,18 @@
 package com.example.growbox.screen.profile.historic_data.chart_screen
 
-data class HistoricChartUiState (
-    //Поки нема
-//    val selectedPeriod: ChartPeriod = ChartPeriod.WEEK,
-//    val chartData: List<ChartDataPoint> = emptyList(),
+import com.example.growbox.screen.home.chart.model.ChartDataPoint
+import com.example.growbox.screen.home.chart.model.ChartPeriod
+
+
+data class HistoricChartUiState(
+    val selectedPeriod: ChartPeriod = ChartPeriod.WEEK,
+    val data: List<ChartDataPoint> = emptyList(),
+
     val lowestValue: Int = 0,
     val lowestData: String = "",
     val highestValue: Int = 0,
     val highestData: String = "",
-    val isLoading: Boolean = false
+
+    val unit: String = "",
+    val isLoading: Boolean = true
 )

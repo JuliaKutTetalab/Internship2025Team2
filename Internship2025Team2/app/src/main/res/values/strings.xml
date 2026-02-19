@@ -1,0 +1,120 @@
+<resources>
+    <!-- App name -->
+    <string name="app_name">GrowBox</string>
+
+    <!-- Splash Screen -->
+    <string name="splash_screen">Splash</string>
+    <string name="splash_welcome">Welcome to App</string>
+
+
+
+    <!-- Home Screen -->
+    <string name="home_title">Home</string>
+    <string name="settings_title">Settings</string>
+    <string name="profile_title">Profile</string>
+
+    <!-- Login Screen -->
+    <string name="logIn_screen">LogIn</string>>
+    <string name="login_title">Welcome back</string>
+    <string name="login_subtitle">Sign in to grow your plants</string>
+    <string name="login_email_label">Email</string>
+    <string name="login_email_placeholder">nick.name@mail.com</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_password_placeholder">••••••••••</string>
+    <string name="login_button">Sign in</string>
+    <string name="login_no_account">"Don't have an account? "</string>
+    <string name="login_sign_up_link">Sign up</string>
+
+    <!-- Sign Up Screen -->
+    <string name="signUp_screen">SignUp</string>>
+    <string name="signup_title">Create an account</string>
+    <string name="signup_subtitle">Create an account to start growing plants</string>
+    <string name="signup_email_label">Email</string>
+    <string name="signup_email_placeholder">nick.name@mail.com</string>
+    <string name="signup_password_label">Password</string>
+    <string name="signup_password_placeholder">••••••••••</string>
+    <string name="signup_confirm_password_label">Confirm Password</string>
+    <string name="signup_confirm_password_placeholder">••••••••••</string>
+    <string name="signup_button">Sign up</string>
+    <string name="signup_have_account">Already have an account?</string>
+    <string name="signup_login_link">Log in</string>
+    <string name="signup_password_error">Passwords don\’t match</string>
+    <string name="signup_password_valid_error">Must be 8+ symbols, include digits and special characters</string>>
+    <string name="signup_email_valid_error">Enter a valid email address (e.g. name@mail.com)</string>
+
+    <!-- Onboarding Screens -->
+    <string name="onboarding_name">OnBoarding</string>
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_plant_description">Plant illustration</string>>
+
+    <string name="onboarding_screen1_title">Choose Your Plants</string>
+    <string name="onboarding_screen1_description">Welcome to GrowBox! Select your favorite plants and begin cultivating your personal garden.</string>
+
+    <string name="onboarding_screen2_title">Connect and Control</string>
+    <string name="onboarding_screen2_description">Connect your GrowBox and control watering, lighting, and temperature right from your smartphone.</string>
+
+    <string name="onboarding_screen3_title">Observe and Grow</string>
+    <string name="onboarding_screen3_description">See your plants flourish with helpful graphs. You\'re set to grow and succeed!</string>
+
+    <!--    Home Screens-->
+
+    <!-- Light Chart  -->
+    <string name="light_title">Light</string>
+    <string name="light_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
+    <string name="light_chart_no_data">Data not found</string>
+    <!-- Humidity Chart  -->
+    <string name="humidity_title">Humidity</string>
+    <string name="humidity_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
+    <string name="humidity_chart_no_data">Data not found</string>
+    <!-- Temperature Chart  -->
+    <string name="temperature_title">Temperature</string>
+    <string name="temperature_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
+    <string name="temperature_chart_no_data">Data not found</string>
+    <!-- Nutrition Chart  -->
+    <string name="nutrition_title">Nutrition</string>
+    <string name="nutrition_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
+    <string name="nutrition_chart_no_data">Data not found</string>
+
+    <!--    Settings Screen-->
+    <string name="settings_title">Settings</string>
+    <string name="vent_card_title">Vent</string>
+    <string name="light_card_title">Lightening</string>
+    <string name="temperature_card_title">Temperature</string>
+    <string name="humidity_card_title">Humidity</string>
+    <string name="nutrition_card_title">Nutrition</string>
+    <string name="water_card_title">Watering</string>
+    <string name="dropdown_description">Dropdown</string>
+    <string name="dropdown_every_day">Every day</string>
+    <string name="dropdown_every_week">Every week</string>
+    <string name="dropdown_every_month">Every month</string>
+
+
+    <!-- Common -->
+    <string name="content_description_plant_icon">Plant icon</string>
+    <string name="content_description_toggle_password">"Toggle password "</string>
+    <string name="content_description_valid_email">Valid email</string>
+    <string name="content_description_valid_password">Valid password</string>
+    <string name="content_description_passwords_match">Passwords match</string>
+    <string name="content_description_home_screen">Back</string>
+
+    <!-- Stat Card Labels   -->
+    <string name="current_information">Current</string>
+    <string name="recommended_information">Recommended</string>
+    <string name="week_information">Week</string>
+    <string name="total_information">Total</string>
+    <string name="unit_hours_label">%1$d h</string>
+    <string name="unit_celsius_label">%1$d `C</string>
+    <string name="unit_percent_label">%1$d%%</string>
+    <string name="unit_milligrams_label">%1$d mg</string>
+    <string name="label_off">Off</string>
+
+
+    <!-- Value formats    -->
+    <string name="value_percentage">%d%%</string>
+    <string name="value_kilowatts">%s kw</string>
+    <string name="value_milliliter">%s ml</string>
+    <string name="value_temperature">%1$d `C</string>
+    <string name="value_milligrams">%s mg</string>
+
+</resources>

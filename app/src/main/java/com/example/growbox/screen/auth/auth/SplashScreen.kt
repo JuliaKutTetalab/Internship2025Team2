@@ -17,6 +17,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.background
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -45,7 +46,7 @@ fun SplashScreen(
 
     val isLoggedIn by viewModel.isLoggedIn.collectAsState(initial = null)
 
-    //ЗМІНА: Спостерігаємо за uiState
+
     val uiState by viewModel.uiState.collectAsState()
 
 
@@ -61,14 +62,16 @@ fun SplashScreen(
                 }
             }
             is SplashState.Loading -> {
-                //Нічого не робимо, чекаємо
+
             }
         }
     }
 
 
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
