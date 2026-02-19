@@ -75,6 +75,10 @@
     <string name="nutrition_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
     <string name="nutrition_chart_no_data">Data not found</string>
 
+
+    <!--    Historic Data Screens-->
+    <string name="historic_title">Historic Data</string>
+
     <!--    Settings Screen-->
     <string name="settings_title">Settings</string>
     <string name="vent_card_title">Vent</string>
@@ -104,6 +108,22 @@
     <string name="crop_type_microgreens">Microgreens</string>
     <string name="crop_type_mushrooms">Mushroom`s</string>
 
+    <!--   Bluetooth Screen-->
+    <string name="initial_device_title">Connect your mobile\ndevice to GrowBox</string>
+    <string name="initial_warning_text">Make sure that Bluetooth on your mobile\ndevice is turned on</string>
+    <string name="initial_device_button">Connect your device </string>
+    <string name="search_device_title">Searching for devices...</string>
+    <string name="search_warning_text">It can take a couple of minutes</string>
+    <string name="search_cancel_button">Cancel</string>
+    <string name="connect_device_title">Connect Device: </string>
+    <string name="connect_app_name">GrowBox</string>
+    <string name="connect_device_name">Fantastik Gin-10</string>
+    <string name="connect_device_version">Version 1.1.5</string>
+    <string name="connecting_title">Connecting...</string>
+    <string name="connecting_warning_text">It can take a couple of minutes</string>
+    <string name="connecting_cancel_button">Cancel</string>
+    <string name="connected_title">Connected</string>
+    <string name="connected_next_button">Next</string>
 
 
     <!-- Common -->

@@ -13,6 +13,12 @@ import com.example.growbox.screen.auth.auth.SignUpDestination
 import com.example.growbox.screen.auth.auth.SignUpScreen
 import com.example.growbox.screen.auth.auth.SplashDestination
 import com.example.growbox.screen.auth.auth.SplashScreen
+import com.example.growbox.screen.bluetooth.connected.ConnectedDeviceDestination
+import com.example.growbox.screen.bluetooth.connected.ConnectedDeviceScreen
+import com.example.growbox.screen.bluetooth.initial.InitialDeviceDestination
+import com.example.growbox.screen.bluetooth.initial.InitialDeviceScreen
+import com.example.growbox.screen.bluetooth.select_device.ConnectDeviceDestination
+import com.example.growbox.screen.bluetooth.select_device.ConnectDeviceScreen
 import com.example.growbox.screen.home.chart.ChartDestination
 import com.example.growbox.screen.home.chart.ChartScreen
 import com.example.growbox.screen.home.HomeDestination
